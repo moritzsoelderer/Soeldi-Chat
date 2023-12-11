@@ -1,0 +1,187 @@
+#root{
+    /*color variables*/
+    -fx-background: #11171f;
+    -fx-primary-content: #2E4057;
+    -fx-secondary-content: #1E1E24;
+    -fx-strong-accent: #b76ab8;
+    -fx-light-accent: #4a668a;
+    -fx-text: #eeeeff;
+    /*plum: #EC9DED*/
+
+    -fx-pref-height: 100%;
+    -fx-pref-width: 100%;
+    -fx-padding: 10px;
+    -fx-background-color: -fx-background;
+    -fx-font-size: 1.2em;
+    -fx-smooth: true;
+    -fx-spacing: .2em;
+}
+/*left side of layout, containing chats menu*/
+#chatsContainer{
+    -fx-padding: .5em 0 .5em 0;
+    -fx-background-color: -fx-secondary-content;
+    -fx-text-fill: -fx-text;
+    -fx-max-width: 40em;
+    -fx-min-width: 20em;
+    -fx-spacing: .2em;
+}
+
+#chatsContainer .label{
+    -fx-text-fill: #efefef;
+    -fx-font-size: 16 em;
+    -fx-padding: 5px;
+}
+
+#contact{
+    -fx-border-width: 1px 0 0 0;
+    -fx-border-color: -fx-light-accent;
+    -fx-background-radius: .2em;
+    -fx-padding: .6em .4em .6em .4em;
+    -fx-spacing: .4em;
+}
+
+#contact:hover{
+    -fx-background-color: -fx-primary-content;
+}
+
+/*right side of layout, containing the current chat*/
+#currentChatContainer {
+    -fx-spacing: .2em;
+    -fx-background-color: -fx-background;
+}
+
+#chatsTitle{
+    -fx-font-weight: bold;
+}
+
+/*top*/
+#chatMenuBar{
+    -fx-background-color: -fx-secondary-content;
+    -fx-text-fill: -fx-text;
+    -fx-padding: 1em 3em 1em 3em;
+}
+
+#contactName{
+    -fx-font-size: 1.6em;
+    -fx-font-weight: bold;
+}
+
+#callButton{
+    -fx-alignment: center-right;
+}
+
+/*middle*/
+#currentChat{
+    -fx-background-color: -fx-primary-content;
+    -fx-vbar-policy: always;
+    -fx-hbar-policy: never;
+    -fx-pannable: true;
+    -fx-fit-to-width: true;
+}
+
+#currentChat > .viewport{
+    -fx-background-color: transparent;
+}
+
+#messageContainer{
+    -fx-padding: .2em 3em .2em 3em;
+    -fx-max-width: 75em;
+    -fx-spacing: .5em;
+}
+
+.sentMessages{
+    -fx-label-padding: .5em .75em .5em .5em;
+    -fx-text-alignment: center;
+    -fx-text-fill: -fx-text;
+    -fx-border-color: -fx-strong-accent;
+    -fx-border-width: 2px;
+    -fx-border-radius: 3em 3em 1em 3em;
+    -fx-background-radius: 3em 3em 1em 3em;
+    -fx-background-color: -fx-strong-accent;
+    -fx-opacity: 1;
+    -fx-effect: dropshadow(three-pass-box, rgba(50,50,50,0.8), 10, 0, 2,2);
+}
+
+.sentMessages:hover{
+    -fx-opacity: .95;
+}
+
+.recievedMessages{
+    -fx-label-padding: .5em .75em .5em .5em;
+    -fx-text-alignment: center;
+    -fx-text-fill: -fx-text;
+    -fx-border-color: -fx-light-accent;
+    -fx-border-width: 2px;
+    -fx-border-radius: 3em 3em 3em 1em;
+    -fx-background-radius: 3em 3em 3em 1em;
+    -fx-background-color: -fx-light-accent;
+    -fx-effect: dropshadow(three-pass-box, rgba(50,50,50,0.8), 10, 0, 2,2);
+}
+
+.recievedMessages:hover{
+    -fx-opacity: .95;
+}
+
+
+/*bottom*/
+#sendContainer{
+    -fx-pref-height: 1em;
+    -fx-spacing: 1em;
+    -fx-padding: .5em 3em .5em 3em;
+    -fx-background-color: -fx-secondary-content;
+}
+
+#sendTextArea{
+    -fx-border-width: 0 0 .1em 0;
+    -fx-border-style: solid;
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-pref-rows: 1;
+    -fx-wrap-text: true;
+    -fx-text-fill: -fx-text;
+    -fx-alignment: center-left;
+}
+
+#sendTextArea *{
+    -fx-background-color: transparent;
+}
+
+#sendTextArea:hover, #sendTextArea:focused{
+    -fx-border-color: -fx-strong-accent ;
+}
+
+#sendButton{
+    -fx-background-radius: 3em;
+    -fx-background-color: -fx-strong-accent;
+    -fx-padding: .2em .6em .2em .6em;
+    -fx-min-width: 6em;
+    -fx-min-height: 3em;
+    -fx-text-fill: -fx-text;
+    -fx-effect: dropshadow(three-pass-box, rgba(50,50,50,0.8), 10, 0, 2,2);
+}
+
+#sendButton:hover{
+    -fx-opacity: .9;
+}
+
+/*scrollbars*/
+.scroll-bar:vertical .track{
+    -fx-background-color: -fx-primary-content;
+}
+
+.scroll-bar:vertical .thumb{
+    -fx-background-color: -fx-secondary-content;
+}
+
+.scroll-bar:vertical .increment-button,
+.scroll-bar:vertical .decrement-button{
+    -fx-background-color :transparent;
+    -fx-background-radius : 0.0em;
+    -fx-padding :0.0 10.0 0.0 0.0;
+}
+
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow{
+    -fx-shape : " ";
+    -fx-padding :0.15em 0.0;
+}

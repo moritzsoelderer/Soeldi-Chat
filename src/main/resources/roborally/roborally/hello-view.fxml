@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox fx:id="root" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="roborally.roborally.Controller">
+    <VBox fx:id="chatsContainer" HBox.hgrow="SOMETIMES">
+      <Label fx:id="chatsTitle" text="Chats" />
+        <HBox fx:id="contact" maxHeight="50">
+            <ImageView   HBox.hgrow="NEVER" fitHeight="40" fitWidth="40">
+                <Image url="@boxer.jpg" />
+            </ImageView>
+            <Label text="Contact1" />
+        </HBox>
+      <Label text="Contact2" />
+    </VBox>
+    <VBox fx:id="currentChatContainer" HBox.hgrow="ALWAYS">
+        <HBox fx:id="chatMenuBar">
+            <Label fx:id="contactName" text="Jonas" HBox.hgrow="ALWAYS" />
+            <Button fx:id="callButton" text="Button"/>
+        </HBox>
+        <ScrollPane fx:id="currentChat" VBox.vgrow="ALWAYS">
+
+                <VBox fx:id="messageContainer" alignment="CENTER" />
+
+        </ScrollPane>
+        <HBox fx:id="sendContainer" VBox.vgrow="SOMETIMES">
+            <TextArea fx:id="sendTextArea" promptText="message" HBox.hgrow="ALWAYS" />
+            <Button fx:id="sendButton" onAction="#onSendButtonClicked" text="send" />
+        </HBox>
+    </VBox>
+
+
+    <!--
+    <Label fx:id="welcomeText" />
+    <Button onAction="#onHelloButtonClick" text="Hello!" />
+    -->
+</HBox>
