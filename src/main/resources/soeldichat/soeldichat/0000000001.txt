@@ -16,7 +16,7 @@
 0000000000: Na sowas
 0000000000: Wer hat Ihnen denn die Glühbirne ausgedreht?? ^^
 0000000001: Das lasse ich mir nicht länger gefallen!
-0000000001: Ich werde ihrer Frau noch heute einen Besuch abstatten
+0000000001: Ich werde ihrer Frau noch heute einen Besuch abstatten 
 0000000000: Welch Frechheit!
 0000000000: Hab das eben Ihrer Mutter vorgelesen und sie ist enttäuscht
 0000000001: Sie Schlingel!
