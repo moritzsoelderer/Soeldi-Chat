@@ -65,7 +65,6 @@ public class Controller {
             contactContainer.getChildren().add(name);
 
             //display chat when clicked on contact
-            List<Message> messageList = x.getMessageList();
             String currentContactNumber = x.getNumber();
             contactContainer.setOnMouseClicked(y -> displayChat(currentContactNumber, userNumber));
 
@@ -79,7 +78,12 @@ public class Controller {
     protected void onSendButtonClicked(){
         //return if message prompt is empty
         if(sendTextArea.getText().isEmpty()){return;}
+
+        //add message to gui
         addMessageToChat(sendTextArea.getText(), true);
+
+        //log message in json file
+        application.logMessage(sendTextArea.getText());
 
         //clear message prompt
         sendTextArea.setText("");
@@ -108,7 +112,5 @@ public class Controller {
             messageWrapper.setAlignment(Pos.BASELINE_LEFT);
         }
         messageContainer.getChildren().add(messageWrapper);
-
-        application.logMessage(text);
     }
 }
