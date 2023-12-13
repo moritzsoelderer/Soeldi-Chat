@@ -28,5 +28,3 @@ c
 3src/main/java/soeldichat/soeldichat/Controller.java,e\9\e9906cdc17ee01538d399fe3e2cc13b74098e982
 n
 >src/main/java/soeldichat/soeldichat/SoeldiChatApplication.java,f\7\f7066b99d47fd72a3cb61e5b3aef0c74e87ef89a
-d
-4src/main/java/soeldichat/soeldichat/ContactList.java,a\7\a70acaecf071883ac22bf7c4dbb363b66f99ffec

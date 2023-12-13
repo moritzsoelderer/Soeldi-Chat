@@ -37,36 +37,31 @@ public class Controller {
         this.application = application;
     }
 
-    public void displayChat(String currentContactNumber, String userNumber){
-        application.setCurrentContactNumber(currentContactNumber);
-        List<Message> messageList = application.loadMessages();
+    public void displayChat(List<Message> messageList){
         //clearing chat
         messageContainer.getChildren().clear();
 
         //displaying Chat
-        messageList.forEach(x -> addMessageToChat(x.getText(), x.getSender().equals(userNumber)));
+        messageList.forEach(message -> {
+            HBox messageWrapper = createMessageHBox(message.getText(), message.getSender().equals(application.getUserNumber()));
+            messageContainer.getChildren().add(messageWrapper);
+        });
     }
 
-    public void displayContacts(List<Contact> contactList, String userNumber) {
-        contactList.forEach(x -> {
+    public void displayContacts(List<Contact> contactList) {
+        contactList.forEach(contact -> {
 
-            //add Container for contact
-            HBox contactContainer = new HBox();
-            contactContainer.maxHeight(50.0);
-            contactContainer.getStyleClass().add("contact");
-
-            //add ImageView for profile picture
-            ImageView imageView = new ImageView();
-            contactContainer.getChildren().add(imageView);
-            HBox.setHgrow(imageView, Priority.NEVER);
-
-            //add Label for name
-            Label name = new Label(x.getFirstName() + " " + x.getLastName());
-            contactContainer.getChildren().add(name);
+            //create HBox and content for contact
+            HBox contactContainer = createContactHBox(contact);
 
             //display chat when clicked on contact
-            String currentContactNumber = x.getNumber();
-            contactContainer.setOnMouseClicked(y -> displayChat(currentContactNumber, userNumber));
+            String currentContactNumber = contact.getNumber();
+            contactContainer.setOnMouseClicked(y -> {
+                application.setCurrentContactNumber(currentContactNumber);
+                List<Message> messageList = Contact.getContactByNumber(contactList, currentContactNumber).getMessageList();
+                System.out.println(messageList);
+                displayChat(messageList);
+            });
 
             //add contact to contacts
             chatsContainer.getChildren().add(contactContainer);
@@ -74,16 +69,31 @@ public class Controller {
         });
     }
 
+    private HBox createContactHBox(Contact contact){
+        //add Container for contact
+        HBox contactContainer = new HBox();
+        contactContainer.maxHeight(50.0);
+        contactContainer.getStyleClass().add("contact");
+
+        //add ImageView for profile picture
+        ImageView imageView = new ImageView();
+        contactContainer.getChildren().add(imageView);
+        HBox.setHgrow(imageView, Priority.NEVER);
+
+        //add Label for name
+        Label name = new Label(contact.getFirstName() + " " + contact.getLastName());
+        contactContainer.getChildren().add(name);
+
+        return contactContainer;
+    }
+
     @FXML
     protected void onSendButtonClicked(){
         //return if message prompt is empty
         if(sendTextArea.getText().isEmpty()){return;}
 
-        //add message to gui
+        //add message
         addMessageToChat(sendTextArea.getText(), true);
-
-        //log message in json file
-        application.logMessage(sendTextArea.getText());
 
         //clear message prompt
         sendTextArea.setText("");
@@ -93,9 +103,16 @@ public class Controller {
         currentChat.setVvalue(vmax);
     }
 
-    @FXML
     protected void addMessageToChat(String text, boolean alignRight){
         //Use HBox as Container to align message on the right
+        HBox messageWrapper = createMessageHBox(text, alignRight);
+        messageContainer.getChildren().add(messageWrapper);
+
+        //update messageList
+        application.addMessageToChat(new Message(application.getUserNumber(), application.getCurrentContactNumber(), text, ""));
+    }
+
+    private HBox createMessageHBox(String text, boolean alignRight){
         HBox messageWrapper = new HBox();
 
         Label message = new Label();
@@ -111,6 +128,8 @@ public class Controller {
             message.getStyleClass().add("recievedMessages");
             messageWrapper.setAlignment(Pos.BASELINE_LEFT);
         }
-        messageContainer.getChildren().add(messageWrapper);
+
+        return messageWrapper;
     }
 }
+

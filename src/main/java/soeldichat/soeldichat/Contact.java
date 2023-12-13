@@ -12,6 +12,16 @@ public class Contact {
 
     private List<Message> messageList;
 
+    public static Contact getContactByNumber(List<Contact> contactList, String number){
+
+        for(Contact currentContact : contactList){
+            if(currentContact.getNumber().equals(number)){
+                return currentContact;
+            }
+        }
+        return null;
+    }
+
     public Contact(String number, List<Message> messageList) {
         this.number = number;
         this.messageList = messageList;

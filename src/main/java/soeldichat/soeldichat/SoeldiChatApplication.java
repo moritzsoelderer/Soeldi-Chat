@@ -14,6 +14,7 @@ public class SoeldiChatApplication extends Application {
 
     private final String userNumber = "0000000000";
     private String currentContactNumber;
+    private List<Contact> contactList;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -33,14 +34,13 @@ public class SoeldiChatApplication extends Application {
         stage.show();
 
         //load and display contacts
-        List<Contact> contactList = loadContacts();
+        this.contactList = loadContacts();
         this.currentContactNumber = contactList.getFirst().getNumber();
 
         //load and display messages (of first contact)
-        contactList.forEach(x -> x.setMessageList(loadMessages()));
-        controller.displayContacts(contactList, userNumber);
-        controller.displayChat(currentContactNumber, userNumber);
-
+        contactList.forEach(x -> x.setMessageList(new ArrayList<>(loadMessages(x.getNumber()))));
+        controller.displayContacts(contactList);
+        controller.displayChat(contactList.getFirst().getMessageList());
     }
 
     public static void main(String[] args) {
@@ -51,10 +51,18 @@ public class SoeldiChatApplication extends Application {
         this.currentContactNumber = currentContactNumber;
     }
 
-    public List<Contact> loadContacts(){
+    public String getCurrentContactNumber() {
+        return currentContactNumber;
+    }
+
+    public String getUserNumber() {
+        return userNumber;
+    }
+
+    private List<Contact> loadContacts(){
         Gson gson = new Gson();
 
-        try (Reader reader = new FileReader("C:/Users/morit/IdeaProjects/RoboRally/src/main/resources/soeldichat/soeldichat/chats-info.json")) {
+        try (Reader reader = new FileReader("C:/Users/morit/IdeaProjects/RoboRally/src/main/resources/soeldichat/soeldichat/chats/chats-info.json")) {
 
             Contact[] contactArray = gson.fromJson(reader,Contact[].class);
 
@@ -71,9 +79,9 @@ public class SoeldiChatApplication extends Application {
         return Collections.emptyList();
     }
 
-    public List<Message> loadMessages(){
+    private List<Message> loadMessages(String contactNumber){
 
-        File chatFile = new File("C:/Users/morit/IdeaProjects/RoboRally/src/main/resources/soeldichat/soeldichat/" + currentContactNumber +".json");
+        File chatFile = new File("C:/Users/morit/IdeaProjects/RoboRally/src/main/resources/soeldichat/soeldichat/chats/" + contactNumber +".json");
         Gson gson = new Gson();
 
         try (Reader reader = new FileReader(chatFile)) {
@@ -97,15 +105,14 @@ public class SoeldiChatApplication extends Application {
 
     }
 
-    public void logMessage(String text){
-        Message newMessage = new Message(userNumber,currentContactNumber,text, "");
-        File chatFile = new File("C:\\Users\\morit\\IdeaProjects\\RoboRally\\src\\main\\resources\\soeldichat\\soeldichat\\" + currentContactNumber + ".json");
+    private void logMessage(Message newMessage){
+        File chatFile = new File("C:\\Users\\morit\\IdeaProjects\\RoboRally\\src\\main\\resources\\soeldichat\\soeldichat\\chats\\" + determineChatPartnerNumber(newMessage) + ".json");
 
         Gson gson = new Gson();
 
         try{
             //load messages and append new message
-            ArrayList<Message> messageList = new ArrayList<>(loadMessages());
+            ArrayList<Message> messageList = new ArrayList<>(loadMessages(currentContactNumber));
             messageList.add(newMessage);
 
             //log messages
@@ -132,6 +139,21 @@ public class SoeldiChatApplication extends Application {
         catch (IOException ioException){
             System.out.println("Could not create new ChatLog file for " + currentContactNumber + ".");
         }
+    }
+
+    private String determineChatPartnerNumber(Message message){
+        if(message.getSender().equals(userNumber)){
+            return message.getReceiver();
+        }
+        return message.getSender();
+    }
+
+    public void addMessageToChat(Message newMessage){
+
+        Contact.getContactByNumber(contactList, determineChatPartnerNumber(newMessage)).getMessageList().add(newMessage);
+
+        //add message to log
+        logMessage(newMessage);
     }
 
 }
