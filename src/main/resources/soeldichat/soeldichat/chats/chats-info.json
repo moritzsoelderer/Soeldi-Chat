@@ -1,0 +1,39 @@
+[
+  {
+    "number": "0000000001",
+    "firstName": "Moritz",
+    "lastName": "Soelderer",
+    "profilePicture": "",
+    "status": "Hi, I'm using SoeldiChat!",
+    "chat": "0000000001.json"
+  },
+
+  {
+    "number": "0000000002",
+    "firstName": "Jonas",
+    "lastName": "Wenin",
+    "profilePicture": "",
+    "status": "Hi, I'm using SoeldiChat!",
+    "chat": "0000000002.json"
+  },
+
+  {
+    "number": "0000000003",
+    "firstName": "Adin",
+    "lastName": "Zornic",
+    "profilePicture": "",
+    "status": "Hi, I'm using SoeldiChat!",
+    "chat": "0000000003.json"
+  },
+
+  {
+    "number": "0000000004",
+    "firstName": "Alan",
+    "lastName": "Gallo",
+    "profilePicture": "",
+    "status": "Hi, I'm using SoeldiChat!",
+    "chat": "0000000004.json"
+  }
+]
+
+

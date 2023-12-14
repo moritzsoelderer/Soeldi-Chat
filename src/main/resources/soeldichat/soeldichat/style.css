@@ -32,7 +32,7 @@
     -fx-padding: 5px;
 }
 
-#contact{
+.contact{
     -fx-border-width: 1px 0 0 0;
     -fx-border-color: -fx-light-accent;
     -fx-background-radius: .2em;
@@ -40,7 +40,7 @@
     -fx-spacing: .4em;
 }
 
-#contact:hover{
+.contact:hover{
     -fx-background-color: -fx-primary-content;
 }
 

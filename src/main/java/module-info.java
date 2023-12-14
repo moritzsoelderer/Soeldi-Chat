@@ -1,8 +1,9 @@
-module roborally.roborally {
+module soeldichat.soeldichat {
     requires javafx.controls;
     requires javafx.fxml;
+    requires com.google.gson;
 
 
-    opens roborally.roborally to javafx.fxml;
-    exports roborally.roborally;
+    opens soeldichat.soeldichat to javafx.fxml, com.google.gson;
+    exports soeldichat.soeldichat;
 }

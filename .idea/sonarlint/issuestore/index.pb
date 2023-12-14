@@ -1,20 +1,8 @@
 
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
-a
-1src/main/java/roborally/roborally/Controller.java,b\9\b956f1d5452f2db7b813e1e783c04431aa3d74fa
-k
-;src/main/java/roborally/roborally/RoboRallyApplication.java,f\e\fe9e04da3d78c9856e90760386e86238f3502af3
-^
-.src/main/java/roborally/roborally/Message.java,e\3\e34ad4bd6b050c89a657ecb5e821e8b82e22e6e7
-^
-.src/main/java/roborally/roborally/Contact.java,4\3\433a5fa296f15a45224e88792018ed23bcd21f1f
 U
 %.mvn/wrapper/maven-wrapper.properties,3\2\32e074f71d16c1e88ac02aa83592ca6ad1fd98a8
-
-Q.idea/sonarlint/securityhotspotstore/b/9/b956f1d5452f2db7b813e1e783c04431aa3d74fa,5\c\5c3b1613ccb970369ba2bb1a3eba3f1532a8e51b
-
-Q.idea/sonarlint/securityhotspotstore/f/e/fe9e04da3d78c9856e90760386e86238f3502af3,3\4\347cb24225ec14878c683374b48038a12ef454c5
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
@@ -32,3 +20,11 @@ N
 src/main/java/module-info.java,1\c\1c89a5491fbfda3fb050196d6a239f20200296e7
 w
 G.idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec,8\6\863e0292fd7e9b3e74dafd6cc01f73ba76346482
+`
+0src/main/java/soeldichat/soeldichat/Message.java,9\7\970bad67b8b45e0311ef3849640432aa17eca638
+`
+0src/main/java/soeldichat/soeldichat/Contact.java,1\3\134786d64830cdd76b73ef34355d51a9710071a7
+c
+3src/main/java/soeldichat/soeldichat/Controller.java,e\9\e9906cdc17ee01538d399fe3e2cc13b74098e982
+n
+>src/main/java/soeldichat/soeldichat/SoeldiChatApplication.java,f\7\f7066b99d47fd72a3cb61e5b3aef0c74e87ef89a
