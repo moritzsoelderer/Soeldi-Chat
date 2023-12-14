@@ -106,17 +106,16 @@ public class SoeldiChatApplication extends Application {
     }
 
     private void logMessage(Message newMessage){
-        File chatFile = new File("C:\\Users\\morit\\IdeaProjects\\RoboRally\\src\\main\\resources\\soeldichat\\soeldichat\\chats\\" + determineChatPartnerNumber(newMessage) + ".json");
+        String chatPartnerNumber = determineChatPartnerNumber(newMessage);
+        File chatFile = new File("C:\\Users\\morit\\IdeaProjects\\RoboRally\\src\\main\\resources\\soeldichat\\soeldichat\\chats\\" + chatPartnerNumber + ".json");
 
         Gson gson = new Gson();
 
         try{
             //load messages and append new message
-            ArrayList<Message> messageList = new ArrayList<>(loadMessages(currentContactNumber));
+            ArrayList<Message> messageList = new ArrayList<>(Contact.getContactByNumber(contactList, chatPartnerNumber).getMessageList());
             messageList.add(newMessage);
 
-            //log messages
-            System.out.println("hier beim schreiben der message in die json file");
             JsonWriter writer = new JsonWriter(new FileWriter(chatFile, false));
             gson.toJson(messageList, ArrayList.class, writer);
             writer.flush();
@@ -124,7 +123,6 @@ public class SoeldiChatApplication extends Application {
         }
         catch(IOException fileOpenException){
             //create file if it cannot be found
-            System.out.println("exception wurde geworfen");
             if(fileOpenException.getClass().equals(FileNotFoundException.class)){
                 System.out.println("file wurde nicht gefunden");
                 createNewFile(chatFile);
@@ -137,7 +135,7 @@ public class SoeldiChatApplication extends Application {
             file.createNewFile();
         }
         catch (IOException ioException){
-            System.out.println("Could not create new ChatLog file for " + currentContactNumber + ".");
+            System.out.println("Could not create new ChatLog file.");
         }
     }
 

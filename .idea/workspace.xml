@@ -4,19 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2c7283b-a416-41b5-8b21-fdc60750bd3c" name="Changes" comment="messages are now logged correctly, although every time a message is logged the whole chat is loaded and saved again to the json file">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000001.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+    <list default="true" id="b2c7283b-a416-41b5-8b21-fdc60750bd3c" name="Changes" comment="contact and chat system now works completely, now not every time you switch to another chat the chat is loaded from the json file, but rather from the messageList attribute of the contact class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/Contact.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/Contact.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/SoeldiChatApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/SoeldiChatApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/0000000001.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/0000000002.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000002.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/0000000003.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000003.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/0000000004.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000004.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats-info.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/chats-info.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000003.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000003.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,6 +182,7 @@
     <MESSAGE value="First Draft - Messaging, reading/writing of chatlog (textfile) works - First Design implemented" />
     <MESSAGE value="created json files for chats and contacts, implemented methods for parsing, divided methods into model related tasks and view related tasks&#10;&#10;-writing to chat log .json files has yet to be implemented" />
     <MESSAGE value="messages are now logged correctly, although every time a message is logged the whole chat is loaded and saved again to the json file" />
-    <option name="LAST_COMMIT_MESSAGE" value="messages are now logged correctly, although every time a message is logged the whole chat is loaded and saved again to the json file" />
+    <MESSAGE value="contact and chat system now works completely, now not every time you switch to another chat the chat is loaded from the json file, but rather from the messageList attribute of the contact class" />
+    <option name="LAST_COMMIT_MESSAGE" value="contact and chat system now works completely, now not every time you switch to another chat the chat is loaded from the json file, but rather from the messageList attribute of the contact class" />
   </component>
 </project>

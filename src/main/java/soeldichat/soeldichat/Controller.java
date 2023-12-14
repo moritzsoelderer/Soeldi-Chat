@@ -2,7 +2,6 @@ package soeldichat.soeldichat;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
@@ -19,19 +18,11 @@ public class Controller {
     @FXML
     private ScrollPane currentChat;
     @FXML
-    private HBox sendContainer;
-    @FXML
     private VBox chatsContainer;
-    @FXML
-    private VBox currentChatContainer;
     @FXML
     private TextArea sendTextArea;
     @FXML
-    private Button sendButton;
-    @FXML
     private VBox messageContainer;
-    @FXML
-    private HBox root;
 
     public void setApplication(SoeldiChatApplication application) {
         this.application = application;
@@ -59,7 +50,6 @@ public class Controller {
             contactContainer.setOnMouseClicked(y -> {
                 application.setCurrentContactNumber(currentContactNumber);
                 List<Message> messageList = Contact.getContactByNumber(contactList, currentContactNumber).getMessageList();
-                System.out.println(messageList);
                 displayChat(messageList);
             });
 
@@ -68,25 +58,6 @@ public class Controller {
 
         });
     }
-
-    private HBox createContactHBox(Contact contact){
-        //add Container for contact
-        HBox contactContainer = new HBox();
-        contactContainer.maxHeight(50.0);
-        contactContainer.getStyleClass().add("contact");
-
-        //add ImageView for profile picture
-        ImageView imageView = new ImageView();
-        contactContainer.getChildren().add(imageView);
-        HBox.setHgrow(imageView, Priority.NEVER);
-
-        //add Label for name
-        Label name = new Label(contact.getFirstName() + " " + contact.getLastName());
-        contactContainer.getChildren().add(name);
-
-        return contactContainer;
-    }
-
     @FXML
     protected void onSendButtonClicked(){
         //return if message prompt is empty
@@ -110,6 +81,24 @@ public class Controller {
 
         //update messageList
         application.addMessageToChat(new Message(application.getUserNumber(), application.getCurrentContactNumber(), text, ""));
+    }
+
+    private HBox createContactHBox(Contact contact){
+        //add Container for contact
+        HBox contactContainer = new HBox();
+        contactContainer.maxHeight(50.0);
+        contactContainer.getStyleClass().add("contact");
+
+        //add ImageView for profile picture
+        ImageView imageView = new ImageView();
+        contactContainer.getChildren().add(imageView);
+        HBox.setHgrow(imageView, Priority.NEVER);
+
+        //add Label for name
+        Label name = new Label(contact.getFirstName() + " " + contact.getLastName());
+        contactContainer.getChildren().add(name);
+
+        return contactContainer;
     }
 
     private HBox createMessageHBox(String text, boolean alignRight){
