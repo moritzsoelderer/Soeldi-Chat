@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2c7283b-a416-41b5-8b21-fdc60750bd3c" name="Changes" comment="contact and chat system now works completely, now not every time you switch to another chat the chat is loaded from the json file, but rather from the messageList attribute of the contact class">
+    <list default="true" id="b2c7283b-a416-41b5-8b21-fdc60750bd3c" name="Changes" comment="fixed chatmenubar, button is now correctly displayed on the right,&#10;added status to contacts on the left, added feedback on which contact is focused + minor tweaks">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/SoeldiChatApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/SoeldiChatApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000002.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000002.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/hello-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -151,7 +148,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702480625508</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="fixed chatmenubar, button is now correctly displayed on the right,&#10;added status to contacts on the left, added feedback on which contact is focused + minor tweaks">
+      <option name="closed" value="true" />
+      <created>1702601911151</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1702601911151</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -186,6 +191,7 @@
     <MESSAGE value="created json files for chats and contacts, implemented methods for parsing, divided methods into model related tasks and view related tasks&#10;&#10;-writing to chat log .json files has yet to be implemented" />
     <MESSAGE value="messages are now logged correctly, although every time a message is logged the whole chat is loaded and saved again to the json file" />
     <MESSAGE value="contact and chat system now works completely, now not every time you switch to another chat the chat is loaded from the json file, but rather from the messageList attribute of the contact class" />
-    <option name="LAST_COMMIT_MESSAGE" value="contact and chat system now works completely, now not every time you switch to another chat the chat is loaded from the json file, but rather from the messageList attribute of the contact class" />
+    <MESSAGE value="fixed chatmenubar, button is now correctly displayed on the right,&#10;added status to contacts on the left, added feedback on which contact is focused + minor tweaks" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed chatmenubar, button is now correctly displayed on the right,&#10;added status to contacts on the left, added feedback on which contact is focused + minor tweaks" />
   </component>
 </project>

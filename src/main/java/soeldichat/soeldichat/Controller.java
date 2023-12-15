@@ -66,7 +66,7 @@ public class Controller {
 
         });
         //focus first contact
-        focusedContactContainer = (HBox) chatsContainer.getChildren().getFirst();
+        focusedContactContainer = (HBox) chatsContainer.getChildren().get(1);
     }
     @FXML
     protected void onSendButtonClicked(){
@@ -113,7 +113,7 @@ public class Controller {
         nameStatusVbox.getChildren().add(name);
 
         //add label for status
-        Label status = new Label(contact.getStatus());
+        Label status = new Label(contact.getMessageList().getLast().getText());
         status.getStyleClass().add("contactStatus");
         nameStatusVbox.getChildren().add(status);
 
