@@ -13,7 +13,7 @@ import java.util.*;
 public class SoeldiChatApplication extends Application {
 
     private final String userNumber = "0000000000";
-    private String currentContactNumber;
+    private String focusedContactNumber;
     private List<Contact> contactList;
 
     @Override
@@ -35,7 +35,7 @@ public class SoeldiChatApplication extends Application {
 
         //load and display contacts
         this.contactList = loadContacts();
-        this.currentContactNumber = contactList.getFirst().getNumber();
+        this.focusedContactNumber = contactList.getFirst().getNumber();
 
         //load and display messages (of first contact)
         contactList.forEach(x -> x.setMessageList(new ArrayList<>(loadMessages(x.getNumber()))));
@@ -47,12 +47,12 @@ public class SoeldiChatApplication extends Application {
         launch();
     }
 
-    public void setCurrentContactNumber(String currentContactNumber) {
-        this.currentContactNumber = currentContactNumber;
+    public void setFocusedContactNumber(String focusedContactNumber) {
+        this.focusedContactNumber = focusedContactNumber;
     }
 
-    public String getCurrentContactNumber() {
-        return currentContactNumber;
+    public String getFocusedContactNumber() {
+        return focusedContactNumber;
     }
 
     public String getUserNumber() {

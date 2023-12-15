@@ -6,6 +6,7 @@
     -fx-strong-accent: #b76ab8;
     -fx-light-accent: #4a668a;
     -fx-text: #eeeeff;
+    -fx-light-text: grey;
     /*plum: #EC9DED*/
 
     -fx-pref-height: 100%;
@@ -18,7 +19,7 @@
 }
 /*left side of layout, containing chats menu*/
 #chatsContainer{
-    -fx-padding: .5em 0 .5em 0;
+    -fx-padding: 0 .5em 0 .5em;
     -fx-background-color: -fx-secondary-content;
     -fx-text-fill: -fx-text;
     -fx-max-width: 40em;
@@ -26,22 +27,38 @@
     -fx-spacing: .2em;
 }
 
-#chatsContainer .label{
-    -fx-text-fill: #efefef;
-    -fx-font-size: 16 em;
-    -fx-padding: 5px;
+#chatsContainer > *{
+    -fx-padding: .6em .4em .6em .4em;
+}
+
+#chatsTitle{
+    -fx-font-weight: bold;
+    -fx-font-size: 1.6em;
 }
 
 .contact{
-    -fx-border-width: 1px 0 0 0;
-    -fx-border-color: -fx-light-accent;
     -fx-background-radius: .2em;
-    -fx-padding: .6em .4em .6em .4em;
     -fx-spacing: .4em;
 }
 
+.contactName{
+    -fx-font-weight: bolder;
+    -fx-text-fill: -fx-text;
+}
+
+.contactStatus{
+    -fx-text-fill: -fx-light-text;
+}
+
+
 .contact:hover{
-    -fx-background-color: -fx-primary-content;
+    -fx-background-color: -fx-light-accent;
+}
+
+.focusedContact{
+    -fx-background-color: -fx-light-accent;
+    -fx-background-radius: .2em;
+    -fx-spacing: .4em;
 }
 
 /*right side of layout, containing the current chat*/
@@ -50,19 +67,15 @@
     -fx-background-color: -fx-background;
 }
 
-#chatsTitle{
-    -fx-font-weight: bold;
-}
-
 /*top*/
 #chatMenuBar{
     -fx-background-color: -fx-secondary-content;
     -fx-text-fill: -fx-text;
-    -fx-padding: 1em 3em 1em 3em;
+    -fx-padding: .6em 3em .6em 3em;
 }
 
 #contactName{
-    -fx-font-size: 1.6em;
+    -fx-font-size: 1.4em;
     -fx-font-weight: bold;
 }
 
@@ -76,17 +89,20 @@
     -fx-vbar-policy: always;
     -fx-hbar-policy: never;
     -fx-pannable: true;
-    -fx-fit-to-width: true;
 }
 
 #currentChat > .viewport{
     -fx-background-color: transparent;
 }
 
+#messageContainerWrapper{
+    -fx-alignment: center;
+}
+
 #messageContainer{
-    -fx-padding: .2em 3em .2em 3em;
-    -fx-max-width: 75em;
+    -fx-padding: .5em 3em;
     -fx-spacing: .5em;
+    -fx-max-width: 80em;
 }
 
 .sentMessages{

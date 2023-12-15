@@ -24,6 +24,8 @@ public class Controller {
     @FXML
     private VBox messageContainer;
 
+    private HBox focusedContactContainer;
+
     public void setApplication(SoeldiChatApplication application) {
         this.application = application;
     }
@@ -46,17 +48,25 @@ public class Controller {
             HBox contactContainer = createContactHBox(contact);
 
             //display chat when clicked on contact
-            String currentContactNumber = contact.getNumber();
+            String focusedContactNumber = contact.getNumber();
             contactContainer.setOnMouseClicked(y -> {
-                application.setCurrentContactNumber(currentContactNumber);
-                List<Message> messageList = Contact.getContactByNumber(contactList, currentContactNumber).getMessageList();
+                //store number of focused contact
+                application.setFocusedContactNumber(focusedContactNumber);
+                //store Hbox of focused contact
+                focusedContactContainer.getStyleClass().clear();
+                focusedContactContainer.getStyleClass().add("contact");
+                focusedContactContainer = contactContainer;
+                focusedContactContainer.getStyleClass().clear();
+                focusedContactContainer.getStyleClass().add("focusedContact");
+                List<Message> messageList = Contact.getContactByNumber(contactList, focusedContactNumber).getMessageList();
                 displayChat(messageList);
             });
-
             //add contact to contacts
             chatsContainer.getChildren().add(contactContainer);
 
         });
+        //focus first contact
+        focusedContactContainer = (HBox) chatsContainer.getChildren().getFirst();
     }
     @FXML
     protected void onSendButtonClicked(){
@@ -80,13 +90,12 @@ public class Controller {
         messageContainer.getChildren().add(messageWrapper);
 
         //update messageList
-        application.addMessageToChat(new Message(application.getUserNumber(), application.getCurrentContactNumber(), text, ""));
+        application.addMessageToChat(new Message(application.getUserNumber(), application.getFocusedContactNumber(), text, ""));
     }
 
     private HBox createContactHBox(Contact contact){
         //add Container for contact
         HBox contactContainer = new HBox();
-        contactContainer.maxHeight(50.0);
         contactContainer.getStyleClass().add("contact");
 
         //add ImageView for profile picture
@@ -94,9 +103,19 @@ public class Controller {
         contactContainer.getChildren().add(imageView);
         HBox.setHgrow(imageView, Priority.NEVER);
 
+        //add VBox for name and status
+        VBox nameStatusVbox = new VBox();
+        contactContainer.getChildren().add(nameStatusVbox);
+
         //add Label for name
         Label name = new Label(contact.getFirstName() + " " + contact.getLastName());
-        contactContainer.getChildren().add(name);
+        name.getStyleClass().add("contactName");
+        nameStatusVbox.getChildren().add(name);
+
+        //add label for status
+        Label status = new Label(contact.getStatus());
+        status.getStyleClass().add("contactStatus");
+        nameStatusVbox.getChildren().add(status);
 
         return contactContainer;
     }
