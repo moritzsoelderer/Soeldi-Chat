@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <HBox fx:id="root" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="soeldichat.soeldichat.Controller">
-    <VBox fx:id="chatsContainer" HBox.hgrow="SOMETIMES">
+    <VBox fx:id="contactContainer" HBox.hgrow="SOMETIMES">
         <HBox>
             <Label fx:id="chatsTitle" text="Chats" />
         </HBox>

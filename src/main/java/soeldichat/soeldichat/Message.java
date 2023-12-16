@@ -1,16 +1,20 @@
 package soeldichat.soeldichat;
 
+import java.time.LocalDateTime;
+
 public class Message {
     private String sender;
     private String receiver;
     private String text;
     private String image;
+    private String timeStamp;
 
-    public Message(String sender, String receiver, String text, String image){
+    public Message(String sender, String receiver, String text, String image, String timeStamp){
         this.sender = sender;
         this.receiver = receiver;
         this.text = text;
         this.image = image;
+        this.timeStamp = timeStamp;
     }
 
 
@@ -29,6 +33,8 @@ public class Message {
     public String getImage() {
         return this.image;
     }
+
+    public String getTimeStamp() {return timeStamp;}
 
     public void setSender(String sender) {
         this.sender = sender;

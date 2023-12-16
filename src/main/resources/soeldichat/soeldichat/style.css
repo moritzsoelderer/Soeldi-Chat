@@ -19,20 +19,19 @@
     -fx-padding: 1.25em .75em .75em .75em;
 }
 
-#chatsContainer, #currentChatContainer {
+#contactContainer, #currentChatContainer {
     -fx-background-radius: .4em;
 }
 /*left side of layout, containing chats menu*/
-#chatsContainer{
+#contactContainer{
     -fx-padding: 0 .75em 0 .75em;
     -fx-background-color: -fx-secondary-content;
     -fx-text-fill: -fx-text;
-    -fx-max-width: 40em;
-    -fx-min-width: 20em;
+    -fx-pref-width: 22em;
     -fx-spacing: .2em;
 }
 
-#chatsContainer > .contact, .focusedContact{
+#contactContainer > .contact, .focusedContact{
     -fx-padding: .6em .4em .6em .4em;
 }
 
@@ -57,6 +56,7 @@
 
 .contactStatus{
     -fx-text-fill: -fx-light-text;
+    -fx-text-overrun: ellipsis;
 }
 
 
@@ -152,6 +152,12 @@
 
 .recievedMessages:hover{
     -fx-opacity: .95;
+}
+
+.timeStamp{
+    -fx-max-width: 80em;
+    -fx-min-width: 4em;
+    -fx-font-size: .8em;
 }
 
 

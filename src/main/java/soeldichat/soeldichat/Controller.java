@@ -6,9 +6,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 
 import java.util.List;
 
@@ -18,7 +21,7 @@ public class Controller {
     @FXML
     private ScrollPane currentChat;
     @FXML
-    private VBox chatsContainer;
+    private VBox contactContainer;
     @FXML
     private TextArea sendTextArea;
     @FXML
@@ -36,7 +39,7 @@ public class Controller {
 
         //displaying Chat
         messageList.forEach(message -> {
-            HBox messageWrapper = createMessageHBox(message.getText(), message.getSender().equals(application.getUserNumber()));
+            HBox messageWrapper = createMessageHBox(message.getText(),message.getTimeStamp(), message.getSender().equals(application.getUserNumber()));
             messageContainer.getChildren().add(messageWrapper);
         });
     }
@@ -45,28 +48,28 @@ public class Controller {
         contactList.forEach(contact -> {
 
             //create HBox and content for contact
-            HBox contactContainer = createContactHBox(contact);
+            HBox newContactContainer = createContactHBox(contact);
 
             //display chat when clicked on contact
             String focusedContactNumber = contact.getNumber();
-            contactContainer.setOnMouseClicked(y -> {
+            newContactContainer.setOnMouseClicked(y -> {
                 //store number of focused contact
                 application.setFocusedContactNumber(focusedContactNumber);
                 //store Hbox of focused contact
                 focusedContactContainer.getStyleClass().clear();
                 focusedContactContainer.getStyleClass().add("contact");
-                focusedContactContainer = contactContainer;
+                focusedContactContainer = newContactContainer;
                 focusedContactContainer.getStyleClass().clear();
                 focusedContactContainer.getStyleClass().add("focusedContact");
                 List<Message> messageList = Contact.getContactByNumber(contactList, focusedContactNumber).getMessageList();
                 displayChat(messageList);
             });
             //add contact to contacts
-            chatsContainer.getChildren().add(contactContainer);
+            this.contactContainer.getChildren().add(newContactContainer);
 
         });
         //focus first contact
-        focusedContactContainer = (HBox) chatsContainer.getChildren().get(1);
+        focusedContactContainer = (HBox) contactContainer.getChildren().get(1);
     }
     @FXML
     protected void onSendButtonClicked(){
@@ -85,12 +88,18 @@ public class Controller {
     }
 
     protected void addMessageToChat(String text, boolean alignRight){
+        String currentDateTime = java.time.LocalDateTime.now().toString();
         //Use HBox as Container to align message on the right
-        HBox messageWrapper = createMessageHBox(text, alignRight);
+        HBox messageWrapper = createMessageHBox(text,currentDateTime, alignRight);
         messageContainer.getChildren().add(messageWrapper);
 
         //update messageList
-        application.addMessageToChat(new Message(application.getUserNumber(), application.getFocusedContactNumber(), text, ""));
+        application.addMessageToChat(new Message(application.getUserNumber(), application.getFocusedContactNumber(), text, "", currentDateTime));
+
+        //update last message
+        ((Label)((VBox)focusedContactContainer.getChildren().get(1)).getChildren().getLast()).setText(text);
+        contactContainer.getChildren().remove(focusedContactContainer);
+        contactContainer.getChildren().add(1,focusedContactContainer);
     }
 
     private HBox createContactHBox(Contact contact){
@@ -103,7 +112,7 @@ public class Controller {
         contactContainer.getChildren().add(imageView);
         HBox.setHgrow(imageView, Priority.NEVER);
 
-        //add VBox for name and status
+        //add VBox for name and lastMessageText
         VBox nameStatusVbox = new VBox();
         contactContainer.getChildren().add(nameStatusVbox);
 
@@ -112,28 +121,39 @@ public class Controller {
         name.getStyleClass().add("contactName");
         nameStatusVbox.getChildren().add(name);
 
-        //add label for status
-        Label status = new Label(contact.getMessageList().getLast().getText());
-        status.getStyleClass().add("contactStatus");
-        nameStatusVbox.getChildren().add(status);
+        //add label for lastMessageText
+        Label lastMessageText = new Label(contact.getStatus());
+
+        try{lastMessageText.setText(contact.getMessageList().getLast().getText());}
+        catch(Exception ignored){}
+
+        lastMessageText.getStyleClass().add("contactStatus");
+        nameStatusVbox.getChildren().add(lastMessageText);
 
         return contactContainer;
     }
 
-    private HBox createMessageHBox(String text, boolean alignRight){
+    private HBox createMessageHBox(String text, String timeStamp, boolean alignRight){
         HBox messageWrapper = new HBox();
 
-        Label message = new Label();
-        message.setWrapText(true);
+        //add timestamp
+        Label timeStampLabel = new Label(timeStamp.substring(11,16));
+        timeStampLabel.setAlignment(Pos.CENTER_LEFT);
+        timeStampLabel.getStyleClass().add("timeStamp");
+        HBox.setHgrow(timeStampLabel, Priority.ALWAYS);
+        messageWrapper.getChildren().add(timeStampLabel);
 
-        message.setText(text);
-        messageWrapper.getChildren().add(message);
+        //add text
+        Label textLabel = new Label(text);
+        textLabel.setWrapText(true);
+        messageWrapper.getChildren().add(textLabel);
+
         if(alignRight){
-            message.getStyleClass().add("sentMessages");
+            textLabel.getStyleClass().add("sentMessages");
             messageWrapper.setAlignment(Pos.BASELINE_RIGHT);
         }
         else{
-            message.getStyleClass().add("recievedMessages");
+            textLabel.getStyleClass().add("recievedMessages");
             messageWrapper.setAlignment(Pos.BASELINE_LEFT);
         }
 
