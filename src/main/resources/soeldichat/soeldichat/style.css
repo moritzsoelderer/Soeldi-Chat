@@ -1,24 +1,30 @@
 #root{
     /*color variables*/
-    -fx-background: #11171f;
-    -fx-primary-content: #2E4057;
-    -fx-secondary-content: #1E1E24;
-    -fx-strong-accent: #b76ab8;
-    -fx-light-accent: #4a668a;
-    -fx-text: #eeeeff;
+    -fx-background:  #121212;
+    -fx-primary-content: #121212;
+    -fx-secondary-content: #1A1A1A;
+    -fx-strong-accent: #00A8E8;
+    -fx-light-accent: #242424;
+    -fx-text: #ffffff;
+    -fx-light-text: #9A9A9A;
     /*plum: #EC9DED*/
 
     -fx-pref-height: 100%;
     -fx-pref-width: 100%;
-    -fx-padding: 10px;
+
     -fx-background-color: -fx-background;
     -fx-font-size: 1.2em;
     -fx-smooth: true;
-    -fx-spacing: .2em;
+    -fx-spacing: .25em;
+    -fx-padding: 1.25em .75em .75em .75em;
+}
+
+#chatsContainer, #currentChatContainer {
+    -fx-background-radius: .4em;
 }
 /*left side of layout, containing chats menu*/
 #chatsContainer{
-    -fx-padding: .5em 0 .5em 0;
+    -fx-padding: 0 .75em 0 .75em;
     -fx-background-color: -fx-secondary-content;
     -fx-text-fill: -fx-text;
     -fx-max-width: 40em;
@@ -26,32 +32,51 @@
     -fx-spacing: .2em;
 }
 
-#chatsContainer .label{
-    -fx-text-fill: #efefef;
-    -fx-font-size: 16 em;
-    -fx-padding: 5px;
-}
-
-.contact{
-    -fx-border-width: 1px 0 0 0;
-    -fx-border-color: -fx-light-accent;
-    -fx-background-radius: .2em;
+#chatsContainer > .contact, .focusedContact{
     -fx-padding: .6em .4em .6em .4em;
-    -fx-spacing: .4em;
-}
-
-.contact:hover{
-    -fx-background-color: -fx-primary-content;
-}
-
-/*right side of layout, containing the current chat*/
-#currentChatContainer {
-    -fx-spacing: .2em;
-    -fx-background-color: -fx-background;
 }
 
 #chatsTitle{
     -fx-font-weight: bold;
+    -fx-font-size: 1.6em;
+    -fx-padding: .8em .4em .8em .4em;
+}
+
+.contact{
+    -fx-background-radius: .2em;
+    -fx-spacing: .4em;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-color: transparent;
+    -fx-border-width: 1px;
+}
+
+.contactName{
+    -fx-font-weight: bolder;
+    -fx-text-fill: -fx-text;
+}
+
+.contactStatus{
+    -fx-text-fill: -fx-light-text;
+}
+
+
+.contact:hover{
+    -fx-background-color: -fx-light-accent;
+}
+
+.focusedContact{
+    -fx-spacing: .4em;
+    -fx-background-color: -fx-light-accent;
+    -fx-background-radius: .2em;
+    -fx-border-radius: .2em;
+    -fx-border-color: -fx-strong-accent;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-width: 1px;
+}
+
+/*right side of layout, containing the current chat*/
+#currentChatContainer {
+    -fx-background-color: -fx-background;
 }
 
 /*top*/
@@ -62,12 +87,18 @@
 }
 
 #contactName{
-    -fx-font-size: 1.6em;
+    -fx-font-size: 1.4em;
     -fx-font-weight: bold;
 }
 
 #callButton{
-    -fx-alignment: center-right;
+    -fx-background-radius: .2em;
+    -fx-background-color: -fx-strong-accent;
+    -fx-padding: .2em .6em .2em .6em;
+    -fx-min-width: 4em;
+    -fx-min-height: 3em;
+    -fx-text-fill: -fx-text;
+    -fx-effect: dropshadow(three-pass-box, rgba(50,50,50,0.8), 10, 0, 2,2);
 }
 
 /*middle*/
@@ -76,17 +107,20 @@
     -fx-vbar-policy: always;
     -fx-hbar-policy: never;
     -fx-pannable: true;
-    -fx-fit-to-width: true;
 }
 
 #currentChat > .viewport{
     -fx-background-color: transparent;
 }
 
+#messageContainerWrapper{
+    -fx-alignment: center;
+}
+
 #messageContainer{
-    -fx-padding: .2em 3em .2em 3em;
-    -fx-max-width: 75em;
+    -fx-padding: .5em 3em;
     -fx-spacing: .5em;
+    -fx-max-width: 80em;
 }
 
 .sentMessages{
@@ -99,7 +133,6 @@
     -fx-background-radius: 3em 3em 1em 3em;
     -fx-background-color: -fx-strong-accent;
     -fx-opacity: 1;
-    -fx-effect: dropshadow(three-pass-box, rgba(50,50,50,0.8), 10, 0, 2,2);
 }
 
 .sentMessages:hover{
@@ -115,7 +148,6 @@
     -fx-border-radius: 3em 3em 3em 1em;
     -fx-background-radius: 3em 3em 3em 1em;
     -fx-background-color: -fx-light-accent;
-    -fx-effect: dropshadow(three-pass-box, rgba(50,50,50,0.8), 10, 0, 2,2);
 }
 
 .recievedMessages:hover{
@@ -127,7 +159,7 @@
 #sendContainer{
     -fx-pref-height: 1em;
     -fx-spacing: 1em;
-    -fx-padding: .5em 3em .5em 3em;
+    -fx-padding: .75em 3em .75em 3em;
     -fx-background-color: -fx-secondary-content;
 }
 
@@ -140,21 +172,27 @@
     -fx-wrap-text: true;
     -fx-text-fill: -fx-text;
     -fx-alignment: center-left;
+    -fx-padding: .2em .6em 0 .6em;
 }
 
 #sendTextArea *{
     -fx-background-color: transparent;
 }
 
-#sendTextArea:hover, #sendTextArea:focused{
+#sendTextArea:hover{
+    -fx-background-color: -fx-light-accent;
+}
+
+#sendTextArea:focused{
+    -fx-background-color: -fx-light-accent;
     -fx-border-color: -fx-strong-accent ;
 }
 
 #sendButton{
-    -fx-background-radius: 3em;
+    -fx-background-radius: .2em;
     -fx-background-color: -fx-strong-accent;
     -fx-padding: .2em .6em .2em .6em;
-    -fx-min-width: 6em;
+    -fx-min-width: 4em;
     -fx-min-height: 3em;
     -fx-text-fill: -fx-text;
     -fx-effect: dropshadow(three-pass-box, rgba(50,50,50,0.8), 10, 0, 2,2);
