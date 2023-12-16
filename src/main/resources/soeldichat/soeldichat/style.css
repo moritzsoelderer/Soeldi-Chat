@@ -92,7 +92,13 @@
 }
 
 #callButton{
-    -fx-alignment: center-right;
+    -fx-background-radius: .2em;
+    -fx-background-color: -fx-strong-accent;
+    -fx-padding: .2em .6em .2em .6em;
+    -fx-min-width: 4em;
+    -fx-min-height: 3em;
+    -fx-text-fill: -fx-text;
+    -fx-effect: dropshadow(three-pass-box, rgba(50,50,50,0.8), 10, 0, 2,2);
 }
 
 /*middle*/
@@ -183,10 +189,10 @@
 }
 
 #sendButton{
-    -fx-background-radius: 3em;
+    -fx-background-radius: .2em;
     -fx-background-color: -fx-strong-accent;
     -fx-padding: .2em .6em .2em .6em;
-    -fx-min-width: 6em;
+    -fx-min-width: 4em;
     -fx-min-height: 3em;
     -fx-text-fill: -fx-text;
     -fx-effect: dropshadow(three-pass-box, rgba(50,50,50,0.8), 10, 0, 2,2);
