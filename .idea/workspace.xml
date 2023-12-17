@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2c7283b-a416-41b5-8b21-fdc60750bd3c" name="Changes" comment="now last contact is displayed on top of contact container and last message is updated as soon as a message is sent,&#10;timestamps added and displayed, small bug with timestamps in chat, timestamp next to last message still needs to be added">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/img/profile-pictures/0000000001.jpg" afterDir="false" />
+    <list default="true" id="b2c7283b-a416-41b5-8b21-fdc60750bd3c" name="Changes" comment="last contact remains on top after restart, because chats-info.json is updated when a message is sent, new design tweaks, such as a gradient, cursor for buttons and contacts does not work yet">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/boxer.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/img/profile-pictures/boxer.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/SoeldiChatApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/SoeldiChatApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000001.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000001.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000002.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000002.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000004.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000004.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/chats-info.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/chats-info.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/style.css" afterDir="false" />
     </list>
@@ -29,7 +30,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="ui-design" />
+        <entry key="$PROJECT_DIR$" value="contact-enhancement" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -100,6 +101,7 @@
       <list>
         <item itemvalue="Application.SoeldiChatApplication" />
         <item itemvalue="Application.SoeldiChatApplication" />
+        <item itemvalue="Application.SoeldiChatApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -129,7 +131,8 @@
       <workItem from="1702416778402" duration="4506000" />
       <workItem from="1702430280692" duration="6668000" />
       <workItem from="1702482638097" duration="4854000" />
-      <workItem from="1702647121001" duration="11652000" />
+      <workItem from="1702647121001" duration="13208000" />
+      <workItem from="1702850452032" duration="4716000" />
     </task>
     <task id="LOCAL-00001" summary="First Draft - Messaging, reading/writing of chatlog (textfile) works - First Design implemented">
       <option name="closed" value="true" />
@@ -187,7 +190,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702754222464</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="changed design of timestamp display, fixed timestamp display bug, added support for profile pictures + displayed them in the contact container, chatmenubar still needs to be updated">
+      <option name="closed" value="true" />
+      <created>1702847421911</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1702847421911</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,7 +230,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="ui-design" />
+                        <option value="contact-enhancement" />
                       </list>
                     </value>
                   </entry>
@@ -241,6 +252,9 @@
     <MESSAGE value="changed color palette, last message is now displayed under contacts rather than status, minor tweaks such as contact focus and paddings" />
     <MESSAGE value="minor tweaks: changed design of send and call button" />
     <MESSAGE value="now last contact is displayed on top of contact container and last message is updated as soon as a message is sent,&#10;timestamps added and displayed, small bug with timestamps in chat, timestamp next to last message still needs to be added" />
-    <option name="LAST_COMMIT_MESSAGE" value="now last contact is displayed on top of contact container and last message is updated as soon as a message is sent,&#10;timestamps added and displayed, small bug with timestamps in chat, timestamp next to last message still needs to be added" />
+    <MESSAGE value="changed design of timestamp display, fixed timestamp display bug, added support for profile pictures + displayed them in the contact container, chatmenubar still needs to be updated" />
+    <MESSAGE value="last contact remains on top after restart, because chats-info.json is updated when a message is sent, new design tweaks, such as a gradient, cursor for buttons and contacts does not work yet" />
+    <option name="LAST_COMMIT_MESSAGE" value="last contact remains on top after restart, because chats-info.json is updated when a message is sent, new design tweaks, such as a gradient, cursor for buttons and contacts does not work yet" />
+    <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
 </project>

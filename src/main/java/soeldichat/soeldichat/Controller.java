@@ -5,12 +5,10 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.scene.text.TextAlignment;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 import java.util.List;
 
@@ -27,6 +25,7 @@ public class Controller {
     private VBox messageContainer;
 
     private HBox focusedContactContainer;
+
 
     public void setApplication(SoeldiChatApplication application) {
         this.application = application;
@@ -99,6 +98,10 @@ public class Controller {
         ((Label)((VBox)focusedContactContainer.getChildren().get(1)).getChildren().getLast()).setText(text);
         contactContainer.getChildren().remove(focusedContactContainer);
         contactContainer.getChildren().add(1,focusedContactContainer);
+
+        //update contact list and log contacts
+        application.updateContactList(application.getFocusedContactNumber());
+        application.logContacts();
     }
 
     private HBox createContactHBox(Contact contact){
@@ -107,27 +110,10 @@ public class Controller {
         contactContainer.getStyleClass().add("contact");
 
         //add ImageView for profile picture
-        StackPane imageViewStackPane = new StackPane();
-        ImageView imageView = new ImageView();
-        if(contact.getProfilePicture().isEmpty()){
-            //default profile picture
-            imageView.setImage(new Image("file:C:\\Users\\morit\\IdeaProjects\\RoboRally\\src\\main\\resources\\soeldichat\\soeldichat\\img\\profile-pictures\\boxer.jpg"));
-        }
-        else{
-            try{imageView.setImage(new Image("file:C:\\Users\\morit\\IdeaProjects\\RoboRally\\src\\main\\resources\\soeldichat\\soeldichat\\img\\profile-pictures\\" +contact.getProfilePicture()));}
-            catch(Exception exception){
-                //default profile picture
-                imageView.setImage(new Image("file:C:\\Users\\morit\\IdeaProjects\\RoboRally\\src\\main\\resources\\soeldichat\\soeldichat\\img\\profile-pictures\\0000000001.jpg"));
-            }
-        }
+        StackPane imageViewStackPane = createImageViewStackpane(contact);
 
-        imageView.setFitHeight(40);
-        imageView.setFitWidth(40);
-        imageViewStackPane.getStyleClass().add("contactProfilePicture");
-        imageViewStackPane.getChildren().add(imageView);
 
         contactContainer.getChildren().add(imageViewStackPane);
-        //HBox.setHgrow(imageView, Priority.NEVER);
 
         //add VBox for name and lastMessageText
         VBox nameStatusVbox = new VBox();
@@ -148,6 +134,29 @@ public class Controller {
         nameStatusVbox.getChildren().add(lastMessageText);
 
         return contactContainer;
+    }
+
+    private StackPane createImageViewStackpane(Contact contact) {
+        StackPane imageViewStackPane = new StackPane();
+        ImageView imageView = new ImageView();
+        if(contact.getProfilePicture().isEmpty()){
+            //default profile picture
+            imageView.setImage(application.loadImage(application.getDefaultProfilePictureString()));
+        }
+        else{
+            try{imageView.setImage(application.loadImage(contact.getProfilePicture()));}
+            catch(Exception exception){
+                //default profile picture
+                imageView.setImage(application.loadImage(application.getDefaultProfilePictureString()));
+            }
+        }
+
+        imageView.setFitHeight(40);
+        imageView.setFitWidth(40);
+        imageViewStackPane.getStyleClass().add("contactProfilePicture");
+        imageViewStackPane.getChildren().add(imageView);
+
+        return imageViewStackPane;
     }
 
     private HBox createMessageHBox(String text, String timeStamp, boolean alignRight){

@@ -7,6 +7,8 @@
     -fx-light-accent: #242424;
     -fx-text: #ffffff;
     -fx-light-text: #9A9A9A;
+
+    -fx-accent-gradient: linear-gradient(from 0% 0% to 100% 100%, -fx-strong-accent, #9B5DE5);
     /*plum: #EC9DED*/
 
     -fx-pref-height: 100%;
@@ -19,6 +21,10 @@
     -fx-padding: 1.25em .75em .75em .75em;
 }
 
+.button, .contact, .focusedContact{
+    -fx-cursor: pointer;
+}
+
 #contactContainer, #currentChatContainer {
     -fx-background-radius: .4em;
 }
@@ -28,6 +34,8 @@
     -fx-background-color: -fx-secondary-content;
     -fx-text-fill: -fx-text;
     -fx-pref-width: 22em;
+    -fx-min-width: 17em;
+    -fx-max-width: 27em;
     -fx-spacing: .2em;
 }
 
@@ -64,6 +72,9 @@
 }
 
 .contactProfilePicture{
+    -fx-background-color: -fx-accent-gradient;
+    -fx-background-radius: 2px;
+    -fx-padding: .2em;
 }
 
 .contactName{
@@ -95,12 +106,13 @@
 
 #callButton{
     -fx-background-radius: .2em;
-    -fx-background-color: -fx-strong-accent;
+    -fx-background-color: -fx-accent-gradient;
     -fx-padding: .2em .6em .2em .6em;
     -fx-min-width: 4em;
     -fx-min-height: 3em;
     -fx-text-fill: -fx-text;
     -fx-effect: dropshadow(three-pass-box, rgba(50,50,50,0.8), 10, 0, 2,2);
+    -fx-cursor: pointer;
 }
 
 /*middle*/
@@ -133,18 +145,13 @@
 
 .sentMessages{
     -fx-text-fill: -fx-text;
-    -fx-border-color: -fx-strong-accent;
-    -fx-border-width: 2px;
     -fx-border-radius: 1.5em;
     -fx-background-radius: 1.5em;
-    -fx-background-color: -fx-strong-accent;
+    -fx-background-color: -fx-accent-gradient;
 }
 
 .recievedMessages{
     -fx-text-fill: -fx-text;
-    -fx-border-color: -fx-light-accent;
-    -fx-border-width: 2px;
-    -fx-border-radius: 1.5em;
     -fx-background-radius: 1.5em;
     -fx-background-color: -fx-light-accent;
 }
@@ -189,7 +196,7 @@
 
 #sendButton{
     -fx-background-radius: .2em;
-    -fx-background-color: -fx-strong-accent;
+    -fx-background-color: -fx-accent-gradient;
     -fx-padding: .2em .6em .2em .6em;
     -fx-min-width: 4em;
     -fx-min-height: 3em;
