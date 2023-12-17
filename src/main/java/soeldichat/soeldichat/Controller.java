@@ -5,13 +5,12 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.TextAlignment;
 
 import java.util.List;
 
@@ -108,9 +107,27 @@ public class Controller {
         contactContainer.getStyleClass().add("contact");
 
         //add ImageView for profile picture
+        StackPane imageViewStackPane = new StackPane();
         ImageView imageView = new ImageView();
-        contactContainer.getChildren().add(imageView);
-        HBox.setHgrow(imageView, Priority.NEVER);
+        if(contact.getProfilePicture().isEmpty()){
+            //default profile picture
+            imageView.setImage(new Image("file:C:\\Users\\morit\\IdeaProjects\\RoboRally\\src\\main\\resources\\soeldichat\\soeldichat\\img\\profile-pictures\\boxer.jpg"));
+        }
+        else{
+            try{imageView.setImage(new Image("file:C:\\Users\\morit\\IdeaProjects\\RoboRally\\src\\main\\resources\\soeldichat\\soeldichat\\img\\profile-pictures\\" +contact.getProfilePicture()));}
+            catch(Exception exception){
+                //default profile picture
+                imageView.setImage(new Image("file:C:\\Users\\morit\\IdeaProjects\\RoboRally\\src\\main\\resources\\soeldichat\\soeldichat\\img\\profile-pictures\\0000000001.jpg"));
+            }
+        }
+
+        imageView.setFitHeight(40);
+        imageView.setFitWidth(40);
+        imageViewStackPane.getStyleClass().add("contactProfilePicture");
+        imageViewStackPane.getChildren().add(imageView);
+
+        contactContainer.getChildren().add(imageViewStackPane);
+        //HBox.setHgrow(imageView, Priority.NEVER);
 
         //add VBox for name and lastMessageText
         VBox nameStatusVbox = new VBox();
@@ -135,27 +152,36 @@ public class Controller {
 
     private HBox createMessageHBox(String text, String timeStamp, boolean alignRight){
         HBox messageWrapper = new HBox();
+        HBox messageHBox = new HBox();
+        messageWrapper.setSpacing(3.0);
 
         //add timestamp
         Label timeStampLabel = new Label(timeStamp.substring(11,16));
-        timeStampLabel.setAlignment(Pos.CENTER_LEFT);
         timeStampLabel.getStyleClass().add("timeStamp");
-        HBox.setHgrow(timeStampLabel, Priority.ALWAYS);
-        messageWrapper.getChildren().add(timeStampLabel);
 
         //add text
         Label textLabel = new Label(text);
         textLabel.setWrapText(true);
-        messageWrapper.getChildren().add(textLabel);
 
         if(alignRight){
             textLabel.getStyleClass().add("sentMessages");
-            messageWrapper.setAlignment(Pos.BASELINE_RIGHT);
+            messageWrapper.setAlignment(Pos.CENTER_RIGHT);
+
+            messageHBox.getChildren().add(textLabel);
+            messageHBox.getChildren().add(timeStampLabel);
+            messageHBox.setAlignment(Pos.BOTTOM_LEFT);
+            messageHBox.setSpacing(4.0);
         }
         else{
             textLabel.getStyleClass().add("recievedMessages");
-            messageWrapper.setAlignment(Pos.BASELINE_LEFT);
+            messageWrapper.setAlignment(Pos.CENTER_LEFT);
+
+            messageHBox.getChildren().add(timeStampLabel);
+            messageHBox.getChildren().add(textLabel);
+            messageHBox.setAlignment(Pos.BOTTOM_RIGHT);
         }
+
+        messageWrapper.getChildren().add(messageHBox);
 
         return messageWrapper;
     }

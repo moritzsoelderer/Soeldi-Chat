@@ -41,12 +41,29 @@
     -fx-padding: .8em .4em .8em .4em;
 }
 
+.contact, .focusedContact{
+    -fx-background-radius: .2em;
+    -fx-border-radius: .2em;
+    -fx-spacing: .75em;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-width: 1px;
+}
+
 .contact{
     -fx-background-radius: .2em;
-    -fx-spacing: .4em;
-    -fx-border-style: hidden hidden solid hidden;
     -fx-border-color: transparent;
-    -fx-border-width: 1px;
+}
+
+.contact:hover{
+    -fx-background-color: -fx-light-accent;
+}
+
+.focusedContact{
+    -fx-background-color: -fx-light-accent;
+    -fx-border-color: -fx-strong-accent;
+}
+
+.contactProfilePicture{
 }
 
 .contactName{
@@ -57,21 +74,6 @@
 .contactStatus{
     -fx-text-fill: -fx-light-text;
     -fx-text-overrun: ellipsis;
-}
-
-
-.contact:hover{
-    -fx-background-color: -fx-light-accent;
-}
-
-.focusedContact{
-    -fx-spacing: .4em;
-    -fx-background-color: -fx-light-accent;
-    -fx-background-radius: .2em;
-    -fx-border-radius: .2em;
-    -fx-border-color: -fx-strong-accent;
-    -fx-border-style: hidden hidden solid hidden;
-    -fx-border-width: 1px;
 }
 
 /*right side of layout, containing the current chat*/
@@ -123,43 +125,34 @@
     -fx-max-width: 80em;
 }
 
-.sentMessages{
+.sentMessages, .recievedMessages{
     -fx-label-padding: .5em .75em .5em .5em;
     -fx-text-alignment: center;
+    -fx-border-width: 2px;
+}
+
+.sentMessages{
     -fx-text-fill: -fx-text;
     -fx-border-color: -fx-strong-accent;
     -fx-border-width: 2px;
-    -fx-border-radius: 3em 3em 1em 3em;
-    -fx-background-radius: 3em 3em 1em 3em;
+    -fx-border-radius: 1.5em;
+    -fx-background-radius: 1.5em;
     -fx-background-color: -fx-strong-accent;
-    -fx-opacity: 1;
-}
-
-.sentMessages:hover{
-    -fx-opacity: .95;
 }
 
 .recievedMessages{
-    -fx-label-padding: .5em .75em .5em .5em;
-    -fx-text-alignment: center;
     -fx-text-fill: -fx-text;
     -fx-border-color: -fx-light-accent;
     -fx-border-width: 2px;
-    -fx-border-radius: 3em 3em 3em 1em;
-    -fx-background-radius: 3em 3em 3em 1em;
+    -fx-border-radius: 1.5em;
+    -fx-background-radius: 1.5em;
     -fx-background-color: -fx-light-accent;
 }
 
-.recievedMessages:hover{
-    -fx-opacity: .95;
-}
-
 .timeStamp{
-    -fx-max-width: 80em;
-    -fx-min-width: 4em;
-    -fx-font-size: .8em;
+    -fx-min-width: 2.8em;
+    -fx-font-size: .7em;
 }
-
 
 /*bottom*/
 #sendContainer{

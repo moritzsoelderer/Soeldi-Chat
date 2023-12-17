@@ -4,15 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2c7283b-a416-41b5-8b21-fdc60750bd3c" name="Changes" comment="minor tweaks: changed design of send and call button">
+    <list default="true" id="b2c7283b-a416-41b5-8b21-fdc60750bd3c" name="Changes" comment="now last contact is displayed on top of contact container and last message is updated as soon as a message is sent,&#10;timestamps added and displayed, small bug with timestamps in chat, timestamp next to last message still needs to be added">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/img/profile-pictures/0000000001.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000001.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000001.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/boxer.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/img/profile-pictures/boxer.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000002.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000002.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000003.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000003.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000004.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000004.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/chats-info.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/chats-info.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -78,6 +76,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\morit\IdeaProjects\RoboRally\src\main\resources\soeldichat\soeldichat\img\profile-pictures" />
+      <recent name="C:\Users\morit\IdeaProjects\RoboRally\src\main\resources\soeldichat\soeldichat\img" />
       <recent name="C:\Users\morit\IdeaProjects\RoboRally\src\main\resources\soeldichat\soeldichat\chats" />
       <recent name="C:\Users\morit\IdeaProjects\RoboRally\src\main\resources\roborally\roborally" />
     </key>
@@ -129,7 +129,7 @@
       <workItem from="1702416778402" duration="4506000" />
       <workItem from="1702430280692" duration="6668000" />
       <workItem from="1702482638097" duration="4854000" />
-      <workItem from="1702647121001" duration="4823000" />
+      <workItem from="1702647121001" duration="11652000" />
     </task>
     <task id="LOCAL-00001" summary="First Draft - Messaging, reading/writing of chatlog (textfile) works - First Design implemented">
       <option name="closed" value="true" />
@@ -179,7 +179,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702750276316</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="now last contact is displayed on top of contact container and last message is updated as soon as a message is sent,&#10;timestamps added and displayed, small bug with timestamps in chat, timestamp next to last message still needs to be added">
+      <option name="closed" value="true" />
+      <created>1702754222464</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1702754222464</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,6 +240,7 @@
     <MESSAGE value="fixed chatmenubar, button is now correctly displayed on the right,&#10;added status to contacts on the left, added feedback on which contact is focused + minor tweaks" />
     <MESSAGE value="changed color palette, last message is now displayed under contacts rather than status, minor tweaks such as contact focus and paddings" />
     <MESSAGE value="minor tweaks: changed design of send and call button" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor tweaks: changed design of send and call button" />
+    <MESSAGE value="now last contact is displayed on top of contact container and last message is updated as soon as a message is sent,&#10;timestamps added and displayed, small bug with timestamps in chat, timestamp next to last message still needs to be added" />
+    <option name="LAST_COMMIT_MESSAGE" value="now last contact is displayed on top of contact container and last message is updated as soon as a message is sent,&#10;timestamps added and displayed, small bug with timestamps in chat, timestamp next to last message still needs to be added" />
   </component>
 </project>
