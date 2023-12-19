@@ -25,11 +25,11 @@
     -fx-cursor: pointer;
 }
 
-#contactContainer, #currentChatContainer {
+#contactVBox, #currentChatContainer {
     -fx-background-radius: .4em;
 }
 /*left side of layout, containing chats menu*/
-#contactContainer{
+#contactVBox{
     -fx-padding: 0 .75em 0 .75em;
     -fx-background-color: -fx-secondary-content;
     -fx-text-fill: -fx-text;
@@ -39,11 +39,11 @@
     -fx-spacing: .2em;
 }
 
-#contactContainer > .contact, .focusedContact{
+#contactVBox > .contact, .focusedContact{
     -fx-padding: .6em .4em .6em .4em;
 }
 
-#chatsTitle{
+#contactVBoxTitle{
     -fx-font-weight: bold;
     -fx-font-size: 1.6em;
     -fx-padding: .8em .4em .8em .4em;
@@ -68,7 +68,6 @@
 
 .focusedContact{
     -fx-background-color: -fx-light-accent;
-    -fx-border-color: -fx-strong-accent;
 }
 
 .contactProfilePicture{
@@ -97,14 +96,30 @@
     -fx-background-color: -fx-secondary-content;
     -fx-text-fill: -fx-text;
     -fx-padding: 1em 3em 1em 3em;
+    -fx-spacing: 1em;
 }
 
-#contactName{
+#chatMenuBarStackPane{
+    -fx-background-color: -fx-accent-gradient;
+    -fx-background-radius: 2px;
+    -fx-padding: .2em;
+}
+
+chatMenuBarVBox{
+
+}
+
+#chatMenuBarContactName{
     -fx-font-size: 1.4em;
     -fx-font-weight: bold;
 }
 
-#callButton{
+#chatMenuBarStatus{
+    -fx-text-fill: -fx-light-text;
+    -fx-text-overrun: ellipsis;
+}
+
+#chatMenuBarCallButtonButton{
     -fx-background-radius: .2em;
     -fx-background-color: -fx-accent-gradient;
     -fx-padding: .2em .6em .2em .6em;
@@ -127,7 +142,7 @@
     -fx-background-color: transparent;
 }
 
-#messageContainerWrapper{
+#currentChatStackPane{
     -fx-alignment: center;
 }
 
@@ -191,7 +206,6 @@
 
 #sendTextArea:focused{
     -fx-background-color: -fx-light-accent;
-    -fx-border-color: -fx-strong-accent ;
 }
 
 #sendButton{

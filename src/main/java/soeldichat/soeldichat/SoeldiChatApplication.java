@@ -21,7 +21,7 @@ public class SoeldiChatApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(SoeldiChatApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 700, 900);
+        Scene scene = new Scene(fxmlLoader.load(), 1200, 900);
         Controller controller = fxmlLoader.getController();
 
         //give controller access to this instance of application
@@ -43,6 +43,7 @@ public class SoeldiChatApplication extends Application {
         contactList.forEach(x -> x.setMessageList(new ArrayList<>(loadMessages(x.getNumber()))));
         controller.displayContacts(contactList);
         controller.displayChat(contactList.getFirst().getMessageList());
+        controller.updateChatMenuBar();
     }
 
     public static void main(String[] args) {
@@ -68,6 +69,30 @@ public class SoeldiChatApplication extends Application {
     public String getUserNumber() {return userNumber;}
 
     public String getDefaultProfilePictureString() {return this.defaultProfilePictureString;}
+
+
+    private void createNewFile(File file) {
+        try {
+            file.createNewFile();
+        } catch (IOException ioException) {
+            System.out.println("Could not create new ChatLog file.");
+        }
+    }
+
+    private String determineChatPartnerNumber(Message message) {
+        if (message.getSender().equals(userNumber)) {
+            return message.getReceiver();
+        }
+        return message.getSender();
+    }
+
+    public void addMessageToChat(Message newMessage) {
+
+        Contact.getContactByNumber(contactList, determineChatPartnerNumber(newMessage)).getMessageList().add(newMessage);
+
+        //add message to log
+        logMessage(newMessage);
+    }
 
     private List<Contact> loadContacts() {
         Gson gson = new Gson();
@@ -113,53 +138,6 @@ public class SoeldiChatApplication extends Application {
 
     }
 
-    private void logMessage(Message newMessage) {
-        String chatPartnerNumber = determineChatPartnerNumber(newMessage);
-        File chatFile = new File("C:\\Users\\morit\\IdeaProjects\\RoboRally\\src\\main\\resources\\soeldichat\\soeldichat\\chats\\" + chatPartnerNumber + ".json");
-
-        Gson gson = new Gson();
-
-        try {
-            //load messages and append new message
-            ArrayList<Message> messageList = new ArrayList<>(Contact.getContactByNumber(contactList, chatPartnerNumber).getMessageList());
-            messageList.add(newMessage);
-
-            JsonWriter writer = new JsonWriter(new FileWriter(chatFile, false));
-            gson.toJson(messageList, ArrayList.class, writer);
-            writer.flush();
-            writer.close();
-        } catch (IOException fileOpenException) {
-            //create file if it cannot be found
-            if (fileOpenException.getClass().equals(FileNotFoundException.class)) {
-                System.out.println("file wurde nicht gefunden");
-                createNewFile(chatFile);
-            }
-        }
-    }
-
-    private void createNewFile(File file) {
-        try {
-            file.createNewFile();
-        } catch (IOException ioException) {
-            System.out.println("Could not create new ChatLog file.");
-        }
-    }
-
-    private String determineChatPartnerNumber(Message message) {
-        if (message.getSender().equals(userNumber)) {
-            return message.getReceiver();
-        }
-        return message.getSender();
-    }
-
-    public void addMessageToChat(Message newMessage) {
-
-        Contact.getContactByNumber(contactList, determineChatPartnerNumber(newMessage)).getMessageList().add(newMessage);
-
-        //add message to log
-        logMessage(newMessage);
-    }
-
     public Image loadImage(String imageFileName) {
         return new Image("file:C:\\Users\\morit\\IdeaProjects\\RoboRally\\src\\main\\resources\\soeldichat\\soeldichat\\img\\profile-pictures\\" + imageFileName);
     }
@@ -186,6 +164,30 @@ public class SoeldiChatApplication extends Application {
             //create file if it cannot be found
             if (fileOpenException.getClass().equals(FileNotFoundException.class)) {
                 System.out.println("chats-info.json wurde nicht gefunden");
+            }
+        }
+    }
+
+    private void logMessage(Message newMessage) {
+        String chatPartnerNumber = determineChatPartnerNumber(newMessage);
+        File chatFile = new File("C:\\Users\\morit\\IdeaProjects\\RoboRally\\src\\main\\resources\\soeldichat\\soeldichat\\chats\\" + chatPartnerNumber + ".json");
+
+        Gson gson = new Gson();
+
+        try {
+            //load messages and append new message
+            ArrayList<Message> messageList = new ArrayList<>(Contact.getContactByNumber(contactList, chatPartnerNumber).getMessageList());
+            messageList.add(newMessage);
+
+            JsonWriter writer = new JsonWriter(new FileWriter(chatFile, false));
+            gson.toJson(messageList, ArrayList.class, writer);
+            writer.flush();
+            writer.close();
+        } catch (IOException fileOpenException) {
+            //create file if it cannot be found
+            if (fileOpenException.getClass().equals(FileNotFoundException.class)) {
+                System.out.println("file wurde nicht gefunden");
+                createNewFile(chatFile);
             }
         }
     }

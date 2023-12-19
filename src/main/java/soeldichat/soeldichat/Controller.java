@@ -5,6 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -13,12 +14,17 @@ import javafx.scene.layout.VBox;
 import java.util.List;
 
 public class Controller {
-
     private SoeldiChatApplication application;
+    @FXML
+    private ImageView chatMenuBarProfilePicture;
+    @FXML
+    private Label chatMenuBarContactName;
+    @FXML
+    private Label chatMenuBarStatus;
     @FXML
     private ScrollPane currentChat;
     @FXML
-    private VBox contactContainer;
+    private VBox contactVBox;
     @FXML
     private TextArea sendTextArea;
     @FXML
@@ -61,14 +67,36 @@ public class Controller {
                 focusedContactContainer.getStyleClass().add("focusedContact");
                 List<Message> messageList = Contact.getContactByNumber(contactList, focusedContactNumber).getMessageList();
                 displayChat(messageList);
+
+                //update chatmenubar
+                updateChatMenuBar();
             });
             //add contact to contacts
-            this.contactContainer.getChildren().add(newContactContainer);
+            this.contactVBox.getChildren().add(newContactContainer);
 
         });
         //focus first contact
-        focusedContactContainer = (HBox) contactContainer.getChildren().get(1);
+        focusedContactContainer = (HBox) contactVBox.getChildren().get(1);
     }
+
+    public void updateChatMenuBar() {
+        Contact focusedContact = Contact.getContactByNumber(application.getContactList(), application.getFocusedContactNumber());
+        chatMenuBarContactName.setText(focusedContact.getFirstName() + " " + focusedContact.getLastName());
+        chatMenuBarStatus.setText(focusedContact.getStatus());
+
+        if(focusedContact.getProfilePicture().isEmpty()){
+            //default profile picture
+            chatMenuBarProfilePicture.setImage(application.loadImage(application.getDefaultProfilePictureString()));
+        }
+        else{
+            try{chatMenuBarProfilePicture.setImage(application.loadImage(focusedContact.getProfilePicture()));}
+            catch(Exception exception){
+                //default profile picture
+                chatMenuBarProfilePicture.setImage(application.loadImage(application.getDefaultProfilePictureString()));
+            }
+        }
+    }
+
     @FXML
     protected void onSendButtonClicked(){
         //return if message prompt is empty
@@ -96,8 +124,8 @@ public class Controller {
 
         //update last message
         ((Label)((VBox)focusedContactContainer.getChildren().get(1)).getChildren().getLast()).setText(text);
-        contactContainer.getChildren().remove(focusedContactContainer);
-        contactContainer.getChildren().add(1,focusedContactContainer);
+        contactVBox.getChildren().remove(focusedContactContainer);
+        contactVBox.getChildren().add(1,focusedContactContainer);
 
         //update contact list and log contacts
         application.updateContactList(application.getFocusedContactNumber());
