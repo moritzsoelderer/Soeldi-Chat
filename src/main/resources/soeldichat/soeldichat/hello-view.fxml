@@ -9,12 +9,17 @@
         <HBox>
             <Label fx:id="contactVBoxTitle" text="Chats" />
         </HBox>
+        <ScrollPane fx:id="contactScrollpane" VBox.vgrow="ALWAYS" fitToWidth="true">
+            <VBox fx:id="contactScrollpaneVBox">
+
+            </VBox>
+        </ScrollPane>
     </VBox>
     <VBox fx:id="currentChatContainer" HBox.hgrow="ALWAYS">
         <HBox fx:id="chatMenuBar">
             <StackPane fx:id="chatMenuBarStackPane">
                 <ImageView fx:id="chatMenuBarProfilePicture" fitHeight="50" fitWidth="50">
-                    <Image url="file:C:\Users\morit\IdeaProjects\RoboRally\src\main\resources\soeldichat\soeldichat\img\profile-pictures\boxer.jpg">
+                    <Image url="file:C:\Users\morit\IdeaProjects\RoboRally\src\main\resources\soeldichat\soeldichat\img\profile-pictures\default-profile-picture.jpg">
                     </Image>
                 </ImageView>
             </StackPane>

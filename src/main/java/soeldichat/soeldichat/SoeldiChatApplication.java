@@ -1,6 +1,7 @@
 package soeldichat.soeldichat;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonWriter;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -152,11 +153,11 @@ public class SoeldiChatApplication extends Application {
     }
 
     public void logContacts(){
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
         File chatFile = new File("C:\\Users\\morit\\IdeaProjects\\RoboRally\\src\\main\\resources\\soeldichat\\soeldichat\\chats\\chats-info.json");
         try {
             //load messages and append new message
-            JsonWriter writer = new JsonWriter(new FileWriter(chatFile, false));
+            JsonWriter writer = gson.newJsonWriter(new FileWriter(chatFile, false));
             gson.toJson(getContactList(), ArrayList.class, writer);
             writer.flush();
             writer.close();
@@ -172,14 +173,13 @@ public class SoeldiChatApplication extends Application {
         String chatPartnerNumber = determineChatPartnerNumber(newMessage);
         File chatFile = new File("C:\\Users\\morit\\IdeaProjects\\RoboRally\\src\\main\\resources\\soeldichat\\soeldichat\\chats\\" + chatPartnerNumber + ".json");
 
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
         try {
             //load messages and append new message
             ArrayList<Message> messageList = new ArrayList<>(Contact.getContactByNumber(contactList, chatPartnerNumber).getMessageList());
-            messageList.add(newMessage);
 
-            JsonWriter writer = new JsonWriter(new FileWriter(chatFile, false));
+            JsonWriter writer = gson.newJsonWriter(new FileWriter(chatFile, false));
             gson.toJson(messageList, ArrayList.class, writer);
             writer.flush();
             writer.close();

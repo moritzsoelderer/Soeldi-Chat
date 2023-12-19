@@ -5,7 +5,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -13,7 +12,7 @@ import javafx.scene.layout.VBox;
 
 import java.util.List;
 
-public class Controller {
+public class Controller{
     private SoeldiChatApplication application;
     @FXML
     private ImageView chatMenuBarProfilePicture;
@@ -25,6 +24,8 @@ public class Controller {
     private ScrollPane currentChat;
     @FXML
     private VBox contactVBox;
+    @FXML
+    private VBox contactScrollpaneVBox;
     @FXML
     private TextArea sendTextArea;
     @FXML
@@ -72,11 +73,11 @@ public class Controller {
                 updateChatMenuBar();
             });
             //add contact to contacts
-            this.contactVBox.getChildren().add(newContactContainer);
+            contactScrollpaneVBox.getChildren().add(newContactContainer);
 
         });
         //focus first contact
-        focusedContactContainer = (HBox) contactVBox.getChildren().get(1);
+        focusedContactContainer = (HBox) contactScrollpaneVBox.getChildren().getFirst();
     }
 
     public void updateChatMenuBar() {
@@ -124,8 +125,8 @@ public class Controller {
 
         //update last message
         ((Label)((VBox)focusedContactContainer.getChildren().get(1)).getChildren().getLast()).setText(text);
-        contactVBox.getChildren().remove(focusedContactContainer);
-        contactVBox.getChildren().add(1,focusedContactContainer);
+        contactScrollpaneVBox.getChildren().remove(focusedContactContainer);
+        contactScrollpaneVBox.getChildren().addFirst(focusedContactContainer);
 
         //update contact list and log contacts
         application.updateContactList(application.getFocusedContactNumber());

@@ -4,11 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2c7283b-a416-41b5-8b21-fdc60750bd3c" name="Changes" comment="last contact remains on top after restart, because chats-info.json is updated when a message is sent, new design tweaks, such as a gradient, cursor for buttons and contacts does not work yet">
+    <list default="true" id="b2c7283b-a416-41b5-8b21-fdc60750bd3c" name="Changes" comment="added default-config-picture, resolved problem with messages being logged twice, added scrollpane for contact list on the left">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000005.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000006.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000007.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000008.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000009.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000010.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000011.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000012.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000013.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000014.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/img/profile-pictures/default-profile-picture.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/SoeldiChatApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/SoeldiChatApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000001.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000001.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000002.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000002.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000003.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000003.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000004.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000004.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/chats-info.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/chats-info.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/hello-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/style.css" afterDir="false" />
@@ -133,7 +147,7 @@
       <workItem from="1702647121001" duration="13208000" />
       <workItem from="1702850452032" duration="4716000" />
       <workItem from="1702904769776" duration="408000" />
-      <workItem from="1702944880236" duration="3017000" />
+      <workItem from="1702944880236" duration="6946000" />
     </task>
     <task id="LOCAL-00001" summary="First Draft - Messaging, reading/writing of chatlog (textfile) works - First Design implemented">
       <option name="closed" value="true" />
@@ -207,7 +221,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702857126851</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="chat menu bar is now displayed correctly, minor style tweaks, minor fx:id changes in fxml file">
+      <option name="closed" value="true" />
+      <created>1702948205271</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1702948205271</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -263,7 +285,9 @@
     <MESSAGE value="now last contact is displayed on top of contact container and last message is updated as soon as a message is sent,&#10;timestamps added and displayed, small bug with timestamps in chat, timestamp next to last message still needs to be added" />
     <MESSAGE value="changed design of timestamp display, fixed timestamp display bug, added support for profile pictures + displayed them in the contact container, chatmenubar still needs to be updated" />
     <MESSAGE value="last contact remains on top after restart, because chats-info.json is updated when a message is sent, new design tweaks, such as a gradient, cursor for buttons and contacts does not work yet" />
-    <option name="LAST_COMMIT_MESSAGE" value="last contact remains on top after restart, because chats-info.json is updated when a message is sent, new design tweaks, such as a gradient, cursor for buttons and contacts does not work yet" />
+    <MESSAGE value="chat menu bar is now displayed correctly, minor style tweaks, minor fx:id changes in fxml file" />
+    <MESSAGE value="added default-config-picture, resolved problem with messages being logged twice, added scrollpane for contact list on the left" />
+    <option name="LAST_COMMIT_MESSAGE" value="added default-config-picture, resolved problem with messages being logged twice, added scrollpane for contact list on the left" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
 </project>
