@@ -5,10 +5,12 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 
 import java.util.List;
 
@@ -44,7 +46,7 @@ public class Controller{
 
         //displaying Chat
         messageList.forEach(message -> {
-            HBox messageWrapper = createMessageHBox(message.getText(),message.getTimeStamp(), message.getSender().equals(application.getUserNumber()));
+            HBox messageWrapper = createMessageHBox(message, message.getSender().equals(application.getUserNumber()));
             messageContainer.getChildren().add(messageWrapper);
         });
     }
@@ -117,7 +119,7 @@ public class Controller{
     protected void addMessageToChat(String text, boolean alignRight){
         String currentDateTime = java.time.LocalDateTime.now().toString();
         //Use HBox as Container to align message on the right
-        HBox messageWrapper = createMessageHBox(text,currentDateTime, alignRight);
+        HBox messageWrapper = createMessageHBox(new Message(text, currentDateTime), alignRight);
         messageContainer.getChildren().add(messageWrapper);
 
         //update messageList
@@ -139,13 +141,14 @@ public class Controller{
         contactContainer.getStyleClass().add("contact");
 
         //add ImageView for profile picture
-        StackPane imageViewStackPane = createImageViewStackpane(contact);
+        ImageView imageView = createImageView(contact);
 
 
-        contactContainer.getChildren().add(imageViewStackPane);
+        contactContainer.getChildren().add(imageView);
 
         //add VBox for name and lastMessageText
         VBox nameStatusVbox = new VBox();
+        nameStatusVbox.getStyleClass().add("contactVBox");
         contactContainer.getChildren().add(nameStatusVbox);
 
         //add Label for name
@@ -165,9 +168,12 @@ public class Controller{
         return contactContainer;
     }
 
-    private StackPane createImageViewStackpane(Contact contact) {
-        StackPane imageViewStackPane = new StackPane();
+    private ImageView createImageView(Contact contact) {
+        Circle circle = new Circle(25);
+        circle.setCenterX(25);
+        circle.setCenterY(25);
         ImageView imageView = new ImageView();
+        imageView.setClip(circle);
         if(contact.getProfilePicture().isEmpty()){
             //default profile picture
             imageView.setImage(application.loadImage(application.getDefaultProfilePictureString()));
@@ -180,46 +186,63 @@ public class Controller{
             }
         }
 
-        imageView.setFitHeight(40);
-        imageView.setFitWidth(40);
-        imageViewStackPane.getStyleClass().add("contactProfilePicture");
-        imageViewStackPane.getChildren().add(imageView);
+        imageView.setFitHeight(50);
+        imageView.setFitWidth(50);
+        imageView.getStyleClass().add("contactProfilePicture");
 
-        return imageViewStackPane;
+        return imageView;
     }
 
-    private HBox createMessageHBox(String text, String timeStamp, boolean alignRight){
+    private HBox createMessageHBox(Message message, boolean alignRight){
         HBox messageWrapper = new HBox();
         HBox messageHBox = new HBox();
+        VBox messageVBox = new VBox();
+        messageVBox.setSpacing(6.0);
         messageWrapper.setSpacing(3.0);
 
+        //add image if image property is not empty
+        if(!message.getImage().isEmpty()){
+            Image image = new Image("file:C:\\Users\\morit\\IdeaProjects\\RoboRally\\src\\main\\resources\\soeldichat\\soeldichat\\img\\" + application.getFocusedContactNumber() +"\\" + message.getImage());
+            ImageView imageView = new ImageView();
+            imageView.setImage(image);
+            imageView.setFitHeight(image.getHeight() / (image.getHeight()/200));
+            imageView.setFitWidth(image.getWidth() / (image.getWidth()/200));
+            imageView.getStyleClass().add("messageImage");
+
+            messageVBox.getChildren().add(imageView);
+        }
+
         //add timestamp
-        Label timeStampLabel = new Label(timeStamp.substring(11,16));
+        Label timeStampLabel = new Label(message.getTimeStamp().substring(11,16));
         timeStampLabel.getStyleClass().add("timeStamp");
 
         //add text
-        Label textLabel = new Label(text);
+        Label textLabel = new Label(message.getText());
         textLabel.setWrapText(true);
 
         if(alignRight){
-            textLabel.getStyleClass().add("sentMessages");
+            messageHBox.getStyleClass().add("sentMessages");
             messageWrapper.setAlignment(Pos.CENTER_RIGHT);
 
-            messageHBox.getChildren().add(textLabel);
-            messageHBox.getChildren().add(timeStampLabel);
+            messageVBox.getChildren().add(textLabel);
+            messageHBox.getChildren().add(messageVBox);
             messageHBox.setAlignment(Pos.BOTTOM_LEFT);
-            messageHBox.setSpacing(4.0);
+            messageWrapper.getChildren().add(messageHBox);
+            messageWrapper.getChildren().add(timeStampLabel);
+            messageWrapper.setSpacing(10.0);
         }
         else{
-            textLabel.getStyleClass().add("recievedMessages");
+            messageHBox.getStyleClass().add("recievedMessages");
             messageWrapper.setAlignment(Pos.CENTER_LEFT);
 
-            messageHBox.getChildren().add(timeStampLabel);
-            messageHBox.getChildren().add(textLabel);
+            messageVBox.getChildren().add(textLabel);
+            messageHBox.getChildren().add(messageVBox);
             messageHBox.setAlignment(Pos.BOTTOM_RIGHT);
+            messageWrapper.getChildren().add(timeStampLabel);
+            messageWrapper.getChildren().add(messageHBox);
+            messageWrapper.setSpacing(4.0);
         }
 
-        messageWrapper.getChildren().add(messageHBox);
 
         return messageWrapper;
     }

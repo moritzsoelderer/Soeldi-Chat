@@ -2,15 +2,43 @@
   {
     "sender": "0000000000",
     "receiver": "0000000001",
-    "text": "Hallo",
+    "text": "Hallo, das bin ich:",
     "image": "",
-    "timeStamp": "2023-12-19T02:56:33.462978800"
+    "timeStamp": "2023-12-19T02:56:32.462978800"
   },
   {
     "sender": "0000000000",
     "receiver": "0000000001",
-    "text": "Hallo",
-    "image": "",
+    "text": "",
+    "image": "0000000001.jpg",
     "timeStamp": "2023-12-19T02:56:33.462978800"
+  },
+  {
+    "sender": "0000000001",
+    "receiver": "0000000000",
+    "text": "Hallo, und das bin ich!",
+    "image": "0000000001.jpg",
+    "timeStamp": "2023-12-19T02:56:33.462978800"
+  },
+  {
+    "sender": "0000000001",
+    "receiver": "0000000000",
+    "text": "Wie geht es dir?",
+    "image": "",
+    "timeStamp": "2023-12-19T02:56:34.462978800"
+  },
+  {
+    "sender": "0000000000",
+    "receiver": "0000000001",
+    "text": "gut!",
+    "image": "",
+    "timeStamp": "2023-12-19T02:56:35.462978800"
+  },
+  {
+    "sender": "0000000001",
+    "receiver": "0000000000",
+    "text": "wie schön!",
+    "image": "",
+    "timeStamp": "2023-12-19T17:51:13.893287600"
   }
 ]

@@ -4,40 +4,46 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<HBox fx:id="root" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="soeldichat.soeldichat.Controller">
-    <VBox fx:id="contactVBox" HBox.hgrow="SOMETIMES">
-        <HBox>
-            <Label fx:id="contactVBoxTitle" text="Chats" />
-        </HBox>
-        <ScrollPane fx:id="contactScrollpane" VBox.vgrow="ALWAYS" fitToWidth="true">
-            <VBox fx:id="contactScrollpaneVBox">
+<VBox fx:id="root" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="soeldichat.soeldichat.Controller">
+    <HBox fx:id="applicationTitleHBox">
+        <Label fx:id="applicationTitleLabel" text="SoeldiChat"/>
+        <Label fx:id="applicationSloganLabel" text="Chat with your friends!"/>
+    </HBox>
+    <HBox fx:id="chatHBox">
+        <VBox fx:id="contactVBox" HBox.hgrow="SOMETIMES">
+            <HBox>
+                <Label fx:id="contactVBoxTitle" text="Chats" />
+            </HBox>
+            <ScrollPane fx:id="contactScrollpane" VBox.vgrow="ALWAYS" fitToWidth="true">
+                <VBox fx:id="contactScrollpaneVBox">
 
-            </VBox>
-        </ScrollPane>
-    </VBox>
-    <VBox fx:id="currentChatContainer" HBox.hgrow="ALWAYS">
-        <HBox fx:id="chatMenuBar">
-            <StackPane fx:id="chatMenuBarStackPane">
-                <ImageView fx:id="chatMenuBarProfilePicture" fitHeight="50" fitWidth="50">
-                    <Image url="file:C:\Users\morit\IdeaProjects\RoboRally\src\main\resources\soeldichat\soeldichat\img\profile-pictures\default-profile-picture.jpg">
-                    </Image>
-                </ImageView>
-            </StackPane>
-            <VBox fx:id="chatMenuBarVBox" HBox.hgrow="ALWAYS" maxWidth="Infinity">
-                <Label fx:id="chatMenuBarContactName"  />
-                <Label fx:id="chatMenuBarStatus" />
-            </VBox>
+                </VBox>
+            </ScrollPane>
+        </VBox>
+        <VBox fx:id="currentChatContainer" HBox.hgrow="ALWAYS">
+            <HBox fx:id="chatMenuBar">
+                <StackPane fx:id="chatMenuBarStackPane">
+                    <ImageView fx:id="chatMenuBarProfilePicture" fitHeight="50" fitWidth="50">
+                        <Image url="file:C:\Users\morit\IdeaProjects\RoboRally\src\main\resources\soeldichat\soeldichat\img\profile-pictures\default-profile-picture.jpg">
+                        </Image>
+                    </ImageView>
+                </StackPane>
+                <VBox fx:id="chatMenuBarVBox" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+                    <Label fx:id="chatMenuBarContactName"  />
+                    <Label fx:id="chatMenuBarStatus" />
+                </VBox>
 
-            <Button fx:id="chatMenuBarCallButton" text="call"/>
-        </HBox>
-        <ScrollPane fx:id="currentChat" VBox.vgrow="ALWAYS" fitToWidth="true">
-            <StackPane fx:id="currentChatStackPane">
-                <VBox fx:id="messageContainer"/>
-            </StackPane>
-        </ScrollPane>
-        <HBox fx:id="sendContainer" VBox.vgrow="SOMETIMES">
-            <TextArea fx:id="sendTextArea" promptText="message" HBox.hgrow="ALWAYS" />
-            <Button fx:id="sendButton" onAction="#onSendButtonClicked" text="send" />
-        </HBox>
-    </VBox>
-</HBox>
+                <Button fx:id="chatMenuBarCallButton" text="call"/>
+            </HBox>
+            <ScrollPane fx:id="currentChat" VBox.vgrow="ALWAYS" fitToWidth="true">
+                <StackPane fx:id="currentChatStackPane">
+                    <VBox fx:id="messageContainer"/>
+                </StackPane>
+            </ScrollPane>
+            <HBox fx:id="sendContainer" VBox.vgrow="SOMETIMES">
+                <TextArea fx:id="sendTextArea" promptText="message" HBox.hgrow="ALWAYS" />
+                <Button fx:id="sendButton" onAction="#onSendButtonClicked" text="send" />
+            </HBox>
+        </VBox>
+    </HBox>
+</VBox>

@@ -6,7 +6,7 @@ public class Message {
     private String sender;
     private String receiver;
     private String text;
-    private String image;
+    private String image = "";
     private String timeStamp;
 
     public Message(String sender, String receiver, String text, String image, String timeStamp){
@@ -14,6 +14,11 @@ public class Message {
         this.receiver = receiver;
         this.text = text;
         this.image = image;
+        this.timeStamp = timeStamp;
+    }
+
+    public Message(String text, String timeStamp) {
+        this.text = text;
         this.timeStamp = timeStamp;
     }
 

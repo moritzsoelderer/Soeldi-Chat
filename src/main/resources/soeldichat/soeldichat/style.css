@@ -1,8 +1,8 @@
 #root{
     /*color variables*/
-    -fx-background:  #121212;
+    -fx-background:  #0f0f0f;
     -fx-primary-content: #121212;
-    -fx-secondary-content: #1A1A1A;
+    -fx-secondary-content: #1c1c1c;
     -fx-strong-accent: #00A8E8;
     -fx-light-accent: #242424;
     -fx-text: #ffffff;
@@ -11,14 +11,42 @@
     -fx-accent-gradient: linear-gradient(from 0% 0% to 100% 100%, -fx-strong-accent, #9B5DE5);
     /*plum: #EC9DED*/
 
-    -fx-pref-height: 100%;
-    -fx-pref-width: 100%;
+
 
     -fx-background-color: -fx-background;
     -fx-font-size: 1.2em;
     -fx-smooth: true;
-    -fx-spacing: .25em;
+    -fx-spacing: .5em;
     -fx-padding: 1.25em .75em .75em .75em;
+}
+
+#applicationTitleHBox{
+    -fx-background-color: -fx-primary-content;
+    -fx-padding: .5em 0;
+    -fx-alignment: center-left;
+    -fx-spacing: .25em;
+}
+
+#applicationTitleLabel, #applicationSloganLabel{
+    -fx-padding: 0 .5em;
+    -fx-min-height: 60px;
+}
+
+#applicationTitleLabel{
+    -fx-font-size: 1.6em;
+    -fx-font-weight: bold;
+    -fx-background-color: -fx-accent-gradient;
+    -fx-background-radius: .5em 0 0 .5em;
+}
+
+#applicationSloganLabel{
+    -fx-font-weight: bolder;
+    -fx-background-color: -fx-light-accent;
+    -fx-background-radius: 0 .5em .5em 0;
+}
+
+#chatHBox{
+    -fx-spacing: .5em;
 }
 
 .button, .contact, .focusedContact{
@@ -40,7 +68,7 @@
 }
 
 #contactScrollpaneVBox{
-    -fx-spacing: .4em;
+    -fx-spacing: .2em;
 }
 
 #contactScrollpaneVBox > .contact, .focusedContact{
@@ -89,7 +117,10 @@
 .contactProfilePicture{
     -fx-background-color: -fx-accent-gradient;
     -fx-background-radius: 2px;
-    -fx-padding: .2em;
+}
+
+.contactVBox{
+    -fx-alignment: center-left;
 }
 
 .contactName{
@@ -113,6 +144,7 @@
     -fx-text-fill: -fx-text;
     -fx-padding: 1em 3em 1em 3em;
     -fx-spacing: 1em;
+    -fx-background-radius: .4em .4em 0 0;
 }
 
 #chatMenuBarStackPane{
@@ -121,12 +153,12 @@
     -fx-padding: .2em;
 }
 
-chatMenuBarVBox{
-
+#chatMenuBarVBox{
+    -fx-alignment: center-left;
 }
 
 #chatMenuBarContactName{
-    -fx-font-size: 1.4em;
+    -fx-font-size: 1.2em;
     -fx-font-weight: bold;
 }
 
@@ -169,21 +201,19 @@ chatMenuBarVBox{
 }
 
 .sentMessages, .recievedMessages{
-    -fx-label-padding: .5em .75em .5em .5em;
+    -fx-padding: .75em 1em .75em .75em;
     -fx-text-alignment: center;
     -fx-border-width: 2px;
+    -fx-background-radius: 1em;
 }
 
 .sentMessages{
     -fx-text-fill: -fx-text;
-    -fx-border-radius: 1.5em;
-    -fx-background-radius: 1.5em;
     -fx-background-color: -fx-accent-gradient;
 }
 
 .recievedMessages{
     -fx-text-fill: -fx-text;
-    -fx-background-radius: 1.5em;
     -fx-background-color: -fx-light-accent;
 }
 
@@ -192,12 +222,17 @@ chatMenuBarVBox{
     -fx-font-size: .7em;
 }
 
+.messageImage{
+    -fx-effect: dropshadow(three-pass-box, rgba(50,50,50,0.8), 10, 0, 1,1);
+}
+
 /*bottom*/
 #sendContainer{
     -fx-pref-height: 1em;
     -fx-spacing: 1em;
     -fx-padding: .75em 3em .75em 3em;
     -fx-background-color: -fx-secondary-content;
+    -fx-background-radius: 0 0 .4em .4em;
 }
 
 #sendTextArea{
@@ -231,7 +266,6 @@ chatMenuBarVBox{
     -fx-min-width: 4em;
     -fx-min-height: 3em;
     -fx-text-fill: -fx-text;
-    -fx-effect: dropshadow(three-pass-box, rgba(50,50,50,0.8), 10, 0, 2,2);
 }
 
 #sendButton:hover{
