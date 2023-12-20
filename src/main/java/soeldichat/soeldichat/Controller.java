@@ -8,6 +8,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
@@ -143,11 +144,11 @@ public class Controller{
         //add ImageView for profile picture
         ImageView imageView = createImageView(contact);
 
-
         contactContainer.getChildren().add(imageView);
 
         //add VBox for name and lastMessageText
         VBox nameStatusVbox = new VBox();
+        HBox.setHgrow(nameStatusVbox, Priority.ALWAYS);
         nameStatusVbox.getStyleClass().add("contactVBox");
         contactContainer.getChildren().add(nameStatusVbox);
 
@@ -159,7 +160,14 @@ public class Controller{
         //add label for lastMessageText
         Label lastMessageText = new Label(contact.getStatus());
 
-        try{lastMessageText.setText(contact.getMessageList().getLast().getText());}
+        try{
+            lastMessageText.setText(contact.getMessageList().getLast().getText());
+
+            //add label for lastMessage timeStamp
+            Label lastMessageTimeStampLabel = new Label(contact.getMessageList().getLast().getTimeStamp().substring(11,16));
+            lastMessageTimeStampLabel.getStyleClass().add("contactLastMessageTimeStampLabel");
+            contactContainer.getChildren().add(lastMessageTimeStampLabel);
+        }
         catch(Exception ignored){}
 
         lastMessageText.getStyleClass().add("contactStatus");

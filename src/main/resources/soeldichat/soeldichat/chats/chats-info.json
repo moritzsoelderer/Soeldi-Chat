@@ -1,5 +1,21 @@
 [
   {
+    "number": "0000000006",
+    "firstName": "Paul",
+    "lastName": "Astfaeller",
+    "profilePicture": "",
+    "status": "Hi, I\u0027m using SoeldiChat!",
+    "messageList": [
+      {
+        "sender": "0000000000",
+        "receiver": "0000000006",
+        "text": "Hoi du Hurensohn",
+        "image": "",
+        "timeStamp": "2023-12-19T19:05:40.461162100"
+      }
+    ]
+  },
+  {
     "number": "0000000001",
     "firstName": "Moritz",
     "lastName": "Soelderer",
@@ -9,7 +25,14 @@
       {
         "sender": "0000000000",
         "receiver": "0000000001",
-        "text": "Hallo, das bin ich!",
+        "text": "Hallo, das bin ich:",
+        "image": "",
+        "timeStamp": "2023-12-19T02:56:32.462978800"
+      },
+      {
+        "sender": "0000000000",
+        "receiver": "0000000001",
+        "text": "",
         "image": "0000000001.jpg",
         "timeStamp": "2023-12-19T02:56:33.462978800"
       },
@@ -21,15 +44,22 @@
         "timeStamp": "2023-12-19T02:56:33.462978800"
       },
       {
-        "sender": "0000000000",
-        "receiver": "0000000001",
-        "text": "Hallo",
+        "sender": "0000000001",
+        "receiver": "0000000000",
+        "text": "Wie geht es dir?",
         "image": "",
-        "timeStamp": "2023-12-19T02:56:33.462978800"
+        "timeStamp": "2023-12-19T02:56:34.462978800"
       },
       {
         "sender": "0000000000",
         "receiver": "0000000001",
+        "text": "gut!",
+        "image": "",
+        "timeStamp": "2023-12-19T02:56:35.462978800"
+      },
+      {
+        "sender": "0000000001",
+        "receiver": "0000000000",
         "text": "wie schön!",
         "image": "",
         "timeStamp": "2023-12-19T17:51:13.893287600"
@@ -143,14 +173,6 @@
         "timeStamp": "2023-12-19T03:03:37.116080300"
       }
     ]
-  },
-  {
-    "number": "0000000006",
-    "firstName": "Paul",
-    "lastName": "Astfaeller",
-    "profilePicture": "",
-    "status": "Hi, I\u0027m using SoeldiChat!",
-    "messageList": []
   },
   {
     "number": "0000000007",

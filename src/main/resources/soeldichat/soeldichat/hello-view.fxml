@@ -5,9 +5,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <VBox fx:id="root" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="soeldichat.soeldichat.Controller">
-    <HBox fx:id="applicationTitleHBox">
-        <Label fx:id="applicationTitleLabel" text="SoeldiChat"/>
-        <Label fx:id="applicationSloganLabel" text="Chat with your friends!"/>
+    <HBox fx:id="applicationBarHBox">
+        <HBox fx:id="applicationTitleHBox">
+            <Label fx:id="applicationTitleLabel" text="SoeldiChat"/>
+            <Label fx:id="applicationSloganLabel" text="Chat with your friends!"/>
+        </HBox>
     </HBox>
     <HBox fx:id="chatHBox">
         <VBox fx:id="contactVBox" HBox.hgrow="SOMETIMES">
@@ -15,9 +17,7 @@
                 <Label fx:id="contactVBoxTitle" text="Chats" />
             </HBox>
             <ScrollPane fx:id="contactScrollpane" VBox.vgrow="ALWAYS" fitToWidth="true">
-                <VBox fx:id="contactScrollpaneVBox">
-
-                </VBox>
+                <VBox fx:id="contactScrollpaneVBox"></VBox>
             </ScrollPane>
         </VBox>
         <VBox fx:id="currentChatContainer" HBox.hgrow="ALWAYS">

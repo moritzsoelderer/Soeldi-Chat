@@ -20,29 +20,33 @@
     -fx-padding: 1.25em .75em .75em .75em;
 }
 
-#applicationTitleHBox{
+#applicationBarHBox{
     -fx-background-color: -fx-primary-content;
-    -fx-padding: .5em 0;
+    -fx-padding:  0;
     -fx-alignment: center-left;
     -fx-spacing: .25em;
+
+}
+
+#applicationTitleHBox{
+    -fx-background-color: -fx-light-accent;
+    -fx-background-radius: .5em;
 }
 
 #applicationTitleLabel, #applicationSloganLabel{
     -fx-padding: 0 .5em;
-    -fx-min-height: 60px;
+    -fx-min-height: 40px;
 }
 
 #applicationTitleLabel{
     -fx-font-size: 1.6em;
     -fx-font-weight: bold;
     -fx-background-color: -fx-accent-gradient;
-    -fx-background-radius: .5em 0 0 .5em;
+    -fx-background-radius: .5em;
 }
 
 #applicationSloganLabel{
     -fx-font-weight: bolder;
-    -fx-background-color: -fx-light-accent;
-    -fx-background-radius: 0 .5em .5em 0;
 }
 
 #chatHBox{
@@ -131,6 +135,10 @@
 .contactStatus{
     -fx-text-fill: -fx-light-text;
     -fx-text-overrun: ellipsis;
+}
+
+.contactLastMessageTimeStampLabel{
+    -fx-font-size: .8em;
 }
 
 /*right side of layout, containing the current chat*/
