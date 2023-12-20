@@ -2,43 +2,29 @@
   {
     "sender": "0000000000",
     "receiver": "0000000001",
-    "text": "Hallo, das bin ich:",
-    "image": "",
-    "timeStamp": "2023-12-19T02:56:32.462978800"
+    "text": "Hey, this is I!",
+    "imageUrl": "file:C:/Users/morit/Pictures/Camera Roll/WIN_20231129_01_53_58_Pro.jpg",
+    "timeStamp": "2023-12-20T22:41:08.885785100"
+  },
+  {
+    "sender": "0000000001",
+    "receiver": "0000000000",
+    "text": "Hey, nice to meet you!",
+    "imageUrl": "",
+    "timeStamp": "2023-12-20T22:41:22.450696700"
+  },
+  {
+    "sender": "0000000001",
+    "receiver": "0000000000",
+    "text": "this is me!",
+    "imageUrl": "file:C:/Users/morit/Pictures/Camera Roll/WIN_20211229_21_56_10_Pro.jpg",
+    "timeStamp": "2023-12-20T22:41:44.528063100"
   },
   {
     "sender": "0000000000",
     "receiver": "0000000001",
-    "text": "",
-    "image": "0000000001.jpg",
-    "timeStamp": "2023-12-19T02:56:33.462978800"
-  },
-  {
-    "sender": "0000000001",
-    "receiver": "0000000000",
-    "text": "Hallo, und das bin ich!",
-    "image": "0000000001.jpg",
-    "timeStamp": "2023-12-19T02:56:33.462978800"
-  },
-  {
-    "sender": "0000000001",
-    "receiver": "0000000000",
-    "text": "Wie geht es dir?",
-    "image": "",
-    "timeStamp": "2023-12-19T02:56:34.462978800"
-  },
-  {
-    "sender": "0000000000",
-    "receiver": "0000000001",
-    "text": "gut!",
-    "image": "",
-    "timeStamp": "2023-12-19T02:56:35.462978800"
-  },
-  {
-    "sender": "0000000001",
-    "receiver": "0000000000",
-    "text": "wie schön!",
-    "image": "",
-    "timeStamp": "2023-12-19T17:51:13.893287600"
+    "text": "Nice to meet you too!",
+    "imageUrl": "",
+    "timeStamp": "2023-12-20T22:41:59.319862500"
   }
 ]

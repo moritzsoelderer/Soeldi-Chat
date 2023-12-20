@@ -4,13 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2c7283b-a416-41b5-8b21-fdc60750bd3c" name="Changes" comment="changed design of profile pictures in contacts, added bar on top of application with application name, added image support for messages, yet sending messages with images is not supported yet, changed color palette a little bit">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/img/profile-pictures/default-profile-picture.pdn" afterDir="false" />
+    <list default="true" id="b2c7283b-a416-41b5-8b21-fdc60750bd3c" name="Changes" comment="fully implemented image support, resolved related bugs, changed design a little, added a screenshot of the application, added an icon for the application, images can only be dragged into the imageDragVBox, button to open explorer and select image needs to be implemented, other media support should be added">
+      <change afterPath="$PROJECT_DIR$/2023-12-20T04-08-11.544527600" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2023-12-20T04-10-16.256639100" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application screenshots/screenshot1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/img/0000000001/2023-12-20T22-41-08.903741200.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/img/0000000001/2023-12-20T22-41-44.542122700.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/img/application-icon.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/SoeldiChatApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/SoeldiChatApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000001.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000001.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000002.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000002.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000003.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000003.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000004.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000004.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000005.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000005.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000006.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000006.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000010.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000010.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/chats-info.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/chats-info.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/img/0000000001/0000000001.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,8 +94,8 @@
       <recent name="C:\Users\morit\IdeaProjects\RoboRally\src\main\resources\soeldichat\soeldichat\img\0000000001" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\morit\IdeaProjects\RoboRally\src\main\resources\soeldichat\soeldichat\img\" />
       <recent name="C:\Users\morit\IdeaProjects\RoboRally\src\main\resources\soeldichat\soeldichat\img\profile-pictures" />
+      <recent name="C:\Users\morit\IdeaProjects\RoboRally\src\main\resources\soeldichat\soeldichat\img\" />
       <recent name="C:\Users\morit\IdeaProjects\RoboRally\src\main\resources\soeldichat\soeldichat\img" />
       <recent name="C:\Users\morit\IdeaProjects\RoboRally\src\main\resources\soeldichat\soeldichat\chats" />
       <recent name="C:\Users\morit\IdeaProjects\RoboRally\src\main\resources\roborally\roborally" />
@@ -140,7 +154,9 @@
       <workItem from="1702904769776" duration="408000" />
       <workItem from="1702944880236" duration="7545000" />
       <workItem from="1703001582481" duration="8100000" />
-      <workItem from="1703032602358" duration="2352000" />
+      <workItem from="1703032602358" duration="10480000" />
+      <workItem from="1703084201681" duration="1252000" />
+      <workItem from="1703100865999" duration="8072000" />
     </task>
     <task id="LOCAL-00001" summary="First Draft - Messaging, reading/writing of chatlog (textfile) works - First Design implemented">
       <option name="closed" value="true" />
@@ -238,7 +254,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703008681690</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="added time stamp of last message in contact list, changed style of application bar on top">
+      <option name="closed" value="true" />
+      <created>1703035094654</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1703035094654</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -297,7 +321,9 @@
     <MESSAGE value="chat menu bar is now displayed correctly, minor style tweaks, minor fx:id changes in fxml file" />
     <MESSAGE value="added default-config-picture, resolved problem with messages being logged twice, added scrollpane for contact list on the left" />
     <MESSAGE value="changed design of profile pictures in contacts, added bar on top of application with application name, added image support for messages, yet sending messages with images is not supported yet, changed color palette a little bit" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed design of profile pictures in contacts, added bar on top of application with application name, added image support for messages, yet sending messages with images is not supported yet, changed color palette a little bit" />
+    <MESSAGE value="added time stamp of last message in contact list, changed style of application bar on top" />
+    <MESSAGE value="fully implemented image support, resolved related bugs, changed design a little, added a screenshot of the application, added an icon for the application, images can only be dragged into the imageDragVBox, button to open explorer and select image needs to be implemented, other media support should be added" />
+    <option name="LAST_COMMIT_MESSAGE" value="fully implemented image support, resolved related bugs, changed design a little, added a screenshot of the application, added an icon for the application, images can only be dragged into the imageDragVBox, button to open explorer and select image needs to be implemented, other media support should be added" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
 </project>

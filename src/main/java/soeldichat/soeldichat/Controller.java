@@ -7,15 +7,19 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 
 import java.util.List;
 
 public class Controller{
+    @FXML
+    private VBox imageDragVBox;
     private SoeldiChatApplication application;
     @FXML
     private ImageView chatMenuBarProfilePicture;
@@ -35,6 +39,7 @@ public class Controller{
     private VBox messageContainer;
 
     private HBox focusedContactContainer;
+    private ImageView imageDragImageView;
 
 
     public void setApplication(SoeldiChatApplication application) {
@@ -103,37 +108,54 @@ public class Controller{
 
     @FXML
     protected void onSendButtonClicked(){
+
+        String text = sendTextArea.getText();
         //return if message prompt is empty
-        if(sendTextArea.getText().isEmpty()){return;}
+        if(text.isEmpty() && !imageDragVBox.getChildren().contains(imageDragImageView)){
+            return;
+        }
+
+        String currentDateTime = java.time.LocalDateTime.now().toString();
 
         //add message
-        addMessageToChat(sendTextArea.getText(), true);
+        addMessageToChat(new Message(application.getUserNumber(), application.getFocusedContactNumber(), text,imageDragImageView == null ? "" : imageDragImageView.getImage().getUrl(), currentDateTime), true);
 
         //clear message prompt
         sendTextArea.setText("");
+
+        //clear imageViewVBox, reset style and reset imageDragImageView
+        imageDragVBox.getChildren().remove(imageDragImageView);
+        imageDragImageView = null;
+        imageDragVBox.setStyle("-fx-border-color: -fx-light-accent");
 
         //scroll to message
         double vmax = currentChat.getVmax();
         currentChat.setVvalue(vmax);
     }
 
-    protected void addMessageToChat(String text, boolean alignRight){
-        String currentDateTime = java.time.LocalDateTime.now().toString();
-        //Use HBox as Container to align message on the right
-        HBox messageWrapper = createMessageHBox(new Message(text, currentDateTime), alignRight);
+    protected void addMessageToChat(Message message, boolean alignRight){
+        //Create Pane
+        HBox messageWrapper = createMessageHBox(message, alignRight);
         messageContainer.getChildren().add(messageWrapper);
 
         //update messageList
-        application.addMessageToChat(new Message(application.getUserNumber(), application.getFocusedContactNumber(), text, "", currentDateTime));
+        application.addMessageToChat(message);
 
         //update last message
+        String text = message.getText().isEmpty() ? "~image" : message.getText(); //display ~image if text is empty
         ((Label)((VBox)focusedContactContainer.getChildren().get(1)).getChildren().getLast()).setText(text);
+        //update timeStamp
+        ((Label)(focusedContactContainer.getChildren().get(2))).setText(message.getTimeStamp().substring(11,16));
+        //update contact position
         contactScrollpaneVBox.getChildren().remove(focusedContactContainer);
         contactScrollpaneVBox.getChildren().addFirst(focusedContactContainer);
 
         //update contact list and log contacts
         application.updateContactList(application.getFocusedContactNumber());
         application.logContacts();
+
+        //save image if given
+        application.saveImage(message.getImageUrl());
     }
 
     private HBox createContactHBox(Contact contact){
@@ -157,21 +179,21 @@ public class Controller{
         name.getStyleClass().add("contactName");
         nameStatusVbox.getChildren().add(name);
 
-        //add label for lastMessageText
+        //add label for lastMessageText and LastMessageTimeStamp
         Label lastMessageText = new Label(contact.getStatus());
+        Label lastMessageTimeStampLabel = new Label();
 
         try{
+            //try to fetch data
             lastMessageText.setText(contact.getMessageList().getLast().getText());
-
-            //add label for lastMessage timeStamp
-            Label lastMessageTimeStampLabel = new Label(contact.getMessageList().getLast().getTimeStamp().substring(11,16));
-            lastMessageTimeStampLabel.getStyleClass().add("contactLastMessageTimeStampLabel");
-            contactContainer.getChildren().add(lastMessageTimeStampLabel);
+            lastMessageTimeStampLabel.setText(contact.getMessageList().getLast().getTimeStamp().substring(11,16));
         }
         catch(Exception ignored){}
 
         lastMessageText.getStyleClass().add("contactStatus");
+        lastMessageTimeStampLabel.getStyleClass().add("contactLastMessageTimeStampLabel");
         nameStatusVbox.getChildren().add(lastMessageText);
+        contactContainer.getChildren().add(lastMessageTimeStampLabel);
 
         return contactContainer;
     }
@@ -209,14 +231,16 @@ public class Controller{
         messageWrapper.setSpacing(3.0);
 
         //add image if image property is not empty
-        if(!message.getImage().isEmpty()){
-            Image image = new Image("file:C:\\Users\\morit\\IdeaProjects\\RoboRally\\src\\main\\resources\\soeldichat\\soeldichat\\img\\" + application.getFocusedContactNumber() +"\\" + message.getImage());
+        if(message.getImageUrl() != null && !message.getImageUrl().isEmpty()){
+            Image image = new Image(message.getImageUrl());
             ImageView imageView = new ImageView();
             imageView.setImage(image);
-            imageView.setFitHeight(image.getHeight() / (image.getHeight()/200));
-            imageView.setFitWidth(image.getWidth() / (image.getWidth()/200));
-            imageView.getStyleClass().add("messageImage");
-
+            imageView.setFitHeight(200);
+            imageView.setPreserveRatio(true);
+            Rectangle clip = new Rectangle(200*(image.getWidth()/ image.getHeight()), imageView.getFitHeight());
+            imageView.setClip(clip);
+            clip.setArcHeight(20);
+            clip.setArcWidth(20);
             messageVBox.getChildren().add(imageView);
         }
 
@@ -254,5 +278,34 @@ public class Controller{
 
         return messageWrapper;
     }
-}
 
+    @FXML
+    protected void onDragEnteredImageLabel(DragEvent dragEvent){
+        imageDragVBox.setStyle("-fx-border-color: -fx-accent-gradient");
+    }
+
+    @FXML
+    protected void onDragExitedImageLabel(DragEvent dragEvent){
+        if(!imageDragVBox.getChildren().contains(imageDragImageView)){
+            imageDragVBox.setStyle("-fx-border-color: -fx-light-accent");
+        }
+    }
+
+    @FXML
+    protected void onDragOverImageLabel(DragEvent dragEvent){
+        dragEvent.acceptTransferModes(TransferMode.LINK);
+    }
+
+    @FXML
+    protected void onDragDroppedImageLabel(DragEvent dragEvent) {
+        //only allow one image
+        if(!imageDragVBox.getChildren().contains(imageDragImageView)){
+            Image image = new Image("file:" + dragEvent.getDragboard().getFiles().getFirst().toString());
+            imageDragImageView = new ImageView(image);
+            imageDragImageView.setFitWidth(100);
+            imageDragImageView.setPreserveRatio(true);
+            imageDragVBox.getChildren().addFirst(imageDragImageView);
+        }
+    }
+
+}

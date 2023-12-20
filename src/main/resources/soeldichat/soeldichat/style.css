@@ -209,7 +209,7 @@
 }
 
 .sentMessages, .recievedMessages{
-    -fx-padding: .75em 1em .75em .75em;
+    -fx-padding: .6em;
     -fx-text-alignment: center;
     -fx-border-width: 2px;
     -fx-background-radius: 1em;
@@ -232,6 +232,8 @@
 
 .messageImage{
     -fx-effect: dropshadow(three-pass-box, rgba(50,50,50,0.8), 10, 0, 1,1);
+    -fx-arc-height: 1em;
+    -fx-arc-width: 1em;
 }
 
 /*bottom*/
@@ -265,6 +267,16 @@
 
 #sendTextArea:focused{
     -fx-background-color: -fx-light-accent;
+}
+
+#imageDragVBox{
+    -fx-border-width: .2em;
+    -fx-border-color: -fx-light-accent;
+    -fx-border-radius: .25em;
+    -fx-border-style: dashed;
+    -fx-padding: .25em .5em;
+    -fx-font-weight: bold;
+    -fx-font-size: 1.4em;
 }
 
 #sendButton{

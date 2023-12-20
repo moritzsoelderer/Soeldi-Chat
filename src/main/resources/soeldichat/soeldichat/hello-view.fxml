@@ -42,6 +42,9 @@
             </ScrollPane>
             <HBox fx:id="sendContainer" VBox.vgrow="SOMETIMES">
                 <TextArea fx:id="sendTextArea" promptText="message" HBox.hgrow="ALWAYS" />
+                <VBox fx:id="imageDragVBox" HBox.hgrow="SOMETIMES" onDragEntered="#onDragEnteredImageLabel" onDragExited="#onDragExitedImageLabel" onDragOver="#onDragOverImageLabel" onDragDropped="#onDragDroppedImageLabel">
+                    <Label text="+"/>
+                </VBox>
                 <Button fx:id="sendButton" onAction="#onSendButtonClicked" text="send" />
             </HBox>
         </VBox>

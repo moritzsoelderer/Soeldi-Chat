@@ -10,6 +10,8 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 
 public class SoeldiChatApplication extends Application {
@@ -33,6 +35,7 @@ public class SoeldiChatApplication extends Application {
         stage.setMinWidth(650);
         stage.setMinHeight(400);
         stage.setTitle("SoeldiChat");
+        stage.getIcons().add(new Image("file:C:\\Users\\morit\\IdeaProjects\\RoboRally\\src\\main\\resources\\soeldichat\\soeldichat\\img\\application-icon.jpg"));
         stage.setScene(scene);
         stage.show();
 
@@ -190,6 +193,28 @@ public class SoeldiChatApplication extends Application {
                 createNewFile(chatFile);
             }
         }
+    }
+
+    public void saveImage(String imageUrl) {
+        if(imageUrl.isEmpty()){return;}
+        ;
+        String currentDateTime = java.time.LocalDateTime.now().toString();
+        String newImageUrl = "C:\\Users\\morit\\IdeaProjects\\RoboRally\\src\\main\\resources\\soeldichat\\soeldichat\\img\\" + focusedContactNumber + "\\" + new File(currentDateTime.replace(':', '-')) + getFileExtension(new File(imageUrl));
+        try{
+            Files.copy(Path.of(imageUrl.substring(5)), Path.of(newImageUrl));}
+        catch (Exception exception){
+            System.out.println("Could not copy file");
+            exception.printStackTrace();
+        }
+    }
+
+    private String getFileExtension(File file) {
+        String name = file.getName();
+        int lastIndexOf = name.lastIndexOf(".");
+        if (lastIndexOf == -1) {
+            return ""; // empty extension
+        }
+        return name.substring(lastIndexOf);
     }
 }
 

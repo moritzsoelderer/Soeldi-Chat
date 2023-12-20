@@ -1,25 +1,25 @@
 package soeldichat.soeldichat;
 
-import java.time.LocalDateTime;
-
 public class Message {
     private String sender;
     private String receiver;
     private String text;
-    private String image = "";
+    private String imageUrl;
     private String timeStamp;
 
-    public Message(String sender, String receiver, String text, String image, String timeStamp){
+    public Message(String sender, String receiver, String text, String imageUrl, String timeStamp){
         this.sender = sender;
         this.receiver = receiver;
         this.text = text;
-        this.image = image;
+        this.imageUrl = imageUrl;
         this.timeStamp = timeStamp;
     }
 
-    public Message(String text, String timeStamp) {
+
+    public Message(String text, String currentDateTime, String imageUrl) {
         this.text = text;
-        this.timeStamp = timeStamp;
+        this.timeStamp = currentDateTime;
+        this.imageUrl = imageUrl;
     }
 
 
@@ -35,8 +35,8 @@ public class Message {
         return this.text;
     }
 
-    public String getImage() {
-        return this.image;
+    public String getImageUrl() {
+        return this.imageUrl;
     }
 
     public String getTimeStamp() {return timeStamp;}
@@ -53,7 +53,7 @@ public class Message {
         this.text = text;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
