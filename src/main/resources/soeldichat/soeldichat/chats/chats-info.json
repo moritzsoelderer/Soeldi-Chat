@@ -1,40 +1,27 @@
 [
   {
+    "number": "0000000003",
+    "firstName": "Adin",
+    "lastName": "Zornic",
+    "profilePicture": "",
+    "status": "Hi, I\u0027m using SoeldiChat!",
+    "messageList": [
+      {
+        "sender": "0000000000",
+        "receiver": "0000000003",
+        "text": "",
+        "imageUrl": "file:src\\main\\resources\\soeldichat\\soeldichat\\img\\0000000003\\2023-12-21T17-19-07.601742.png",
+        "timeStamp": "2023-12-21T17:19:07.601742"
+      }
+    ]
+  },
+  {
     "number": "0000000001",
     "firstName": "Moritz",
     "lastName": "Soelderer",
     "profilePicture": "0000000001.jpg",
     "status": "Hi, I\u0027m using SoeldiChat!",
-    "messageList": [
-      {
-        "sender": "0000000000",
-        "receiver": "0000000001",
-        "text": "Hey, this is I!",
-        "imageUrl": "file:C:/Users/morit/Pictures/Camera Roll/WIN_20231129_01_53_58_Pro.jpg",
-        "timeStamp": "2023-12-20T22:41:08.885785100"
-      },
-      {
-        "sender": "0000000000",
-        "receiver": "0000000001",
-        "text": "Hey, nice to meet you!",
-        "imageUrl": "",
-        "timeStamp": "2023-12-20T22:41:22.450696700"
-      },
-      {
-        "sender": "0000000000",
-        "receiver": "0000000001",
-        "text": "this is me!",
-        "imageUrl": "file:C:/Users/morit/Pictures/Camera Roll/WIN_20211229_21_56_10_Pro.jpg",
-        "timeStamp": "2023-12-20T22:41:44.528063100"
-      },
-      {
-        "sender": "0000000000",
-        "receiver": "0000000001",
-        "text": "Nice to meet you too!",
-        "imageUrl": "",
-        "timeStamp": "2023-12-20T22:41:59.319862500"
-      }
-    ]
+    "messageList": []
   },
   {
     "number": "0000000006",
@@ -72,14 +59,6 @@
     "number": "0000000010",
     "firstName": "Jasmin",
     "lastName": "Gurschler",
-    "profilePicture": "",
-    "status": "Hi, I\u0027m using SoeldiChat!",
-    "messageList": []
-  },
-  {
-    "number": "0000000003",
-    "firstName": "Adin",
-    "lastName": "Zornic",
     "profilePicture": "",
     "status": "Hi, I\u0027m using SoeldiChat!",
     "messageList": []

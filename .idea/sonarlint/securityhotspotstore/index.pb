@@ -28,3 +28,11 @@ c
 3src/main/java/soeldichat/soeldichat/Controller.java,e\9\e9906cdc17ee01538d399fe3e2cc13b74098e982
 n
 >src/main/java/soeldichat/soeldichat/SoeldiChatApplication.java,f\7\f7066b99d47fd72a3cb61e5b3aef0c74e87ef89a
+`
+0src/main/java/soeldichat/soeldichat/scFiles.java,6\4\64adbb183d8ed334e96bfd5637d6dbbcdf2a373e
+f
+6src/main/java/soeldichat/soeldichat/scPaneCreator.java,3\f\3fe57a42a0d6641fa289411f5cd764d412c76ff5
+`
+0src/main/java/soeldichat/soeldichat/ScFiles.java,e\4\e4d9e5a131d63d47e7ab6da60fd374cf344249e9
+f
+6src/main/java/soeldichat/soeldichat/ScPaneCreator.java,4\5\4581ef0ba20ef5a2e6da2997cb7ca40c44237a8b
