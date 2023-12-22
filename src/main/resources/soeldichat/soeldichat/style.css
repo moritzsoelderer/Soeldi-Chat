@@ -1,18 +1,19 @@
-#root{
+*{
     /*color variables*/
     -fx-background:  #0f0f0f;
     -fx-primary-content: #121212;
     -fx-secondary-content: #1c1c1c;
-    -fx-strong-accent: #00A8E8;
-    -fx-light-accent: #242424;
+    -fx-strong-accent1: #0080b3;
+    -fx-strong-accent2: #9B5DE5;
+    -fx-light-accent: #292929;
     -fx-text: #ffffff;
     -fx-light-text: #9A9A9A;
 
-    -fx-accent-gradient: linear-gradient(from 0% 0% to 100% 100%, -fx-strong-accent, #9B5DE5);
+    -fx-accent-gradient: linear-gradient(from 0% 0% to 100% 100%, -fx-strong-accent1, -fx-strong-accent2);
     /*plum: #EC9DED*/
+}
 
-
-
+#root{
     -fx-background-color: -fx-background;
     -fx-font-size: 1.2em;
     -fx-smooth: true;
@@ -155,9 +156,6 @@
 }
 
 #chatMenuBarStackPane{
-    -fx-background-color: -fx-accent-gradient;
-    -fx-background-radius: 2px;
-    -fx-padding: .2em;
 }
 
 #chatMenuBarVBox{
@@ -247,60 +245,57 @@
 #sendContainer{
     -fx-pref-height: 1em;
     -fx-spacing: 1em;
-    -fx-padding: .75em 1.5em;
+    -fx-padding: .5em 1.5em;
     -fx-background-color: -fx-secondary-content;
     -fx-background-radius: 0 0 .4em .4em;
     -fx-alignment: center;
 }
 
 #sendTextArea{
-    -fx-border-width: 0 0 .1em 0;
-    -fx-border-style: solid;
-    -fx-border-color: transparent;
     -fx-background-color: transparent;
-    -fx-pref-rows: 1;
     -fx-wrap-text: true;
-    -fx-text-fill: -fx-text;
+    -fx-pref-rows: 1;
     -fx-alignment: center-left;
-    -fx-padding: .2em .6em 0 .6em;
+    -fx-text-fill: -fx-text;
+    -fx-padding:.6em;
 }
 
 #sendTextArea *{
     -fx-background-color: transparent;
-}
-
-#sendTextArea:hover{
-    -fx-background-color: -fx-light-accent;
-}
-
-#sendTextArea:focused{
-    -fx-background-color: -fx-light-accent;
+    -fx-padding: 0;
 }
 
 #imageDragVBox{
-    -fx-border-width: .2em;
+    -fx-border-width: .1em;
     -fx-border-color: -fx-light-accent;
-    -fx-border-radius: .25em;
+    -fx-border-radius: .5em;
     -fx-border-style: dashed;
-    -fx-padding: .25em .5em;
+    -fx-background-color: transparent;
+    -fx-padding: 0 .5em;
     -fx-font-weight: bold;
     -fx-font-size: 1.4em;
+    -fx-alignment: center;
+}
 
+#imageDragVBox > .label{
+    -fx-text-fill: -fx-accent-gradient;
+}
+
+#imageDragVBox:hover{
+    -fx-border-color: -fx-accent-gradient;
+    -fx-background-color: -fx-light-accent;
 }
 
 #sendButton{
-    -fx-background-color: -fx-light-accent;
-    -fx-padding: .2em .6em .2em .6em;
-    -fx-background-radius: 6em;
-    -fx-max-height: 3em;
-    -fx-min-height: 3em;
-    -fx-max-width: 3em;
-    -fx-min-width: 3em;
-    -fx-text-fill: -fx-text;
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-accent-gradient;
+    -fx-font-weight: bold;
+    -fx-font-size: 1.25em;
+    -fx-background-radius: .5em;
 }
 
 #sendButton:hover{
-    -fx-background-color: -fx-accent-gradient;
+    -fx-background-color: -fx-light-accent;
 }
 
 /*scrollbars*/
@@ -323,4 +318,22 @@
 .scroll-bar .decrement-arrow{
     -fx-shape : " ";
     -fx-padding :0.15em 0.0;
+}
+
+/*popup*/
+
+.popupWrapperStackpane{
+    -fx-background-color: -fx-light-accent;
+    -fx-padding: 12em;
+    -fx-background-radius: .5em;
+}
+
+.popupStackpane{
+    -fx-background-radius: .5em;
+    -fx-background-color: -fx-primary-content;
+    -fx-border-color: -fx-accent-gradient;
+    -fx-border-radius: .5em;
+    -fx-border-width: .25em;
+    -fx-padding: 1em;
+    -fx-opacity: 1;
 }

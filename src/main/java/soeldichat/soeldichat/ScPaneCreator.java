@@ -1,14 +1,18 @@
 package soeldichat.soeldichat;
 
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
 
 public class ScPaneCreator {
 
@@ -56,7 +60,7 @@ public class ScPaneCreator {
         return contactContainer;
     }
 
-    public static HBox createMessageHBox(Message message, boolean alignRight) {
+    public static HBox createMessageHBox(Message message, boolean alignRight, SoeldiChatApplication application) {
         HBox messageWrapper = new HBox();
         VBox messageVBox = new VBox();
         messageVBox.getStyleClass().add("messageVBox");
@@ -73,6 +77,8 @@ public class ScPaneCreator {
             imageView.setClip(clip);
             clip.setArcHeight(20);
             clip.setArcWidth(20);
+
+            imageView.setOnMouseClicked(x -> createPopup(new Image(message.getImageUrl()), application.getStage()));
             messageVBox.getChildren().add(imageView);
         }
 
@@ -135,5 +141,32 @@ public class ScPaneCreator {
         imageView.getStyleClass().add("contactProfilePicture");
 
         return imageView;
+    }
+
+    private static void createPopup(Image image, Stage stage) {
+        Popup popup = new Popup();
+
+        StackPane windowStackPane = new StackPane();
+        windowStackPane.setMinHeight(stage.getHeight() -80);
+        windowStackPane.setMinWidth(stage.getWidth() -50);
+        windowStackPane.setMaxHeight(stage.getHeight() -80);
+        windowStackPane.setMaxWidth(stage.getWidth() -50);
+        windowStackPane.getStyleClass().add("popupWrapperStackpane");
+
+        StackPane stackPane = new StackPane();
+
+        ImageView imageView = new ImageView(image);
+
+        imageView.setFitHeight(stage.getHeight()*.85);
+        imageView.setFitWidth(stage.getWidth()*.85);
+        imageView.setPreserveRatio(true);
+
+        stackPane.getChildren().add(imageView);
+        stackPane.getStyleClass().add("popupStackpane");
+        windowStackPane.getChildren().add(stackPane);
+
+        windowStackPane.setOnMouseClicked(x->popup.hide());
+        popup.getContent().add(windowStackPane);
+        popup.show(stage, stage.getX() +25, stage.getY() + 55);
     }
 }

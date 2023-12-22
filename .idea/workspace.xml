@@ -4,22 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2c7283b-a416-41b5-8b21-fdc60750bd3c" name="Changes" comment="file explorer now opens by clicking on the add image VBox, although you still have to drag images in, did some refactoring, added two java classes to outsource work from the application and the controller, problems with sending images when the corresponding img folder did not exist are now solved">
-      <change afterPath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/ScFiles.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/ScPaneCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+    <list default="true" id="b2c7283b-a416-41b5-8b21-fdc60750bd3c" name="Changes" comment="file explorer now opens by clicking on the add image VBox, although you still have to drag images in, did some refactoring, added two java classes to outsource work from the application and the controller, problems with sending images when the corresponding img folder did not exist are now solved, path names are now relative not absolute as before">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/img/0000000003/2023-12-21T19-27-12.102516200.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/img/0000000003/2023-12-21T19-35-32.915458.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/Contact.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/Contact.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/ScPaneCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/ScPaneCreator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/SoeldiChatApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/SoeldiChatApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000001.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000001.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000003.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000003.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/chats-info.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/chats-info.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/hello-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/img/0000000001/2023-12-20T22-41-08.903741200.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/img/0000000001/2023-12-20T22-41-44.542122700.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,7 +33,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="contact-enhancement" />
+        <entry key="$PROJECT_DIR$" value="d36318706f704931e27dd29505bdd863baac573e" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -115,6 +110,8 @@
         <item itemvalue="Application.SoeldiChatApplication" />
         <item itemvalue="Application.SoeldiChatApplication" />
         <item itemvalue="Application.SoeldiChatApplication" />
+        <item itemvalue="Application.SoeldiChatApplication" />
+        <item itemvalue="Application.SoeldiChatApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -153,7 +150,8 @@
       <workItem from="1703084201681" duration="1252000" />
       <workItem from="1703100865999" duration="9316000" />
       <workItem from="1703110603913" duration="4505000" />
-      <workItem from="1703164177938" duration="9802000" />
+      <workItem from="1703164177938" duration="11639000" />
+      <workItem from="1703197038683" duration="10183000" />
     </task>
     <task id="LOCAL-00001" summary="First Draft - Messaging, reading/writing of chatlog (textfile) works - First Design implemented">
       <option name="closed" value="true" />
@@ -267,7 +265,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703108952641</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="file explorer now opens by clicking on the add image VBox, although you still have to drag images in, did some refactoring, added two java classes to outsource work from the application and the controller, problems with sending images when the corresponding img folder did not exist are now solved, path names are now relative not absolute as before">
+      <option name="closed" value="true" />
+      <created>1703175644872</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1703175644872</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -329,7 +335,8 @@
     <MESSAGE value="added time stamp of last message in contact list, changed style of application bar on top" />
     <MESSAGE value="fully implemented image support, resolved related bugs, changed design a little, added a screenshot of the application, added an icon for the application, images can only be dragged into the imageDragVBox, button to open explorer and select image needs to be implemented, other media support should be added" />
     <MESSAGE value="file explorer now opens by clicking on the add image VBox, although you still have to drag images in, did some refactoring, added two java classes to outsource work from the application and the controller, problems with sending images when the corresponding img folder did not exist are now solved" />
-    <option name="LAST_COMMIT_MESSAGE" value="file explorer now opens by clicking on the add image VBox, although you still have to drag images in, did some refactoring, added two java classes to outsource work from the application and the controller, problems with sending images when the corresponding img folder did not exist are now solved" />
+    <MESSAGE value="file explorer now opens by clicking on the add image VBox, although you still have to drag images in, did some refactoring, added two java classes to outsource work from the application and the controller, problems with sending images when the corresponding img folder did not exist are now solved, path names are now relative not absolute as before" />
+    <option name="LAST_COMMIT_MESSAGE" value="file explorer now opens by clicking on the add image VBox, although you still have to drag images in, did some refactoring, added two java classes to outsource work from the application and the controller, problems with sending images when the corresponding img folder did not exist are now solved, path names are now relative not absolute as before" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">

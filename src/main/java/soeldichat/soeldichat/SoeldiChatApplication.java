@@ -2,8 +2,16 @@ package soeldichat.soeldichat;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.TilePane;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,8 +29,12 @@ public class SoeldiChatApplication extends Application {
     private List<Contact> contactList;
     private String defaultProfilePictureString = "default-profile-picture.png";
 
+    private Stage stage;
+
     @Override
     public void start(Stage stage) throws IOException {
+        this.stage = stage;
+
         FXMLLoader fxmlLoader = new FXMLLoader(SoeldiChatApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1200, 900);
         Controller controller = fxmlLoader.getController();
@@ -46,6 +58,7 @@ public class SoeldiChatApplication extends Application {
         //load and display messages (of first contact)
         contactList.forEach(x -> x.setMessageList(new ArrayList<>(loadMessages(x.getNumber()))));
         controller.displayContacts(contactList);
+        controller.setupchatMenuBarProfilePicture(contactList.getFirst());
         controller.displayChat(contactList.getFirst().getMessageList());
         controller.updateChatMenuBar();
     }
@@ -109,6 +122,5 @@ public class SoeldiChatApplication extends Application {
         String newImageUrl = "src\\main\\resources\\soeldichat\\soeldichat\\img\\" + focusedContactNumber + "\\" + new File(currentDateTime.replace(':', '-')) + ScFiles.getFileExtension(new File(imageUrl));
         return "file:" + ScFiles.saveImage(Path.of(imageUrl.substring(5)),Path.of(newImageUrl));
     }
-
 }
 

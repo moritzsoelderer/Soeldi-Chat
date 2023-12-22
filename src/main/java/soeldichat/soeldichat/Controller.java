@@ -10,11 +10,18 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
 
+import java.io.File;
 import java.util.List;
 
 public class Controller {
+    public StackPane chatMenuBarStackPane;
+    @FXML
+    private Label imageDragVBoxLabel;
     @FXML
     private VBox imageDragVBox;
     private SoeldiChatApplication application;
@@ -38,6 +45,8 @@ public class Controller {
     private HBox focusedContactContainer;
     private ImageView imageDragImageView;
 
+    private ImageView messageImageView;
+
 
     public void displayChat(List<Message> messageList) {
         //clearing chat
@@ -45,8 +54,9 @@ public class Controller {
 
         //displaying Chat
         messageList.forEach(message -> {
-            HBox messageWrapper = ScPaneCreator.createMessageHBox(message, message.getSender().equals(application.getUserNumber()));
+            HBox messageWrapper = ScPaneCreator.createMessageHBox(message, message.getSender().equals(application.getUserNumber()), application);
             messageContainer.getChildren().add(messageWrapper);
+            updateFocusedContactContainer(message);
         });
     }
 
@@ -65,7 +75,7 @@ public class Controller {
     }
 
     protected void addMessageToChat(Message message, boolean alignRight) {
-        messageContainer.getChildren().add(ScPaneCreator.createMessageHBox(message, alignRight));
+        messageContainer.getChildren().add(ScPaneCreator.createMessageHBox(message, alignRight, application));
         application.addMessageToChat(message);
         updateFocusedContactContainer(message);
         application.updateContactList(application.getFocusedContactNumber());
@@ -76,29 +86,23 @@ public class Controller {
         Contact focusedContact = Contact.getContactByNumber(application.getContactList(), application.getFocusedContactNumber());
         chatMenuBarContactName.setText(focusedContact.getFirstName() + " " + focusedContact.getLastName());
         chatMenuBarStatus.setText(focusedContact.getStatus());
-
-        if (focusedContact.getProfilePicture().isEmpty()) {
-            //default profile picture
-            chatMenuBarProfilePicture.setImage(application.loadImage(application.getDefaultProfilePictureString()));
-        } else {
-            try {
-                chatMenuBarProfilePicture.setImage(application.loadImage(focusedContact.getProfilePicture()));
-            } catch (Exception exception) {
-                //default profile picture
-                chatMenuBarProfilePicture.setImage(application.loadImage(application.getDefaultProfilePictureString()));
-            }
-        }
+        setupchatMenuBarProfilePicture(focusedContact);
     }
 
     private void updateFocusedContactContainer(Message message){
         //update last message
-        String text = message.getText().isEmpty() ? "~image" : message.getText(); //display ~image if text is empty
+        String text = message.getText().isEmpty() ? "~image" : message.getText();//display ~image if text is empty
         ((Label) ((VBox) focusedContactContainer.getChildren().get(1)).getChildren().getLast()).setText(text);
         //update timeStamp
         ((Label) (focusedContactContainer.getChildren().get(2))).setText(message.getTimeStamp().substring(11, 16));
         //update contact position
         contactScrollpaneVBox.getChildren().remove(focusedContactContainer);
         contactScrollpaneVBox.getChildren().addFirst(focusedContactContainer);
+    }
+
+    public void setupchatMenuBarProfilePicture(Contact contact){
+        chatMenuBarProfilePicture = ScPaneCreator.createContactProfilePictureImageView(contact, this.application);
+        chatMenuBarStackPane.getChildren().add(chatMenuBarProfilePicture);
     }
 
     @FXML
@@ -125,6 +129,8 @@ public class Controller {
         imageDragImageView = null;
         imageDragVBox.setStyle("-fx-border-color: -fx-light-accent");
 
+        if(!imageDragVBox.getChildren().contains(imageDragVBoxLabel)){ imageDragVBox.getChildren().add(imageDragVBoxLabel);}
+
         //scroll to message
         double vmax = currentChat.getVmax();
         currentChat.setVvalue(vmax);
@@ -148,14 +154,23 @@ public class Controller {
 
     @FXML
     protected void onDragDroppedImageLabel(DragEvent dragEvent) {
-        //only allow one image
-        if (!imageDragVBox.getChildren().contains(imageDragImageView)) {
-            Image image = new Image("file:" + dragEvent.getDragboard().getFiles().getFirst().toString());
-            imageDragImageView = new ImageView(image);
-            imageDragImageView.setFitWidth(100);
-            imageDragImageView.setPreserveRatio(true);
-            imageDragVBox.getChildren().addFirst(imageDragImageView);
+        File media = dragEvent.getDragboard().getFiles().getFirst();
+        String mediaFileExtension = ScFiles.getFileExtension(media);
+        if(mediaFileExtension.equals(".mp4")){
+            //TODO implement media view and media player for media support
         }
+        else if(mediaFileExtension.equals(".jpg") || mediaFileExtension.equals(".png")){
+            if (!imageDragVBox.getChildren().contains(imageDragImageView)) {
+                Image image = new Image("file:" + dragEvent.getDragboard().getFiles().getFirst().toString());
+                imageDragImageView = new ImageView(image);
+                imageDragImageView.setFitWidth(100);
+                imageDragImageView.setPreserveRatio(true);
+                imageDragVBox.getChildren().remove(imageDragVBoxLabel);
+                imageDragVBox.getChildren().addFirst(imageDragImageView);
+            }
+        }
+        //only allow one image
+
     }
 
     @FXML
