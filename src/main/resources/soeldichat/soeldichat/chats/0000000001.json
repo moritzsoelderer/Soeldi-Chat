@@ -1,0 +1,65 @@
+[
+  {
+    "sender": "0000000000",
+    "receiver": "0000000001",
+    "text": "Hey",
+    "imageUrl": "file:src\\main\\resources\\soeldichat\\soeldichat\\img\\0000000001\\2023-12-22T02-12-03.208950600.jpg",
+    "timeStamp": "2023-12-22T02:12:03.207645"
+  },
+  {
+    "sender": "0000000000",
+    "receiver": "0000000001",
+    "text": "hallo",
+    "imageUrl": "file:src\\main\\resources\\soeldichat\\soeldichat\\img\\0000000001\\2023-12-22T16-58-58.780411200.png",
+    "timeStamp": "2023-12-23T16:58:58.776888100"
+  },
+  {
+    "sender": "0000000000",
+    "receiver": "0000000001",
+    "text": "dshsdafd",
+    "imageUrl": "",
+    "timeStamp": "2023-12-24T13:38:49.319584300"
+  },
+  {
+    "sender": "0000000000",
+    "receiver": "0000000001",
+    "text": "adfsadf\n",
+    "imageUrl": "",
+    "timeStamp": "2023-12-24T15:03:58.703082"
+  },
+  {
+    "sender": "0000000000",
+    "receiver": "0000000001",
+    "text": "ddd\n\n\nd\nddd\n",
+    "imageUrl": "",
+    "timeStamp": "2023-12-24T15:04:32.304136600"
+  },
+  {
+    "sender": "0000000000",
+    "receiver": "0000000001",
+    "text": "jlsdf",
+    "imageUrl": "",
+    "timeStamp": "2023-12-24T15:07:09.953858100"
+  },
+  {
+    "sender": "0000000000",
+    "receiver": "0000000001",
+    "text": "ddd\n\n",
+    "imageUrl": "",
+    "timeStamp": "2023-12-24T15:07:22.825897800"
+  },
+  {
+    "sender": "0000000000",
+    "receiver": "0000000001",
+    "text": "Hallo\n",
+    "imageUrl": "",
+    "timeStamp": "2023-12-24T15:09:46.404153700"
+  },
+  {
+    "sender": "0000000000",
+    "receiver": "0000000001",
+    "text": "wwwas\n",
+    "imageUrl": "",
+    "timeStamp": "2023-12-24T15:11:48.665680300"
+  }
+]

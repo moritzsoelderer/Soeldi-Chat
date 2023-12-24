@@ -114,4 +114,16 @@ public class ScFiles {
         }
         return Collections.emptyList();
     }
+
+    public static String getDateFormatted(String timeStamp) {
+        String year = timeStamp.substring(0, 4);
+        String month = timeStamp.substring(5,7);
+        String day = timeStamp.substring(8,10);
+
+        return day + "." + month + "." + year;
+    }
+
+    public static String getDate(String timeStamp) {
+        return timeStamp.substring(0,10);
+    }
 }

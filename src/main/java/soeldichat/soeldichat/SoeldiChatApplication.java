@@ -35,7 +35,7 @@ public class SoeldiChatApplication extends Application {
     public void start(Stage stage) throws IOException {
         this.stage = stage;
 
-        FXMLLoader fxmlLoader = new FXMLLoader(SoeldiChatApplication.class.getResource("hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(SoeldiChatApplication.class.getResource("soeldi-chat.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1200, 900);
         Controller controller = fxmlLoader.getController();
 
@@ -58,6 +58,7 @@ public class SoeldiChatApplication extends Application {
         //load and display messages (of first contact)
         contactList.forEach(x -> x.setMessageList(new ArrayList<>(loadMessages(x.getNumber()))));
         controller.displayContacts(contactList);
+        controller.focusFirstContact();
         controller.setupchatMenuBarProfilePicture(contactList.getFirst());
         controller.displayChat(contactList.getFirst().getMessageList());
         controller.updateChatMenuBar();

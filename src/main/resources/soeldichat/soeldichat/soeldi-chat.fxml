@@ -11,10 +11,16 @@
             <Label fx:id="applicationSloganLabel" text="Chat with your friends!"/>
         </HBox>
     </HBox>
-    <HBox fx:id="chatHBox">
+    <HBox fx:id="chatHBox" VBox.vgrow="ALWAYS">
         <VBox fx:id="contactVBox" HBox.hgrow="SOMETIMES">
             <HBox>
                 <Label fx:id="contactVBoxTitle" text="Chats" />
+            </HBox>
+            <HBox fx:id="contactSearchHBox">
+                <TextField fx:id="contactSearchTextField"  promptText="search contacts" onKeyPressed="#onKeyPressedContactSearchTextArea" HBox.hgrow="ALWAYS"/>
+                <Button fx:id="contactSearchButton" text="search" onAction="#onActionContactSearchButton"/>
+            </HBox>
+            <HBox fx:id="contactSearchResultHBox">
             </HBox>
             <ScrollPane fx:id="contactScrollpane" VBox.vgrow="ALWAYS" fitToWidth="true">
                 <VBox fx:id="contactScrollpaneVBox"></VBox>
@@ -42,9 +48,9 @@
             </ScrollPane>
             <HBox fx:id="sendContainer" VBox.vgrow="SOMETIMES">
                 <VBox fx:id="imageDragVBox" HBox.hgrow="SOMETIMES" onMouseClicked="#onMouseClickedImageLabel" onDragEntered="#onDragEnteredImageLabel" onDragExited="#onDragExitedImageLabel" onDragOver="#onDragOverImageLabel" onDragDropped="#onDragDroppedImageLabel">
-                    <Label fx:id="imageDragVBoxLabel" text=" + "/>
+                    <Label fx:id="imageDragVBoxLabel" text="+"/>
                 </VBox>
-                <TextArea fx:id="sendTextArea" promptText="message" HBox.hgrow="ALWAYS"/>
+                <TextArea fx:id="sendTextArea" promptText="message" onKeyPressed="#onKeyPressedSendTextArea" HBox.hgrow="ALWAYS"/>
                 <Button fx:id="sendButton" text="send" onAction="#onSendButtonClicked">
                 </Button>
             </HBox>

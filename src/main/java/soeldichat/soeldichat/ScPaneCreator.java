@@ -22,19 +22,19 @@ public class ScPaneCreator {
 
     public static HBox createContactHBox(Contact contact, SoeldiChatApplication application) {
         //add Container for contact
-        HBox contactContainer = new HBox();
-        contactContainer.getStyleClass().add("contact");
+        HBox contactHBox = new HBox();
+        contactHBox.getStyleClass().add("contactHBox");
 
         //add ImageView for profile picture
         ImageView imageView = createContactProfilePictureImageView(contact, application);
 
-        contactContainer.getChildren().add(imageView);
+        contactHBox.getChildren().add(imageView);
 
         //add VBox for name and lastMessageText
         VBox nameStatusVbox = new VBox();
         HBox.setHgrow(nameStatusVbox, Priority.ALWAYS);
         nameStatusVbox.getStyleClass().add("contactVBox");
-        contactContainer.getChildren().add(nameStatusVbox);
+        contactHBox.getChildren().add(nameStatusVbox);
 
         //add Label for name
         Label name = new Label(contact.getFirstName() + " " + contact.getLastName());
@@ -55,9 +55,9 @@ public class ScPaneCreator {
         lastMessageText.getStyleClass().add("contactStatus");
         lastMessageTimeStampLabel.getStyleClass().add("contactLastMessageTimeStampLabel");
         nameStatusVbox.getChildren().add(lastMessageText);
-        contactContainer.getChildren().add(lastMessageTimeStampLabel);
+        contactHBox.getChildren().add(lastMessageTimeStampLabel);
 
-        return contactContainer;
+        return contactHBox;
     }
 
     public static HBox createMessageHBox(Message message, boolean alignRight, SoeldiChatApplication application) {
@@ -147,10 +147,10 @@ public class ScPaneCreator {
         Popup popup = new Popup();
 
         StackPane windowStackPane = new StackPane();
-        windowStackPane.setMinHeight(stage.getHeight() -80);
-        windowStackPane.setMinWidth(stage.getWidth() -50);
-        windowStackPane.setMaxHeight(stage.getHeight() -80);
-        windowStackPane.setMaxWidth(stage.getWidth() -50);
+        windowStackPane.setMinHeight(stage.getHeight() -30);
+        windowStackPane.setMinWidth(stage.getWidth() -15);
+        windowStackPane.setMaxHeight(stage.getHeight() -30);
+        windowStackPane.setMaxWidth(stage.getWidth() -15);
         windowStackPane.getStyleClass().add("popupWrapperStackpane");
 
         StackPane stackPane = new StackPane();
@@ -167,6 +167,12 @@ public class ScPaneCreator {
 
         windowStackPane.setOnMouseClicked(x->popup.hide());
         popup.getContent().add(windowStackPane);
-        popup.show(stage, stage.getX() +25, stage.getY() + 55);
+        popup.show(stage, stage.getX(), stage.getY() + 55);
+    }
+
+    public static StackPane createDayTagStackpane(String lastMessageTimeStamp) {
+        StackPane dayStackPane = new StackPane(new Label(lastMessageTimeStamp));
+        dayStackPane.getStyleClass().add("dayTagStackPane");
+        return  dayStackPane;
     }
 }

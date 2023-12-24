@@ -18,13 +18,15 @@ public class Contact {
     private List<Message> messageList;
 
     public static Contact getContactByNumber(List<Contact> contactList, String number){
+        return contactList.stream().filter(x->x.getNumber().equals(number)).toList().getFirst();
+    }
 
-        for(Contact currentContact : contactList){
-            if(currentContact.getNumber().equals(number)){
-                return currentContact;
-            }
-        }
-        return null;
+    public static List<Contact> filterContactListByName(List<Contact> contactList, String subString){
+        return contactList.stream().filter(contact -> {
+            boolean firstNameStartsWithSubstring = subString.length() <= contact.getFirstName().length() ? contact.getFirstName().substring(0,subString.length()).toLowerCase().equals(subString.toLowerCase()) : false;
+            boolean lastNameStartsWithSubstring = subString.length() <= contact.getLastName().length() ? contact.getLastName().substring(0,subString.length()).toLowerCase().equals(subString.toLowerCase()) : false;
+            return (firstNameStartsWithSubstring || lastNameStartsWithSubstring);
+        }).toList();
     }
 
     public Contact(String number, List<Message> messageList) {

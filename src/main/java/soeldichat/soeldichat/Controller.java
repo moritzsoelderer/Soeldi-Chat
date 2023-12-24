@@ -1,25 +1,28 @@
 package soeldichat.soeldichat;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TransferMode;
+import javafx.scene.input.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Popup;
-import javafx.stage.Stage;
 
 import java.io.File;
 import java.util.List;
 
 public class Controller {
-    public StackPane chatMenuBarStackPane;
+    @FXML
+    private HBox contactSearchResultHBox;
+    @FXML
+    private Button contactSearchButton;
+    @FXML
+    private Button sendButton;
+    @FXML
+    private StackPane chatMenuBarStackPane;
+    @FXML
+    private TextField contactSearchTextField;
     @FXML
     private Label imageDragVBoxLabel;
     @FXML
@@ -44,8 +47,7 @@ public class Controller {
 
     private HBox focusedContactContainer;
     private ImageView imageDragImageView;
-
-    private ImageView messageImageView;
+    private boolean isContactSearch = false;
 
 
     public void displayChat(List<Message> messageList) {
@@ -53,14 +55,39 @@ public class Controller {
         messageContainer.getChildren().clear();
 
         //displaying Chat
-        messageList.forEach(message -> {
+        String lastMessageTimeStamp = "";
+
+        for(Message message : messageList){
+            if(!lastMessageTimeStamp.isEmpty()){
+                int lastMessageDayInt = Integer.parseInt(lastMessageTimeStamp.substring(8,10));
+                int messageDayInt = Integer.parseInt(message.getTimeStamp().substring(8,10));
+                int dayDistance = messageDayInt - lastMessageDayInt;
+                if(dayDistance > 0){
+                    String dayDisplayText = ScFiles.getDateFormatted(message.getTimeStamp());
+                    if(dayDistance == 1){
+                        dayDisplayText = "yesterday";
+                        if(java.time.LocalDate.now().toString().equals(ScFiles.getDate(message.getTimeStamp()))){
+                            dayDisplayText = "today";
+                        }
+                    }
+                    messageContainer.getChildren().add(ScPaneCreator.createDayTagStackpane(dayDisplayText));
+                }
+            }
+            else{
+                StackPane dayStackPane = ScPaneCreator.createDayTagStackpane(ScFiles.getDateFormatted(message.getTimeStamp()));
+                messageContainer.getChildren().add(dayStackPane);
+            }
+            lastMessageTimeStamp = message.getTimeStamp();
             HBox messageWrapper = ScPaneCreator.createMessageHBox(message, message.getSender().equals(application.getUserNumber()), application);
             messageContainer.getChildren().add(messageWrapper);
             updateFocusedContactContainer(message);
-        });
+        }
     }
 
     public void displayContacts(List<Contact> contactList) {
+        //clear contactScrollPaneVBox
+        contactScrollpaneVBox.getChildren().clear();
+
         contactList.forEach(contact -> {
 
             //create HBox and content for contact
@@ -70,8 +97,10 @@ public class Controller {
             contactScrollpaneVBox.getChildren().add(newContactContainer);
 
         });
-        //focus first contact
-        focusedContactContainer = (HBox) contactScrollpaneVBox.getChildren().getFirst();
+    }
+
+    public void focusFirstContact(){
+        focusedContactContainer = contactScrollpaneVBox.getChildren().getFirst() == null ? null :  (HBox) contactScrollpaneVBox.getChildren().getFirst();
     }
 
     protected void addMessageToChat(Message message, boolean alignRight) {
@@ -159,18 +188,14 @@ public class Controller {
         if(mediaFileExtension.equals(".mp4")){
             //TODO implement media view and media player for media support
         }
-        else if(mediaFileExtension.equals(".jpg") || mediaFileExtension.equals(".png")){
-            if (!imageDragVBox.getChildren().contains(imageDragImageView)) {
-                Image image = new Image("file:" + dragEvent.getDragboard().getFiles().getFirst().toString());
-                imageDragImageView = new ImageView(image);
-                imageDragImageView.setFitWidth(100);
-                imageDragImageView.setPreserveRatio(true);
-                imageDragVBox.getChildren().remove(imageDragVBoxLabel);
-                imageDragVBox.getChildren().addFirst(imageDragImageView);
-            }
+        else if(mediaFileExtension.equals(".jpg") || mediaFileExtension.equals(".png") && !imageDragVBox.getChildren().contains(imageDragImageView)){
+            Image image = new Image("file:" + dragEvent.getDragboard().getFiles().getFirst().toString());
+            imageDragImageView = new ImageView(image);
+            imageDragImageView.setFitWidth(100);
+            imageDragImageView.setPreserveRatio(true);
+            imageDragVBox.getChildren().remove(imageDragVBoxLabel);
+            imageDragVBox.getChildren().addFirst(imageDragImageView);
         }
-        //only allow one image
-
     }
 
     @FXML
@@ -181,7 +206,7 @@ public class Controller {
             exception.printStackTrace();
         }
     }
-
+    @FXML
     protected void onMouseClickedContactContainer(String focusedContactNumber, HBox newContactContainer){
         //store number of focused contact
         application.setFocusedContactNumber(focusedContactNumber);
@@ -194,10 +219,49 @@ public class Controller {
         List<Message> messageList = Contact.getContactByNumber(application.getContactList(), focusedContactNumber).getMessageList();
         displayChat(messageList);
 
+        if(isContactSearch){
+            contactSearchTextField.setText("");
+            displayContacts(application.getContactList());
+            contactSearchResultHBox.getChildren().clear();
+        }
         updateChatMenuBar();
+    }
+
+    @FXML
+    protected void onKeyPressedSendTextArea(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ENTER){
+            if(keyEvent.isShiftDown()){
+                sendTextArea.appendText("\n");
+            }
+            else{
+                sendButton.fire();
+            }
+        }
+    }
+
+    @FXML
+    protected void onKeyPressedContactSearchTextArea(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ENTER && !keyEvent.isShiftDown()){
+            if(keyEvent.isShiftDown()){
+                contactSearchTextField.appendText("\n");
+            }
+            else{
+                contactSearchButton.fire();
+            }
+        }
+    }
+
+    @FXML
+    protected void onActionContactSearchButton(javafx.event.ActionEvent actionEvent) {
+        List<Contact> contactList = Contact.filterContactListByName(application.getContactList(), contactSearchTextField.getText());
+        contactSearchResultHBox.getChildren().clear();
+        contactSearchResultHBox.getChildren().add(new Label(contactList.size() + " results"));
+        displayContacts(contactList);
+        isContactSearch = true;
     }
 
     public void setApplication(SoeldiChatApplication soeldiChatApplication) {
         this.application = soeldiChatApplication;
     }
+
 }
