@@ -1,53 +1,166 @@
-#root{
+*{
     /*color variables*/
-    -fx-background:  #121212;
+    -fx-background:  #0f0f0f;
     -fx-primary-content: #121212;
-    -fx-secondary-content: #1A1A1A;
-    -fx-strong-accent: #00A8E8;
-    -fx-light-accent: #242424;
+    -fx-secondary-content: #1c1c1c;
+    -fx-strong-accent1: #0080b3;
+    -fx-strong-accent2: #9B5DE5;
+    -fx-light-accent: #292929;
     -fx-text: #ffffff;
     -fx-light-text: #9A9A9A;
+
+    -fx-accent-gradient: linear-gradient(from 0% 0% to 100% 100%, -fx-strong-accent1, -fx-strong-accent2);
     /*plum: #EC9DED*/
+}
 
-    -fx-pref-height: 100%;
-    -fx-pref-width: 100%;
-
+#root{
     -fx-background-color: -fx-background;
     -fx-font-size: 1.2em;
     -fx-smooth: true;
-    -fx-spacing: .25em;
+    -fx-spacing: .5em;
     -fx-padding: 1.25em .75em .75em .75em;
 }
 
-#chatsContainer, #currentChatContainer {
+#applicationBarHBox{
+    -fx-background-color: -fx-primary-content;
+    -fx-padding:  0;
+    -fx-alignment: center-left;
+    -fx-spacing: .25em;
+}
+
+#applicationTitleHBox{
+    -fx-background-color: -fx-light-accent;
+    -fx-background-radius: .5em;
+}
+
+#applicationTitleLabel, #applicationSloganLabel{
+    -fx-padding: 0 .5em;
+    -fx-min-height: 40px;
+}
+
+#applicationTitleLabel{
+    -fx-font-size: 1.6em;
+    -fx-font-weight: bold;
+    -fx-background-color: -fx-accent-gradient;
+    -fx-background-radius: .5em;
+}
+
+#applicationSloganLabel{
+    -fx-font-weight: bolder;
+}
+
+#chatHBox{
+    -fx-spacing: .5em;
+}
+
+.button, .contactHBox, .focusedContact{
+    -fx-cursor: pointer;
+}
+
+#contactVBox, #currentChatContainer {
     -fx-background-radius: .4em;
 }
 /*left side of layout, containing chats menu*/
-#chatsContainer{
+#contactVBox{
     -fx-padding: 0 .75em 0 .75em;
     -fx-background-color: -fx-secondary-content;
     -fx-text-fill: -fx-text;
-    -fx-max-width: 40em;
+    -fx-pref-width: 22em;
     -fx-min-width: 20em;
+    -fx-max-width: 27em;
     -fx-spacing: .2em;
 }
 
-#chatsContainer > .contact, .focusedContact{
+#contactVBoxTitle{
+    -fx-font-weight: bold;
+    -fx-font-size: 1.6em;
+    -fx-padding: .8em .4em .4em .4em;
+}
+
+#contactSearchHBox, #contactScrollpaneVBox{
+    -fx-spacing: .2em;
+    -fx-padding: .5em 0;
+}
+
+#contactSearchTextField{
+    -fx-background-color: -fx-light-accent;
+    -fx-border-radius: .5em;
+    -fx-background-radius: .5em;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-color: -fx-accent-gradient;
+    -fx-text-fill: -fx-text;
+}
+
+#contactSearchButton{
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-accent-gradient;
+    -fx-font-weight: bold;
+    -fx-background-radius: .5em;
+}
+
+#contactSearchButton:hover{
+    -fx-background-color: -fx-light-accent;
+}
+
+#contactScrollpaneVBox > .contactHBox, .focusedContact{
     -fx-padding: .6em .4em .6em .4em;
 }
 
-#chatsTitle{
-    -fx-font-weight: bold;
-    -fx-font-size: 1.6em;
-    -fx-padding: .8em .4em .8em .4em;
+#contactScrollpane{
+    -fx-vbar-policy: never;
+    -fx-hbar-policy: never;
+    -fx-pannable: true;
+    -fx-spacing: .2em;
+    -fx-background-color: transparent;
 }
 
-.contact{
-    -fx-background-radius: .2em;
-    -fx-spacing: .4em;
+#contactScrollpane > .viewport{
+    -fx-background-color: transparent;
+}
+
+#contactSearchTextField > *{
+    -fx-background-color: transparent;
+}
+
+#contactSearchResultHBox{
+    -fx-font-size: 1em;
+    -fx-padding: .5em;
     -fx-border-style: hidden hidden solid hidden;
-    -fx-border-color: transparent;
     -fx-border-width: 1px;
+    -fx-border-color: -fx-light-accent;
+}
+
+#contactSearchResultHBox > .label{
+}
+
+.contactHBox, .focusedContact{
+    -fx-background-radius: .2em;
+    -fx-border-radius: .2em;
+    -fx-spacing: .75em;
+    -fx-border-style: hidden hidden hidden hidden;
+    -fx-border-width: 1px;
+}
+
+.contactHBox{
+    -fx-background-radius: .2em;
+    -fx-border-color: transparent;
+}
+
+.contactHBox:hover{
+    -fx-background-color: -fx-light-accent;
+}
+
+.focusedContact{
+    -fx-background-color: -fx-light-accent;
+}
+
+.contactProfilePicture{
+    -fx-background-color: -fx-accent-gradient;
+    -fx-background-radius: 2px;
+}
+
+.contactVBox{
+    -fx-alignment: center-left;
 }
 
 .contactName{
@@ -57,21 +170,11 @@
 
 .contactStatus{
     -fx-text-fill: -fx-light-text;
+    -fx-text-overrun: ellipsis;
 }
 
-
-.contact:hover{
-    -fx-background-color: -fx-light-accent;
-}
-
-.focusedContact{
-    -fx-spacing: .4em;
-    -fx-background-color: -fx-light-accent;
-    -fx-background-radius: .2em;
-    -fx-border-radius: .2em;
-    -fx-border-color: -fx-strong-accent;
-    -fx-border-style: hidden hidden solid hidden;
-    -fx-border-width: 1px;
+.contactLastMessageTimeStampLabel{
+    -fx-font-size: .8em;
 }
 
 /*right side of layout, containing the current chat*/
@@ -83,22 +186,40 @@
 #chatMenuBar{
     -fx-background-color: -fx-secondary-content;
     -fx-text-fill: -fx-text;
-    -fx-padding: 1em 3em 1em 3em;
+    -fx-padding: .75em 1.5em;
+    -fx-spacing: 1em;
+    -fx-background-radius: .4em .4em 0 0;
+    -fx-alignment: center-left;
 }
 
-#contactName{
-    -fx-font-size: 1.4em;
+#chatMenuBarStackPane{
+}
+
+#chatMenuBarVBox{
+    -fx-alignment: center-left;
+}
+
+#chatMenuBarContactName{
+    -fx-font-size: 1.2em;
     -fx-font-weight: bold;
 }
 
-#callButton{
-    -fx-background-radius: .2em;
-    -fx-background-color: -fx-strong-accent;
-    -fx-padding: .2em .6em .2em .6em;
-    -fx-min-width: 4em;
-    -fx-min-height: 3em;
-    -fx-text-fill: -fx-text;
-    -fx-effect: dropshadow(three-pass-box, rgba(50,50,50,0.8), 10, 0, 2,2);
+#chatMenuBarStatus{
+    -fx-text-fill: -fx-light-text;
+    -fx-text-overrun: ellipsis;
+}
+
+#chatMenuBarCallButton{
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-accent-gradient;
+    -fx-font-weight: bold;
+    -fx-min-width: 3.75em;
+    -fx-font-size: 1.25em;
+    -fx-background-radius: .5em;
+}
+
+#chatMenuBarCallButton:hover{
+    -fx-background-color: -fx-light-accent;
 }
 
 /*middle*/
@@ -113,93 +234,119 @@
     -fx-background-color: transparent;
 }
 
-#messageContainerWrapper{
+#currentChatStackPane{
     -fx-alignment: center;
 }
 
 #messageContainer{
     -fx-padding: .5em 3em;
-    -fx-spacing: .5em;
+    -fx-spacing: .6em;
     -fx-max-width: 80em;
 }
 
-.sentMessages{
-    -fx-label-padding: .5em .75em .5em .5em;
-    -fx-text-alignment: center;
-    -fx-text-fill: -fx-text;
-    -fx-border-color: -fx-strong-accent;
-    -fx-border-width: 2px;
-    -fx-border-radius: 3em 3em 1em 3em;
-    -fx-background-radius: 3em 3em 1em 3em;
-    -fx-background-color: -fx-strong-accent;
-    -fx-opacity: 1;
+.messageVBox{
+    -fx-spacing: .2em;
 }
 
-.sentMessages:hover{
-    -fx-opacity: .95;
+.messageWrapper{
+    -fx-spacing: .4em;
+}
+
+.sentMessages, .recievedMessages{
+    -fx-padding: .6em;
+    -fx-text-alignment: center;
+    -fx-border-width: 2px;
+    -fx-background-radius: 1em;
+}
+
+.sentMessages{
+    -fx-text-fill: -fx-text;
+    -fx-background-color: -fx-accent-gradient;
 }
 
 .recievedMessages{
-    -fx-label-padding: .5em .75em .5em .5em;
-    -fx-text-alignment: center;
     -fx-text-fill: -fx-text;
-    -fx-border-color: -fx-light-accent;
-    -fx-border-width: 2px;
-    -fx-border-radius: 3em 3em 3em 1em;
-    -fx-background-radius: 3em 3em 3em 1em;
     -fx-background-color: -fx-light-accent;
 }
 
-.recievedMessages:hover{
-    -fx-opacity: .95;
+.timeStamp{
+    -fx-min-width: 2.8em;
+    -fx-font-size: .7em;
 }
 
+.messageImage{
+    -fx-effect: dropshadow(three-pass-box, rgba(50,50,50,0.8), 10, 0, 1,1);
+    -fx-arc-height: 1em;
+    -fx-arc-width: 1em;
+}
+
+.dayTagStackPane{
+    -fx-padding: .5em;
+}
+.dayTagStackPane > .label{
+    -fx-font-size: .9em;
+    -fx-background-radius: .5em;
+    -fx-background-color: -fx-light-accent;
+    -fx-padding: .25em .5em;
+}
 
 /*bottom*/
 #sendContainer{
     -fx-pref-height: 1em;
     -fx-spacing: 1em;
-    -fx-padding: .75em 3em .75em 3em;
+    -fx-padding: .5em 1.5em;
     -fx-background-color: -fx-secondary-content;
+    -fx-background-radius: 0 0 .4em .4em;
+    -fx-alignment: center;
 }
 
 #sendTextArea{
-    -fx-border-width: 0 0 .1em 0;
-    -fx-border-style: solid;
-    -fx-border-color: transparent;
     -fx-background-color: transparent;
-    -fx-pref-rows: 1;
     -fx-wrap-text: true;
-    -fx-text-fill: -fx-text;
+    -fx-pref-rows: 1;
     -fx-alignment: center-left;
-    -fx-padding: .2em .6em 0 .6em;
+    -fx-text-fill: -fx-text;
+    -fx-padding:.6em;
 }
 
 #sendTextArea *{
     -fx-background-color: transparent;
+    -fx-padding: 0;
 }
 
-#sendTextArea:hover{
-    -fx-background-color: -fx-light-accent;
+#imageDragVBox{
+    -fx-border-width: .1em;
+    -fx-border-color: -fx-light-accent;
+    -fx-border-radius: .5em;
+    -fx-border-style: dashed;
+    -fx-background-color: transparent;
+    -fx-padding: 0 .5em;
+    -fx-font-weight: bold;
+    -fx-font-size: 1.4em;
+    -fx-alignment: center;
+    -fx-min-width: 2.8em;
 }
 
-#sendTextArea:focused{
+#imageDragVBox > .label{
+    -fx-text-fill: -fx-accent-gradient;
+}
+
+#imageDragVBox:hover{
+    -fx-border-color: -fx-accent-gradient;
     -fx-background-color: -fx-light-accent;
-    -fx-border-color: -fx-strong-accent ;
 }
 
 #sendButton{
-    -fx-background-radius: .2em;
-    -fx-background-color: -fx-strong-accent;
-    -fx-padding: .2em .6em .2em .6em;
-    -fx-min-width: 4em;
-    -fx-min-height: 3em;
-    -fx-text-fill: -fx-text;
-    -fx-effect: dropshadow(three-pass-box, rgba(50,50,50,0.8), 10, 0, 2,2);
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-accent-gradient;
+    -fx-font-weight: bold;
+    -fx-min-width: 3.75em;
+    -fx-font-size: 1.25em;
+    -fx-background-radius: .5em;
 }
 
 #sendButton:hover{
-    -fx-opacity: .9;
+    -fx-background-color: -fx-light-accent;
 }
 
 /*scrollbars*/
@@ -214,12 +361,22 @@
 .scroll-bar:vertical .increment-button,
 .scroll-bar:vertical .decrement-button{
     -fx-background-color :transparent;
-    -fx-background-radius : 0.0em;
-    -fx-padding :0.0 10.0 0.0 0.0;
+    -fx-background-radius: 0.0em;
+    -fx-padding:0.0;
 }
 
 .scroll-bar .increment-arrow,
 .scroll-bar .decrement-arrow{
-    -fx-shape : " ";
-    -fx-padding :0.15em 0.0;
+    -fx-shape: " ";
+    -fx-padding: 0.0;
 }
+
+/*popup*/
+
+.popupWrapperStackpane{
+    -fx-background-color: rgba(41, 41, 41, .5);
+    -fx-padding: 12em;
+    -fx-background-radius: .5em;
+    -fx-effect: dropshadow(three-pass-box, rgba(50,50,50,0.8), 10, 0, 2,2);
+}
+

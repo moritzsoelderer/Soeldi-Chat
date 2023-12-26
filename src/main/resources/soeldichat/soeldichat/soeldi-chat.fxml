@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<VBox fx:id="root" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="soeldichat.soeldichat.Controller">
+    <HBox fx:id="applicationBarHBox">
+        <HBox fx:id="applicationTitleHBox">
+            <Label fx:id="applicationTitleLabel" text="SoeldiChat"/>
+            <Label fx:id="applicationSloganLabel" text="Chat with your friends!"/>
+        </HBox>
+    </HBox>
+    <HBox fx:id="chatHBox" VBox.vgrow="ALWAYS">
+        <VBox fx:id="contactVBox" HBox.hgrow="SOMETIMES">
+            <HBox>
+                <Label fx:id="contactVBoxTitle" text="Chats" />
+            </HBox>
+            <HBox fx:id="contactSearchHBox">
+                <TextField fx:id="contactSearchTextField"  promptText="search contacts" onKeyPressed="#onKeyPressedContactSearchTextArea" HBox.hgrow="ALWAYS"/>
+                <Button fx:id="contactSearchButton" text="search" onAction="#onActionContactSearchButton"/>
+            </HBox>
+            <HBox fx:id="contactSearchResultHBox">
+            </HBox>
+            <ScrollPane fx:id="contactScrollpane" VBox.vgrow="ALWAYS" fitToWidth="true">
+                <VBox fx:id="contactScrollpaneVBox"></VBox>
+            </ScrollPane>
+        </VBox>
+        <VBox fx:id="currentChatContainer" HBox.hgrow="ALWAYS">
+            <HBox fx:id="chatMenuBar">
+                <StackPane fx:id="chatMenuBarStackPane">
+                    <ImageView fx:id="chatMenuBarProfilePicture">
+                        <Image url="file:src\main\resources\soeldichat\soeldichat\img\profile-pictures\default-profile-picture.jpg">
+                        </Image>
+                    </ImageView>
+                </StackPane>
+                <VBox fx:id="chatMenuBarVBox" HBox.hgrow="ALWAYS" maxWidth="Infinity">
+                    <Label fx:id="chatMenuBarContactName"  />
+                    <Label fx:id="chatMenuBarStatus" />
+                </VBox>
+
+                <Button fx:id="chatMenuBarCallButton" text="call"/>
+            </HBox>
+            <ScrollPane fx:id="currentChat" VBox.vgrow="ALWAYS" fitToWidth="true">
+                <StackPane fx:id="currentChatStackPane">
+                    <VBox fx:id="messageContainer"/>
+                </StackPane>
+            </ScrollPane>
+            <HBox fx:id="sendContainer" VBox.vgrow="SOMETIMES">
+                <VBox fx:id="imageDragVBox" HBox.hgrow="SOMETIMES" onMouseClicked="#onMouseClickedImageLabel" onDragEntered="#onDragEnteredImageLabel" onDragExited="#onDragExitedImageLabel" onDragOver="#onDragOverImageLabel" onDragDropped="#onDragDroppedImageLabel">
+                    <Label fx:id="imageDragVBoxLabel" text="+"/>
+                </VBox>
+                <TextArea fx:id="sendTextArea" promptText="message" onKeyPressed="#onKeyPressedSendTextArea" HBox.hgrow="ALWAYS"/>
+                <Button fx:id="sendButton" text="send" onAction="#onSendButtonClicked">
+                </Button>
+            </HBox>
+        </VBox>
+    </HBox>
+</VBox>

@@ -1,8 +1,13 @@
 package soeldichat.soeldichat;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
 
+@Setter
+@Getter
 public class Contact {
     private String number;
     private String firstName;
@@ -13,13 +18,15 @@ public class Contact {
     private List<Message> messageList;
 
     public static Contact getContactByNumber(List<Contact> contactList, String number){
+        return contactList.stream().filter(x->x.getNumber().equals(number)).toList().getFirst();
+    }
 
-        for(Contact currentContact : contactList){
-            if(currentContact.getNumber().equals(number)){
-                return currentContact;
-            }
-        }
-        return null;
+    public static List<Contact> filterContactListByName(List<Contact> contactList, String subString){
+        return contactList.stream().filter(contact -> {
+            boolean firstNameStartsWithSubstring = subString.length() <= contact.getFirstName().length() ? contact.getFirstName().substring(0,subString.length()).toLowerCase().equals(subString.toLowerCase()) : false;
+            boolean lastNameStartsWithSubstring = subString.length() <= contact.getLastName().length() ? contact.getLastName().substring(0,subString.length()).toLowerCase().equals(subString.toLowerCase()) : false;
+            return (firstNameStartsWithSubstring || lastNameStartsWithSubstring);
+        }).toList();
     }
 
     public Contact(String number, List<Message> messageList) {
@@ -57,53 +64,6 @@ public class Contact {
         this.messageList = messageList;
     }
 
-    public String getNumber() {
-        return this.number;
-    }
-
-    public String getFirstName() {
-        return this.firstName;
-    }
-
-    public String getLastName() {
-        return this.lastName;
-    }
-
-    public String getProfilePicture() {
-        return this.profilePicture;
-    }
-
-    public String getStatus() {
-        return this.status;
-    }
-
-    public List<Message> getMessageList() {
-        return this.messageList;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setProfilePicture(String profilePicture) {
-        this.profilePicture = profilePicture;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public void setMessageList(List<Message> messageList) {
-        this.messageList = messageList;
-    }
 }
 
 

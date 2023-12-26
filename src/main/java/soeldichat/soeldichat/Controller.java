@@ -1,143 +1,284 @@
 package soeldichat.soeldichat;
 
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.*;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
+import java.io.File;
 import java.util.List;
 
 public class Controller {
-
+    @FXML
+    private HBox contactSearchResultHBox;
+    @FXML
+    private Button contactSearchButton;
+    @FXML
+    private Button sendButton;
+    @FXML
+    private StackPane chatMenuBarStackPane;
+    @FXML
+    private TextField contactSearchTextField;
+    @FXML
+    private Label imageDragVBoxLabel;
+    @FXML
+    private VBox imageDragVBox;
     private SoeldiChatApplication application;
+    @FXML
+    private ImageView chatMenuBarProfilePicture;
+    @FXML
+    private Label chatMenuBarContactName;
+    @FXML
+    private Label chatMenuBarStatus;
     @FXML
     private ScrollPane currentChat;
     @FXML
-    private VBox chatsContainer;
+    private VBox contactVBox;
+    @FXML
+    private VBox contactScrollpaneVBox;
     @FXML
     private TextArea sendTextArea;
     @FXML
     private VBox messageContainer;
 
     private HBox focusedContactContainer;
+    private ImageView imageDragImageView;
+    private boolean isContactSearch = false;
 
-    public void setApplication(SoeldiChatApplication application) {
-        this.application = application;
-    }
 
-    public void displayChat(List<Message> messageList){
+    public void displayChat(List<Message> messageList) {
         //clearing chat
         messageContainer.getChildren().clear();
 
         //displaying Chat
-        messageList.forEach(message -> {
-            HBox messageWrapper = createMessageHBox(message.getText(), message.getSender().equals(application.getUserNumber()));
+        String lastMessageTimeStamp = "";
+
+        for(Message message : messageList){
+            if(!lastMessageTimeStamp.isEmpty()){
+                int lastMessageDayInt = Integer.parseInt(lastMessageTimeStamp.substring(8,10));
+                int messageDayInt = Integer.parseInt(message.getTimeStamp().substring(8,10));
+                int dayDistance = messageDayInt - lastMessageDayInt;
+                String dayDisplayText = determineDayDisplayText(dayDistance, message.getTimeStamp());
+                if(!dayDisplayText.isEmpty()){messageContainer.getChildren().add(ScPaneCreator.createDayTagStackpane(dayDisplayText));}
+            }
+            else{
+                StackPane dayStackPane = ScPaneCreator.createDayTagStackpane(ScFiles.getDateFormatted(message.getTimeStamp()));
+                messageContainer.getChildren().add(dayStackPane);
+            }
+            lastMessageTimeStamp = message.getTimeStamp();
+            HBox messageWrapper = ScPaneCreator.createMessageHBox(message, message.getSender().equals(application.getUserNumber()), application);
             messageContainer.getChildren().add(messageWrapper);
-        });
+        }
+    }
+
+    private String determineDayDisplayText(int dayDistance, String timeStamp) {
+        String dayDisplayText = "";
+        if(dayDistance > 0) {
+            dayDisplayText = ScFiles.getDateFormatted(timeStamp);
+            if (dayDistance == 1) {
+                dayDisplayText = "yesterday";
+                if (java.time.LocalDate.now().toString().equals(ScFiles.getDate(timeStamp))) {
+                    dayDisplayText = "today";
+                }
+            }
+        }
+        return dayDisplayText;
     }
 
     public void displayContacts(List<Contact> contactList) {
+        //clear contactScrollPaneVBox
+        contactScrollpaneVBox.getChildren().clear();
+
         contactList.forEach(contact -> {
 
             //create HBox and content for contact
-            HBox contactContainer = createContactHBox(contact);
-
-            //display chat when clicked on contact
-            String focusedContactNumber = contact.getNumber();
-            contactContainer.setOnMouseClicked(y -> {
-                //store number of focused contact
-                application.setFocusedContactNumber(focusedContactNumber);
-                //store Hbox of focused contact
-                focusedContactContainer.getStyleClass().clear();
-                focusedContactContainer.getStyleClass().add("contact");
-                focusedContactContainer = contactContainer;
-                focusedContactContainer.getStyleClass().clear();
-                focusedContactContainer.getStyleClass().add("focusedContact");
-                List<Message> messageList = Contact.getContactByNumber(contactList, focusedContactNumber).getMessageList();
-                displayChat(messageList);
-            });
+            HBox newContactContainer = ScPaneCreator.createContactHBox(contact, this.application);
+            newContactContainer.setOnMouseClicked(y -> onMouseClickedContactContainer(contact.getNumber(), newContactContainer));
             //add contact to contacts
-            chatsContainer.getChildren().add(contactContainer);
+            contactScrollpaneVBox.getChildren().add(newContactContainer);
 
         });
-        //focus first contact
-        focusedContactContainer = (HBox) chatsContainer.getChildren().get(1);
     }
+
+    public void focusFirstContact(){
+        if(focusedContactContainer != null){
+            focusedContactContainer.getStyleClass().clear();
+            focusedContactContainer.getStyleClass().add("contact");
+        }
+        if(contactScrollpaneVBox.getChildren().getFirst() != null){
+            focusedContactContainer = (HBox) contactScrollpaneVBox.getChildren().getFirst();
+            focusedContactContainer.getStyleClass().clear();
+            focusedContactContainer.getStyleClass().add("focusedContact");
+        }
+    }
+
+    protected void addMessageToChat(Message message, boolean alignRight) {
+        messageContainer.getChildren().add(ScPaneCreator.createMessageHBox(message, alignRight, application));
+        application.addMessageToChat(message);
+        updateFocusedContactContainer(message);
+        application.updateContactList(application.getFocusedContactNumber());
+        application.logContacts();
+    }
+
+    public void updateChatMenuBar() {
+        Contact focusedContact = Contact.getContactByNumber(application.getContactList(), application.getFocusedContactNumber());
+        chatMenuBarContactName.setText(focusedContact.getFirstName() + " " + focusedContact.getLastName());
+        chatMenuBarStatus.setText(focusedContact.getStatus());
+        setupchatMenuBarProfilePicture(focusedContact);
+    }
+
+    private void updateFocusedContactContainer(Message message){
+        //update last message
+        String text = message.getText().isEmpty() ? "~image" : message.getText().substring(0, message.getText().indexOf('\n'));//display ~image if text is empty
+        ((Label) ((VBox) focusedContactContainer.getChildren().get(1)).getChildren().getLast()).setText(text);
+        //update timeStamp
+        ((Label) (focusedContactContainer.getChildren().get(2))).setText(message.getTimeStamp().substring(11, 16));
+        //update contact position
+        if(!isContactSearch){
+            contactScrollpaneVBox.getChildren().remove(focusedContactContainer);
+            contactScrollpaneVBox.getChildren().addFirst(focusedContactContainer);
+        }
+    }
+
+    public void setupchatMenuBarProfilePicture(Contact contact){
+        chatMenuBarProfilePicture = ScPaneCreator.createContactProfilePictureImageView(contact, this.application);
+        chatMenuBarStackPane.getChildren().add(chatMenuBarProfilePicture);
+    }
+
     @FXML
-    protected void onSendButtonClicked(){
-        //return if message prompt is empty
-        if(sendTextArea.getText().isEmpty()){return;}
+    protected void onSendButtonClicked() {
+
+        String text = sendTextArea.getText();
+        //return if message text is empty and there is now imageview
+        if ((text.isEmpty() || text.equals("\n")) && !imageDragVBox.getChildren().contains(imageDragImageView)) {
+            return;
+        }
+
+        String currentDateTime = java.time.LocalDateTime.now().toString();
+
+        String newImageUrl = application.saveImage(imageDragImageView == null ? "" : imageDragImageView.getImage().getUrl());
 
         //add message
-        addMessageToChat(sendTextArea.getText(), true);
+        addMessageToChat(new Message(application.getUserNumber(), application.getFocusedContactNumber(), text, newImageUrl, currentDateTime), true);
 
         //clear message prompt
         sendTextArea.setText("");
+
+        //clear imageViewVBox, reset style and reset imageDragImageView
+        imageDragVBox.getChildren().remove(imageDragImageView);
+        imageDragImageView = null;
+        imageDragVBox.setStyle("-fx-border-color: -fx-light-accent");
+
+        if(!imageDragVBox.getChildren().contains(imageDragVBoxLabel)){ imageDragVBox.getChildren().add(imageDragVBoxLabel);}
 
         //scroll to message
         double vmax = currentChat.getVmax();
         currentChat.setVvalue(vmax);
     }
-
-    protected void addMessageToChat(String text, boolean alignRight){
-        //Use HBox as Container to align message on the right
-        HBox messageWrapper = createMessageHBox(text, alignRight);
-        messageContainer.getChildren().add(messageWrapper);
-
-        //update messageList
-        application.addMessageToChat(new Message(application.getUserNumber(), application.getFocusedContactNumber(), text, ""));
+    @FXML
+    protected void onDragEnteredImageLabel(DragEvent dragEvent) {
+        imageDragVBox.setStyle("-fx-border-color: -fx-accent-gradient");
     }
 
-    private HBox createContactHBox(Contact contact){
-        //add Container for contact
-        HBox contactContainer = new HBox();
-        contactContainer.getStyleClass().add("contact");
-
-        //add ImageView for profile picture
-        ImageView imageView = new ImageView();
-        contactContainer.getChildren().add(imageView);
-        HBox.setHgrow(imageView, Priority.NEVER);
-
-        //add VBox for name and status
-        VBox nameStatusVbox = new VBox();
-        contactContainer.getChildren().add(nameStatusVbox);
-
-        //add Label for name
-        Label name = new Label(contact.getFirstName() + " " + contact.getLastName());
-        name.getStyleClass().add("contactName");
-        nameStatusVbox.getChildren().add(name);
-
-        //add label for status
-        Label status = new Label(contact.getMessageList().getLast().getText());
-        status.getStyleClass().add("contactStatus");
-        nameStatusVbox.getChildren().add(status);
-
-        return contactContainer;
-    }
-
-    private HBox createMessageHBox(String text, boolean alignRight){
-        HBox messageWrapper = new HBox();
-
-        Label message = new Label();
-        message.setWrapText(true);
-
-        message.setText(text);
-        messageWrapper.getChildren().add(message);
-        if(alignRight){
-            message.getStyleClass().add("sentMessages");
-            messageWrapper.setAlignment(Pos.BASELINE_RIGHT);
+    @FXML
+    protected void onDragExitedImageLabel(DragEvent dragEvent) {
+        if (!imageDragVBox.getChildren().contains(imageDragImageView)) {
+            imageDragVBox.setStyle("-fx-border-color: -fx-light-accent");
         }
-        else{
-            message.getStyleClass().add("recievedMessages");
-            messageWrapper.setAlignment(Pos.BASELINE_LEFT);
-        }
-
-        return messageWrapper;
     }
+
+    @FXML
+    protected void onDragOverImageLabel(DragEvent dragEvent) {
+        dragEvent.acceptTransferModes(TransferMode.LINK);
+    }
+
+    @FXML
+    protected void onDragDroppedImageLabel(DragEvent dragEvent) {
+        File media = dragEvent.getDragboard().getFiles().getFirst();
+        String mediaFileExtension = ScFiles.getFileExtension(media);
+        if(mediaFileExtension.equals(".mp4")){
+            //TODO implement media view and media player for media support
+        }
+        else if(mediaFileExtension.equals(".jpg") || mediaFileExtension.equals(".png") && !imageDragVBox.getChildren().contains(imageDragImageView)){
+            Image image = new Image("file:" + dragEvent.getDragboard().getFiles().getFirst().toString());
+            imageDragImageView = new ImageView(image);
+            imageDragImageView.setFitWidth(100);
+            imageDragImageView.setPreserveRatio(true);
+            imageDragVBox.getChildren().remove(imageDragVBoxLabel);
+            imageDragVBox.getChildren().addFirst(imageDragImageView);
+        }
+    }
+
+    @FXML
+    protected void onMouseClickedImageLabel(MouseEvent mouseEvent) {
+        try {
+            Runtime.getRuntime().exec("explorer C:\\");
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+    }
+    protected void onMouseClickedContactContainer(String focusedContactNumber, HBox newContactContainer){
+        //store number of focused contact
+        application.setFocusedContactNumber(focusedContactNumber);
+        //store HBox of focused contact
+        focusedContactContainer.getStyleClass().clear();
+        focusedContactContainer.getStyleClass().add("contactHBox");
+        focusedContactContainer = newContactContainer;
+        focusedContactContainer.getStyleClass().clear();
+        focusedContactContainer.getStyleClass().add("focusedContact");
+        List<Message> messageList = Contact.getContactByNumber(application.getContactList(), focusedContactNumber).getMessageList();
+        displayChat(messageList);
+
+        if(isContactSearch){
+            contactSearchTextField.setText("");
+            displayContacts(application.getContactList());
+            contactSearchResultHBox.getChildren().clear();
+            isContactSearch = false;
+        }
+        updateChatMenuBar();
+    }
+
+    @FXML
+    protected void onKeyPressedSendTextArea(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ENTER){
+            if(keyEvent.isShiftDown()){
+                sendTextArea.appendText("\n");
+            }
+            else{
+                sendButton.fire();
+            }
+        }
+    }
+
+    @FXML
+    protected void onKeyPressedContactSearchTextArea(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ENTER && !keyEvent.isShiftDown()){
+            if(keyEvent.isShiftDown()){
+                contactSearchTextField.appendText("\n");
+            }
+            else{
+                contactSearchButton.fire();
+            }
+        }
+    }
+
+    @FXML
+    protected void onActionContactSearchButton(javafx.event.ActionEvent actionEvent) {
+        if(contactSearchTextField.getText().equals("")){return;}
+
+        List<Contact> contactList = Contact.filterContactListByName(application.getContactList(), contactSearchTextField.getText());
+        contactSearchResultHBox.getChildren().clear();
+        contactSearchResultHBox.getChildren().add(new Label(contactList.size() + " results"));
+        displayContacts(contactList);
+        isContactSearch = true;
+    }
+
+    public void setApplication(SoeldiChatApplication soeldiChatApplication) {
+        this.application = soeldiChatApplication;
+    }
+
 }
-

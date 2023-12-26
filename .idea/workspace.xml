@@ -4,10 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2c7283b-a416-41b5-8b21-fdc60750bd3c" name="Changes" comment="changed color palette, last message is now displayed under contacts rather than status, minor tweaks such as contact focus and paddings">
+    <list default="true" id="b2c7283b-a416-41b5-8b21-fdc60750bd3c" name="Changes" comment="added day tags in chat, added possibility to send messages and search contacts by pressing &quot;ENTER&quot;, now new lines are created by pressing &quot;SHIFT + ENTER&quot;, resolved bug caused by searchstring being longer than first/last name, added search result HBox to display number of results">
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000003.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000003.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/ScPaneCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/ScPaneCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000001.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000001.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000004.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000004.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000005.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000005.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000007.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000007.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000008.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000008.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000013.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000013.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/chats-info.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/chats-info.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,7 +35,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="d36318706f704931e27dd29505bdd863baac573e" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -56,8 +65,9 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;ui-design&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;contact-enhancement&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/morit/IdeaProjects/RoboRally/src/main/resources/soeldichat/soeldichat/img/0000000001&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -67,12 +77,18 @@
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.annotationProcessors&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.uml&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\morit\IdeaProjects\RoboRally\src\main\resources\soeldichat\soeldichat\img\0000000001" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\morit\IdeaProjects\RoboRally\src\main\resources\soeldichat\soeldichat\img\profile-pictures" />
+      <recent name="C:\Users\morit\IdeaProjects\RoboRally\src\main\resources\soeldichat\soeldichat\img\" />
+      <recent name="C:\Users\morit\IdeaProjects\RoboRally\src\main\resources\soeldichat\soeldichat\img" />
       <recent name="C:\Users\morit\IdeaProjects\RoboRally\src\main\resources\soeldichat\soeldichat\chats" />
       <recent name="C:\Users\morit\IdeaProjects\RoboRally\src\main\resources\roborally\roborally" />
     </key>
@@ -93,6 +109,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.SoeldiChatApplication" />
+        <item itemvalue="Application.SoeldiChatApplication" />
+        <item itemvalue="Application.SoeldiChatApplication" />
         <item itemvalue="Application.SoeldiChatApplication" />
         <item itemvalue="Application.SoeldiChatApplication" />
       </list>
@@ -124,7 +143,23 @@
       <workItem from="1702416778402" duration="4506000" />
       <workItem from="1702430280692" duration="6668000" />
       <workItem from="1702482638097" duration="4854000" />
-      <workItem from="1702647121001" duration="982000" />
+      <workItem from="1702647121001" duration="13208000" />
+      <workItem from="1702850452032" duration="4716000" />
+      <workItem from="1702904769776" duration="408000" />
+      <workItem from="1702944880236" duration="7545000" />
+      <workItem from="1703001582481" duration="8100000" />
+      <workItem from="1703032602358" duration="10480000" />
+      <workItem from="1703084201681" duration="1252000" />
+      <workItem from="1703100865999" duration="9316000" />
+      <workItem from="1703110603913" duration="4505000" />
+      <workItem from="1703164177938" duration="11639000" />
+      <workItem from="1703197038683" duration="10613000" />
+      <workItem from="1703260643681" duration="218000" />
+      <workItem from="1703271611454" duration="4638000" />
+      <workItem from="1703283262069" duration="762000" />
+      <workItem from="1703420027278" duration="12037000" />
+      <workItem from="1703524543068" duration="519000" />
+      <workItem from="1703597574001" duration="1091000" />
     </task>
     <task id="LOCAL-00001" summary="First Draft - Messaging, reading/writing of chatlog (textfile) works - First Design implemented">
       <option name="closed" value="true" />
@@ -166,13 +201,124 @@
       <option name="project" value="LOCAL" />
       <updated>1702605055962</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="minor tweaks: changed design of send and call button">
+      <option name="closed" value="true" />
+      <created>1702750276316</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1702750276316</updated>
+    </task>
+    <task id="LOCAL-00007" summary="now last contact is displayed on top of contact container and last message is updated as soon as a message is sent,&#10;timestamps added and displayed, small bug with timestamps in chat, timestamp next to last message still needs to be added">
+      <option name="closed" value="true" />
+      <created>1702754222464</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1702754222464</updated>
+    </task>
+    <task id="LOCAL-00008" summary="changed design of timestamp display, fixed timestamp display bug, added support for profile pictures + displayed them in the contact container, chatmenubar still needs to be updated">
+      <option name="closed" value="true" />
+      <created>1702847421911</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1702847421911</updated>
+    </task>
+    <task id="LOCAL-00009" summary="last contact remains on top after restart, because chats-info.json is updated when a message is sent, new design tweaks, such as a gradient, cursor for buttons and contacts does not work yet">
+      <option name="closed" value="true" />
+      <created>1702857126851</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1702857126851</updated>
+    </task>
+    <task id="LOCAL-00010" summary="chat menu bar is now displayed correctly, minor style tweaks, minor fx:id changes in fxml file">
+      <option name="closed" value="true" />
+      <created>1702948205271</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1702948205271</updated>
+    </task>
+    <task id="LOCAL-00011" summary="added default-config-picture, resolved problem with messages being logged twice, added scrollpane for contact list on the left">
+      <option name="closed" value="true" />
+      <created>1702952511979</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1702952511979</updated>
+    </task>
+    <task id="LOCAL-00012" summary="changed design of profile pictures in contacts, added bar on top of application with application name, added image support for messages, yet sending messages with images is not supported yet, changed color palette a little bit">
+      <option name="closed" value="true" />
+      <created>1703008681690</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1703008681690</updated>
+    </task>
+    <task id="LOCAL-00013" summary="added time stamp of last message in contact list, changed style of application bar on top">
+      <option name="closed" value="true" />
+      <created>1703035094654</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1703035094654</updated>
+    </task>
+    <task id="LOCAL-00014" summary="fully implemented image support, resolved related bugs, changed design a little, added a screenshot of the application, added an icon for the application, images can only be dragged into the imageDragVBox, button to open explorer and select image needs to be implemented, other media support should be added">
+      <option name="closed" value="true" />
+      <created>1703108952641</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1703108952641</updated>
+    </task>
+    <task id="LOCAL-00015" summary="file explorer now opens by clicking on the add image VBox, although you still have to drag images in, did some refactoring, added two java classes to outsource work from the application and the controller, problems with sending images when the corresponding img folder did not exist are now solved, path names are now relative not absolute as before">
+      <option name="closed" value="true" />
+      <created>1703175644872</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1703175644872</updated>
+    </task>
+    <task id="LOCAL-00016" summary="added popup window to view sent images, changed style a little">
+      <option name="closed" value="true" />
+      <created>1703207464783</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1703207464783</updated>
+    </task>
+    <task id="LOCAL-00017" summary="added day tags in chat, added possibility to send messages and search contacts by pressing &quot;ENTER&quot;, now new lines are created by pressing &quot;SHIFT + ENTER&quot;, resolved bug caused by searchstring being longer than first/last name, added search result HBox to display number of results">
+      <option name="closed" value="true" />
+      <created>1703431332476</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1703431332476</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="main" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -183,7 +329,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="contact-system" />
+                        <option value="contact-enhancement" />
                       </list>
                     </value>
                   </entry>
@@ -203,6 +349,24 @@
     <MESSAGE value="contact and chat system now works completely, now not every time you switch to another chat the chat is loaded from the json file, but rather from the messageList attribute of the contact class" />
     <MESSAGE value="fixed chatmenubar, button is now correctly displayed on the right,&#10;added status to contacts on the left, added feedback on which contact is focused + minor tweaks" />
     <MESSAGE value="changed color palette, last message is now displayed under contacts rather than status, minor tweaks such as contact focus and paddings" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed color palette, last message is now displayed under contacts rather than status, minor tweaks such as contact focus and paddings" />
+    <MESSAGE value="minor tweaks: changed design of send and call button" />
+    <MESSAGE value="now last contact is displayed on top of contact container and last message is updated as soon as a message is sent,&#10;timestamps added and displayed, small bug with timestamps in chat, timestamp next to last message still needs to be added" />
+    <MESSAGE value="changed design of timestamp display, fixed timestamp display bug, added support for profile pictures + displayed them in the contact container, chatmenubar still needs to be updated" />
+    <MESSAGE value="last contact remains on top after restart, because chats-info.json is updated when a message is sent, new design tweaks, such as a gradient, cursor for buttons and contacts does not work yet" />
+    <MESSAGE value="chat menu bar is now displayed correctly, minor style tweaks, minor fx:id changes in fxml file" />
+    <MESSAGE value="added default-config-picture, resolved problem with messages being logged twice, added scrollpane for contact list on the left" />
+    <MESSAGE value="changed design of profile pictures in contacts, added bar on top of application with application name, added image support for messages, yet sending messages with images is not supported yet, changed color palette a little bit" />
+    <MESSAGE value="added time stamp of last message in contact list, changed style of application bar on top" />
+    <MESSAGE value="fully implemented image support, resolved related bugs, changed design a little, added a screenshot of the application, added an icon for the application, images can only be dragged into the imageDragVBox, button to open explorer and select image needs to be implemented, other media support should be added" />
+    <MESSAGE value="file explorer now opens by clicking on the add image VBox, although you still have to drag images in, did some refactoring, added two java classes to outsource work from the application and the controller, problems with sending images when the corresponding img folder did not exist are now solved" />
+    <MESSAGE value="file explorer now opens by clicking on the add image VBox, although you still have to drag images in, did some refactoring, added two java classes to outsource work from the application and the controller, problems with sending images when the corresponding img folder did not exist are now solved, path names are now relative not absolute as before" />
+    <MESSAGE value="added popup window to view sent images, changed style a little" />
+    <MESSAGE value="added day tags in chat, added possibility to send messages and search contacts by pressing &quot;ENTER&quot;, now new lines are created by pressing &quot;SHIFT + ENTER&quot;, resolved bug caused by searchstring being longer than first/last name, added search result HBox to display number of results" />
+    <option name="LAST_COMMIT_MESSAGE" value="added day tags in chat, added possibility to send messages and search contacts by pressing &quot;ENTER&quot;, now new lines are created by pressing &quot;SHIFT + ENTER&quot;, resolved bug caused by searchstring being longer than first/last name, added search result HBox to display number of results" />
+    <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

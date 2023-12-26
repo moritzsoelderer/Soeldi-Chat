@@ -1,25 +1,42 @@
 package soeldichat.soeldichat;
 
-import com.google.gson.Gson;
-import com.google.gson.stream.JsonWriter;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.TilePane;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.*;
+import java.nio.file.Path;
 import java.util.*;
 
+@Setter
+@Getter
 public class SoeldiChatApplication extends Application {
 
     private final String userNumber = "0000000000";
     private String focusedContactNumber;
     private List<Contact> contactList;
+    private String defaultProfilePictureString = "default-profile-picture.png";
+
+    private Stage stage;
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(SoeldiChatApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 700, 900);
+        this.stage = stage;
+
+        FXMLLoader fxmlLoader = new FXMLLoader(SoeldiChatApplication.class.getResource("soeldi-chat.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1200, 900);
         Controller controller = fxmlLoader.getController();
 
         //give controller access to this instance of application
@@ -30,6 +47,7 @@ public class SoeldiChatApplication extends Application {
         stage.setMinWidth(650);
         stage.setMinHeight(400);
         stage.setTitle("SoeldiChat");
+        stage.getIcons().add(new Image("file:src\\main\\resources\\soeldichat\\soeldichat\\img\\application-icon.jpg"));
         stage.setScene(scene);
         stage.show();
 
@@ -40,119 +58,70 @@ public class SoeldiChatApplication extends Application {
         //load and display messages (of first contact)
         contactList.forEach(x -> x.setMessageList(new ArrayList<>(loadMessages(x.getNumber()))));
         controller.displayContacts(contactList);
+        controller.focusFirstContact();
+        controller.setupchatMenuBarProfilePicture(contactList.getFirst());
         controller.displayChat(contactList.getFirst().getMessageList());
+        controller.updateChatMenuBar();
     }
 
     public static void main(String[] args) {
         launch();
     }
 
-    public void setFocusedContactNumber(String focusedContactNumber) {
-        this.focusedContactNumber = focusedContactNumber;
-    }
 
-    public String getFocusedContactNumber() {
-        return focusedContactNumber;
-    }
-
-    public String getUserNumber() {
-        return userNumber;
-    }
-
-    private List<Contact> loadContacts(){
-        Gson gson = new Gson();
-
-        try (Reader reader = new FileReader("C:/Users/morit/IdeaProjects/RoboRally/src/main/resources/soeldichat/soeldichat/chats/chats-info.json")) {
-
-            Contact[] contactArray = gson.fromJson(reader,Contact[].class);
-
-            if(contactArray != null){
-                return Arrays.asList(contactArray);
-            }
-            else return Collections.emptyList();
-
-        } catch (IOException fileOpenException) {
-            if(fileOpenException.getClass().equals(FileNotFoundException.class)) {
-                System.out.println("Failed to load chats-info.json for contact information");
-            }
-        }
-        return Collections.emptyList();
-    }
-
-    private List<Message> loadMessages(String contactNumber){
-
-        File chatFile = new File("C:/Users/morit/IdeaProjects/RoboRally/src/main/resources/soeldichat/soeldichat/chats/" + contactNumber +".json");
-        Gson gson = new Gson();
-
-        try (Reader reader = new FileReader(chatFile)) {
-
-            Message[] messageArray = gson.fromJson(reader,Message[].class);
-
-            if(messageArray != null){
-                return Arrays.asList(messageArray);
-            }
-            else return Collections.emptyList();
-
-
-        } catch (IOException fileOpenException) {
-            //create file if it cannot be found
-            if(fileOpenException.getClass().equals(FileNotFoundException.class)){
-                createNewFile(chatFile);
-            }
-
-        }
-        return Collections.emptyList();
-
-    }
-
-    private void logMessage(Message newMessage){
-        String chatPartnerNumber = determineChatPartnerNumber(newMessage);
-        File chatFile = new File("C:\\Users\\morit\\IdeaProjects\\RoboRally\\src\\main\\resources\\soeldichat\\soeldichat\\chats\\" + chatPartnerNumber + ".json");
-
-        Gson gson = new Gson();
-
-        try{
-            //load messages and append new message
-            ArrayList<Message> messageList = new ArrayList<>(Contact.getContactByNumber(contactList, chatPartnerNumber).getMessageList());
-            messageList.add(newMessage);
-
-            JsonWriter writer = new JsonWriter(new FileWriter(chatFile, false));
-            gson.toJson(messageList, ArrayList.class, writer);
-            writer.flush();
-            writer.close();
-        }
-        catch(IOException fileOpenException){
-            //create file if it cannot be found
-            if(fileOpenException.getClass().equals(FileNotFoundException.class)){
-                System.out.println("file wurde nicht gefunden");
-                createNewFile(chatFile);
-            }
-        }
-    }
-
-    private void createNewFile(File file){
-        try{
-            file.createNewFile();
-        }
-        catch (IOException ioException){
-            System.out.println("Could not create new ChatLog file.");
-        }
-    }
-
-    private String determineChatPartnerNumber(Message message){
-        if(message.getSender().equals(userNumber)){
-            return message.getReceiver();
-        }
-        return message.getSender();
-    }
-
-    public void addMessageToChat(Message newMessage){
-
-        Contact.getContactByNumber(contactList, determineChatPartnerNumber(newMessage)).getMessageList().add(newMessage);
-
-        //add message to log
+    public void addMessageToChat(Message newMessage) {
+        Contact.getContactByNumber(contactList, newMessage.determineChatPartnerNumber(this.userNumber)).getMessageList().add(newMessage);
         logMessage(newMessage);
     }
 
+    public void updateContactList(String focusedContactNumber) {
+        Contact focusedContact = Contact.getContactByNumber(getContactList(), focusedContactNumber);
+        ArrayList<Contact> contactArrayList = new ArrayList<>(getContactList());
+        contactArrayList.remove(focusedContact);
+        contactArrayList.add(0, focusedContact);
+        setContactList(contactArrayList);
+    }
+
+    private List<Contact> loadContacts() {
+        File contactFile = new File("src/main/resources/soeldichat/soeldichat/chats/chats-info.json");
+        return ScFiles.fetchContactsFromJson(contactFile);
+    }
+
+    private List<Message> loadMessages(String contactNumber) {
+        File chatFile = new File("src/main/resources/soeldichat/soeldichat/chats/" + contactNumber + ".json");
+        return ScFiles.fetchMessagesFromJson(chatFile);
+    }
+
+    public Image loadImage(String imageFileName) {
+        return new Image("file:src\\main\\resources\\soeldichat\\soeldichat\\img\\profile-pictures\\" + imageFileName);
+    }
+
+    public void logContacts(){
+        File chatFile = new File("src\\main\\resources\\soeldichat\\soeldichat\\chats\\chats-info.json");
+        try {
+            ScFiles.logToJson(chatFile, getContactList());
+        } catch (NullPointerException nullPointerException) {
+            System.out.println("contactList is null");
+        }
+    }
+
+    private void logMessage(Message newMessage) {
+        String chatPartnerNumber = newMessage.determineChatPartnerNumber(userNumber);
+        File chatFile = new File("src\\main\\resources\\soeldichat\\soeldichat\\chats\\" + chatPartnerNumber + ".json");
+
+        try {
+            ArrayList<Message> messageList = new ArrayList<>(Contact.getContactByNumber(contactList, chatPartnerNumber).getMessageList());
+            ScFiles.logToJson(chatFile, messageList);
+        } catch (NullPointerException nullPointerException) {
+            System.out.println("message logging failed");
+        }
+    }
+
+    public String saveImage(String imageUrl) {
+        if(imageUrl.isEmpty()){return "";}
+        String currentDateTime = java.time.LocalDateTime.now().toString();
+        String newImageUrl = "src\\main\\resources\\soeldichat\\soeldichat\\img\\" + focusedContactNumber + "\\" + new File(currentDateTime.replace(':', '-')) + ScFiles.getFileExtension(new File(imageUrl));
+        return "file:" + ScFiles.saveImage(Path.of(imageUrl.substring(5)),Path.of(newImageUrl));
+    }
 }
 
