@@ -189,6 +189,7 @@
     -fx-padding: .75em 1.5em;
     -fx-spacing: 1em;
     -fx-background-radius: .4em .4em 0 0;
+    -fx-alignment: center-left;
 }
 
 #chatMenuBarStackPane{
@@ -209,14 +210,16 @@
 }
 
 #chatMenuBarCallButton{
-    -fx-background-radius: .2em;
-    -fx-background-color: -fx-accent-gradient;
-    -fx-padding: .2em .6em .2em .6em;
-    -fx-min-width: 4em;
-    -fx-min-height: 3em;
-    -fx-text-fill: -fx-text;
-    -fx-effect: dropshadow(three-pass-box, rgba(50,50,50,0.8), 10, 0, 2,2);
-    -fx-cursor: pointer;
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-accent-gradient;
+    -fx-font-weight: bold;
+    -fx-min-width: 3.75em;
+    -fx-font-size: 1.25em;
+    -fx-background-radius: .5em;
+}
+
+#chatMenuBarCallButton:hover{
+    -fx-background-color: -fx-light-accent;
 }
 
 /*middle*/
@@ -358,14 +361,14 @@
 .scroll-bar:vertical .increment-button,
 .scroll-bar:vertical .decrement-button{
     -fx-background-color :transparent;
-    -fx-background-radius : 0.0em;
-    -fx-padding :0.0 10.0 0.0 0.0;
+    -fx-background-radius: 0.0em;
+    -fx-padding:0.0;
 }
 
 .scroll-bar .increment-arrow,
 .scroll-bar .decrement-arrow{
-    -fx-shape : " ";
-    -fx-padding :0.15em 0.0;
+    -fx-shape: " ";
+    -fx-padding: 0.0;
 }
 
 /*popup*/

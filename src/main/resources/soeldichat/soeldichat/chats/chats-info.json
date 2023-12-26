@@ -1,49 +1,5 @@
 [
   {
-    "number": "0000000005",
-    "firstName": "Sophie",
-    "lastName": "Troeger",
-    "profilePicture": "",
-    "status": "Hi, I\u0027m using SoeldiChat!",
-    "messageList": [
-      {
-        "sender": "0000000000",
-        "receiver": "0000000005",
-        "text": "Hallo!\n",
-        "imageUrl": "",
-        "timeStamp": "2023-12-24T15:16:40.356441"
-      },
-      {
-        "sender": "0000000000",
-        "receiver": "0000000005",
-        "text": "j\n",
-        "imageUrl": "",
-        "timeStamp": "2023-12-24T15:21:16.202760300"
-      },
-      {
-        "sender": "0000000000",
-        "receiver": "0000000005",
-        "text": "asdfkjlsadf\n",
-        "imageUrl": "",
-        "timeStamp": "2023-12-24T15:21:30.977369700"
-      },
-      {
-        "sender": "0000000000",
-        "receiver": "0000000005",
-        "text": "asldkfjdslkJj\n",
-        "imageUrl": "",
-        "timeStamp": "2023-12-24T15:21:34.411514500"
-      },
-      {
-        "sender": "0000000000",
-        "receiver": "0000000005",
-        "text": "adfsdaf\nddasfdasf\n",
-        "imageUrl": "",
-        "timeStamp": "2023-12-24T15:24:17.565839"
-      }
-    ]
-  },
-  {
     "number": "0000000001",
     "firstName": "Moritz",
     "lastName": "Soelderer",
@@ -112,6 +68,219 @@
         "text": "wwwas\n",
         "imageUrl": "",
         "timeStamp": "2023-12-24T15:11:48.665680300"
+      },
+      {
+        "sender": "0000000000",
+        "receiver": "0000000001",
+        "text": "a\n",
+        "imageUrl": "",
+        "timeStamp": "2023-12-24T16:47:40.805683600"
+      },
+      {
+        "sender": "0000000000",
+        "receiver": "0000000001",
+        "text": "\n",
+        "imageUrl": "",
+        "timeStamp": "2023-12-24T16:54:04.341803300"
+      },
+      {
+        "sender": "0000000000",
+        "receiver": "0000000001",
+        "text": "\n",
+        "imageUrl": "",
+        "timeStamp": "2023-12-24T16:54:05.142456600"
+      },
+      {
+        "sender": "0000000000",
+        "receiver": "0000000001",
+        "text": "\n",
+        "imageUrl": "",
+        "timeStamp": "2023-12-24T16:54:05.360863"
+      },
+      {
+        "sender": "0000000000",
+        "receiver": "0000000001",
+        "text": "\n",
+        "imageUrl": "",
+        "timeStamp": "2023-12-24T16:54:05.818399"
+      },
+      {
+        "sender": "0000000000",
+        "receiver": "0000000001",
+        "text": "\n",
+        "imageUrl": "",
+        "timeStamp": "2023-12-24T16:54:06.094068400"
+      },
+      {
+        "sender": "0000000000",
+        "receiver": "0000000001",
+        "text": "\n",
+        "imageUrl": "",
+        "timeStamp": "2023-12-24T16:54:52.205315900"
+      },
+      {
+        "sender": "0000000000",
+        "receiver": "0000000001",
+        "text": "\n",
+        "imageUrl": "",
+        "timeStamp": "2023-12-24T16:54:52.891584600"
+      },
+      {
+        "sender": "0000000000",
+        "receiver": "0000000001",
+        "text": "\n\n",
+        "imageUrl": "",
+        "timeStamp": "2023-12-24T16:55:56.234466700"
+      },
+      {
+        "sender": "0000000000",
+        "receiver": "0000000001",
+        "text": "\n\n",
+        "imageUrl": "",
+        "timeStamp": "2023-12-24T16:58:13.162789500"
+      },
+      {
+        "sender": "0000000000",
+        "receiver": "0000000001",
+        "text": "\n\n",
+        "imageUrl": "",
+        "timeStamp": "2023-12-24T16:59:11.139061500"
+      },
+      {
+        "sender": "0000000000",
+        "receiver": "0000000001",
+        "text": "h\nh\n\n",
+        "imageUrl": "",
+        "timeStamp": "2023-12-26T14:51:23.101454600"
+      }
+    ]
+  },
+  {
+    "number": "0000000013",
+    "firstName": "Jakob",
+    "lastName": "Horstmann",
+    "profilePicture": "",
+    "status": "Hi, I\u0027m using SoeldiChat!",
+    "messageList": [
+      {
+        "sender": "0000000000",
+        "receiver": "0000000013",
+        "text": "sadfsda\n",
+        "imageUrl": "",
+        "timeStamp": "2023-12-26T14:41:11.614442700"
+      }
+    ]
+  },
+  {
+    "number": "0000000004",
+    "firstName": "Alan",
+    "lastName": "Gallo",
+    "profilePicture": "",
+    "status": "Hi, I\u0027m using SoeldiChat!",
+    "messageList": [
+      {
+        "sender": "0000000000",
+        "receiver": "0000000004",
+        "text": "dsa\n",
+        "imageUrl": "",
+        "timeStamp": "2023-12-26T14:40:59.073607500"
+      }
+    ]
+  },
+  {
+    "number": "0000000007",
+    "firstName": "Hannah",
+    "lastName": "Kuntner",
+    "profilePicture": "",
+    "status": "Hi, I\u0027m using SoeldiChat!",
+    "messageList": [
+      {
+        "sender": "0000000000",
+        "receiver": "0000000007",
+        "text": "hoi\n",
+        "imageUrl": "",
+        "timeStamp": "2023-12-24T16:26:03.174936600"
+      },
+      {
+        "sender": "0000000000",
+        "receiver": "0000000007",
+        "text": "aha\n",
+        "imageUrl": "",
+        "timeStamp": "2023-12-24T16:32:50.488935200"
+      }
+    ]
+  },
+  {
+    "number": "0000000008",
+    "firstName": "Hannes",
+    "lastName": "Wenin",
+    "profilePicture": "",
+    "status": "Hi, I\u0027m using SoeldiChat!",
+    "messageList": [
+      {
+        "sender": "0000000000",
+        "receiver": "0000000008",
+        "text": "jau\n",
+        "imageUrl": "",
+        "timeStamp": "2023-12-24T16:31:31.866908300"
+      }
+    ]
+  },
+  {
+    "number": "0000000005",
+    "firstName": "Sophie",
+    "lastName": "Troeger",
+    "profilePicture": "",
+    "status": "Hi, I\u0027m using SoeldiChat!",
+    "messageList": [
+      {
+        "sender": "0000000000",
+        "receiver": "0000000005",
+        "text": "Hallo!\n",
+        "imageUrl": "",
+        "timeStamp": "2023-12-24T15:16:40.356441"
+      },
+      {
+        "sender": "0000000000",
+        "receiver": "0000000005",
+        "text": "j\n",
+        "imageUrl": "",
+        "timeStamp": "2023-12-24T15:21:16.202760300"
+      },
+      {
+        "sender": "0000000000",
+        "receiver": "0000000005",
+        "text": "asdfkjlsadf\n",
+        "imageUrl": "",
+        "timeStamp": "2023-12-24T15:21:30.977369700"
+      },
+      {
+        "sender": "0000000000",
+        "receiver": "0000000005",
+        "text": "asldkfjdslkJj\n",
+        "imageUrl": "",
+        "timeStamp": "2023-12-24T15:21:34.411514500"
+      },
+      {
+        "sender": "0000000000",
+        "receiver": "0000000005",
+        "text": "adfsdaf\nddasfdasf\n",
+        "imageUrl": "",
+        "timeStamp": "2023-12-24T15:24:17.565839"
+      },
+      {
+        "sender": "0000000000",
+        "receiver": "0000000005",
+        "text": "\njas\n",
+        "imageUrl": "",
+        "timeStamp": "2023-12-24T16:23:07.289833600"
+      },
+      {
+        "sender": "0000000000",
+        "receiver": "0000000005",
+        "text": "was\n",
+        "imageUrl": "",
+        "timeStamp": "2023-12-24T16:25:47.103518100"
       }
     ]
   },
@@ -175,14 +344,6 @@
     "messageList": []
   },
   {
-    "number": "0000000004",
-    "firstName": "Alan",
-    "lastName": "Gallo",
-    "profilePicture": "",
-    "status": "Hi, I\u0027m using SoeldiChat!",
-    "messageList": []
-  },
-  {
     "number": "0000000002",
     "firstName": "Jonas",
     "lastName": "Wenin",
@@ -194,22 +355,6 @@
     "number": "0000000010",
     "firstName": "Jasmin",
     "lastName": "Gurschler",
-    "profilePicture": "",
-    "status": "Hi, I\u0027m using SoeldiChat!",
-    "messageList": []
-  },
-  {
-    "number": "0000000007",
-    "firstName": "Hannah",
-    "lastName": "Kuntner",
-    "profilePicture": "",
-    "status": "Hi, I\u0027m using SoeldiChat!",
-    "messageList": []
-  },
-  {
-    "number": "0000000008",
-    "firstName": "Hannes",
-    "lastName": "Wenin",
     "profilePicture": "",
     "status": "Hi, I\u0027m using SoeldiChat!",
     "messageList": []
@@ -234,14 +379,6 @@
     "number": "0000000012",
     "firstName": "Kilian",
     "lastName": "Ritsch",
-    "profilePicture": "",
-    "status": "Hi, I\u0027m using SoeldiChat!",
-    "messageList": []
-  },
-  {
-    "number": "0000000013",
-    "firstName": "Jakob",
-    "lastName": "Horstmann",
     "profilePicture": "",
     "status": "Hi, I\u0027m using SoeldiChat!",
     "messageList": []

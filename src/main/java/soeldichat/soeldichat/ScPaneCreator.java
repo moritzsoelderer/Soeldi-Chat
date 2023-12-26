@@ -1,7 +1,6 @@
 package soeldichat.soeldichat;
 
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -47,7 +46,7 @@ public class ScPaneCreator {
 
         try {
             //try to fetch data
-            lastMessageText.setText(contact.getMessageList().getLast().getText());
+            lastMessageText.setText(contact.getMessageList().getLast().getText().isEmpty() ? "~image" : contact.getMessageList().getLast().getText());
             lastMessageTimeStampLabel.setText(contact.getMessageList().getLast().getTimeStamp().substring(11, 16));
         } catch (Exception ignored) {
         }

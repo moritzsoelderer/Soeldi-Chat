@@ -36,3 +36,5 @@ f
 0src/main/java/soeldichat/soeldichat/ScFiles.java,e\4\e4d9e5a131d63d47e7ab6da60fd374cf344249e9
 f
 6src/main/java/soeldichat/soeldichat/ScPaneCreator.java,4\5\4581ef0ba20ef5a2e6da2997cb7ca40c44237a8b
+h
+8src/main/java/soeldichat/soeldichat/LocalClientTest.java,1\d\1dde391d462e403df777ea542a0edd7520b1775b

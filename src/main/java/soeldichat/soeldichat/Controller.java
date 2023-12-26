@@ -62,16 +62,8 @@ public class Controller {
                 int lastMessageDayInt = Integer.parseInt(lastMessageTimeStamp.substring(8,10));
                 int messageDayInt = Integer.parseInt(message.getTimeStamp().substring(8,10));
                 int dayDistance = messageDayInt - lastMessageDayInt;
-                if(dayDistance > 0){
-                    String dayDisplayText = ScFiles.getDateFormatted(message.getTimeStamp());
-                    if(dayDistance == 1){
-                        dayDisplayText = "yesterday";
-                        if(java.time.LocalDate.now().toString().equals(ScFiles.getDate(message.getTimeStamp()))){
-                            dayDisplayText = "today";
-                        }
-                    }
-                    messageContainer.getChildren().add(ScPaneCreator.createDayTagStackpane(dayDisplayText));
-                }
+                String dayDisplayText = determineDayDisplayText(dayDistance, message.getTimeStamp());
+                if(!dayDisplayText.isEmpty()){messageContainer.getChildren().add(ScPaneCreator.createDayTagStackpane(dayDisplayText));}
             }
             else{
                 StackPane dayStackPane = ScPaneCreator.createDayTagStackpane(ScFiles.getDateFormatted(message.getTimeStamp()));
@@ -80,8 +72,21 @@ public class Controller {
             lastMessageTimeStamp = message.getTimeStamp();
             HBox messageWrapper = ScPaneCreator.createMessageHBox(message, message.getSender().equals(application.getUserNumber()), application);
             messageContainer.getChildren().add(messageWrapper);
-            updateFocusedContactContainer(message);
         }
+    }
+
+    private String determineDayDisplayText(int dayDistance, String timeStamp) {
+        String dayDisplayText = "";
+        if(dayDistance > 0) {
+            dayDisplayText = ScFiles.getDateFormatted(timeStamp);
+            if (dayDistance == 1) {
+                dayDisplayText = "yesterday";
+                if (java.time.LocalDate.now().toString().equals(ScFiles.getDate(timeStamp))) {
+                    dayDisplayText = "today";
+                }
+            }
+        }
+        return dayDisplayText;
     }
 
     public void displayContacts(List<Contact> contactList) {
@@ -100,7 +105,15 @@ public class Controller {
     }
 
     public void focusFirstContact(){
-        focusedContactContainer = contactScrollpaneVBox.getChildren().getFirst() == null ? null :  (HBox) contactScrollpaneVBox.getChildren().getFirst();
+        if(focusedContactContainer != null){
+            focusedContactContainer.getStyleClass().clear();
+            focusedContactContainer.getStyleClass().add("contact");
+        }
+        if(contactScrollpaneVBox.getChildren().getFirst() != null){
+            focusedContactContainer = (HBox) contactScrollpaneVBox.getChildren().getFirst();
+            focusedContactContainer.getStyleClass().clear();
+            focusedContactContainer.getStyleClass().add("focusedContact");
+        }
     }
 
     protected void addMessageToChat(Message message, boolean alignRight) {
@@ -120,13 +133,15 @@ public class Controller {
 
     private void updateFocusedContactContainer(Message message){
         //update last message
-        String text = message.getText().isEmpty() ? "~image" : message.getText();//display ~image if text is empty
+        String text = message.getText().isEmpty() ? "~image" : message.getText().substring(0, message.getText().indexOf('\n'));//display ~image if text is empty
         ((Label) ((VBox) focusedContactContainer.getChildren().get(1)).getChildren().getLast()).setText(text);
         //update timeStamp
         ((Label) (focusedContactContainer.getChildren().get(2))).setText(message.getTimeStamp().substring(11, 16));
         //update contact position
-        contactScrollpaneVBox.getChildren().remove(focusedContactContainer);
-        contactScrollpaneVBox.getChildren().addFirst(focusedContactContainer);
+        if(!isContactSearch){
+            contactScrollpaneVBox.getChildren().remove(focusedContactContainer);
+            contactScrollpaneVBox.getChildren().addFirst(focusedContactContainer);
+        }
     }
 
     public void setupchatMenuBarProfilePicture(Contact contact){
@@ -138,8 +153,8 @@ public class Controller {
     protected void onSendButtonClicked() {
 
         String text = sendTextArea.getText();
-        //return if message prompt is empty
-        if (text.isEmpty() && !imageDragVBox.getChildren().contains(imageDragImageView)) {
+        //return if message text is empty and there is now imageview
+        if ((text.isEmpty() || text.equals("\n")) && !imageDragVBox.getChildren().contains(imageDragImageView)) {
             return;
         }
 
@@ -206,13 +221,12 @@ public class Controller {
             exception.printStackTrace();
         }
     }
-    @FXML
     protected void onMouseClickedContactContainer(String focusedContactNumber, HBox newContactContainer){
         //store number of focused contact
         application.setFocusedContactNumber(focusedContactNumber);
-        //store Hbox of focused contact
+        //store HBox of focused contact
         focusedContactContainer.getStyleClass().clear();
-        focusedContactContainer.getStyleClass().add("contact");
+        focusedContactContainer.getStyleClass().add("contactHBox");
         focusedContactContainer = newContactContainer;
         focusedContactContainer.getStyleClass().clear();
         focusedContactContainer.getStyleClass().add("focusedContact");
@@ -223,6 +237,7 @@ public class Controller {
             contactSearchTextField.setText("");
             displayContacts(application.getContactList());
             contactSearchResultHBox.getChildren().clear();
+            isContactSearch = false;
         }
         updateChatMenuBar();
     }
@@ -253,6 +268,8 @@ public class Controller {
 
     @FXML
     protected void onActionContactSearchButton(javafx.event.ActionEvent actionEvent) {
+        if(contactSearchTextField.getText().equals("")){return;}
+
         List<Contact> contactList = Contact.filterContactListByName(application.getContactList(), contactSearchTextField.getText());
         contactSearchResultHBox.getChildren().clear();
         contactSearchResultHBox.getChildren().add(new Label(contactList.size() + " results"));
