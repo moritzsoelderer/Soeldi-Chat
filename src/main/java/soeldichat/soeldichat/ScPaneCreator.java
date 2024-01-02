@@ -82,7 +82,7 @@ public class ScPaneCreator {
         }
 
         //add timestamp
-        Label timeStampLabel = new Label(message.getTimeStamp().substring(11, 16));
+        Label timeStampLabel = new Label(ScFiles.getHoursMinutes(message.getTimeStamp()));
         timeStampLabel.getStyleClass().add("timeStamp");
 
         //add text
@@ -150,7 +150,7 @@ public class ScPaneCreator {
         windowStackPane.setMinWidth(stage.getWidth() -15);
         windowStackPane.setMaxHeight(stage.getHeight() -30);
         windowStackPane.setMaxWidth(stage.getWidth() -15);
-        windowStackPane.getStyleClass().add("popupWrapperStackpane");
+        windowStackPane.getStyleClass().add("popupWrapperStackPane");
 
         StackPane stackPane = new StackPane();
 
@@ -161,7 +161,7 @@ public class ScPaneCreator {
         imageView.setPreserveRatio(true);
 
         stackPane.getChildren().add(imageView);
-        stackPane.getStyleClass().add("popupStackpane");
+        stackPane.getStyleClass().add("popupStackPane");
         windowStackPane.getChildren().add(stackPane);
 
         windowStackPane.setOnMouseClicked(x->popup.hide());

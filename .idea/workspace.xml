@@ -1,21 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="SoeldiChat:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2c7283b-a416-41b5-8b21-fdc60750bd3c" name="Changes" comment="added day tags in chat, added possibility to send messages and search contacts by pressing &quot;ENTER&quot;, now new lines are created by pressing &quot;SHIFT + ENTER&quot;, resolved bug caused by searchstring being longer than first/last name, added search result HBox to display number of results">
+    <list default="true" id="b2c7283b-a416-41b5-8b21-fdc60750bd3c" name="Changes" comment="first server connection draft, added error messages, created first artifact .jar file">
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/SoeldiChat_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/SoeldiChatv1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/3/134786d64830cdd76b73ef34355d51a9710071a7" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/c/1c89a5491fbfda3fb050196d6a239f20200296e7" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/f/1f1763f358c257ea3515417352b82b0165647ad1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/c/2cabb939da04d3de3a200bf2b575690e1a16316d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/2/32e074f71d16c1e88ac02aa83592ca6ad1fd98a8" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/f/3fe57a42a0d6641fa289411f5cd764d412c76ff5" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/3/433a5fa296f15a45224e88792018ed23bcd21f1f" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/5/4581ef0ba20ef5a2e6da2997cb7ca40c44237a8b" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/d/5d837c4ed85ecaaf932c506e80ff5d7b9f3d590d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/4/64adbb183d8ed334e96bfd5637d6dbbcdf2a373e" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/6/863e0292fd7e9b3e74dafd6cc01f73ba76346482" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/8/88a9255124c95bdc913197c120a8d560edc59c8e" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/7/970bad67b8b45e0311ef3849640432aa17eca638" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/f/9fe84ebb15faf917b7def6236dba604453cc61e0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/5/a5cc2925ca8258af241be7e5b0381edf30266302" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/d/ddceb215f37de253b0ab23e05f98738c536b53c7" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/3/e34ad4bd6b050c89a657ecb5e821e8b82e22e6e7" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/4/e4d9e5a131d63d47e7ab6da60fd374cf344249e9" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/9/e9906cdc17ee01538d399fe3e2cc13b74098e982" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/7/f7066b99d47fd72a3cb61e5b3aef0c74e87ef89a" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/1/3/134786d64830cdd76b73ef34355d51a9710071a7" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/1/c/1c89a5491fbfda3fb050196d6a239f20200296e7" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/1/f/1f1763f358c257ea3515417352b82b0165647ad1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/2/c/2cabb939da04d3de3a200bf2b575690e1a16316d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/3/2/32e074f71d16c1e88ac02aa83592ca6ad1fd98a8" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/3/f/3fe57a42a0d6641fa289411f5cd764d412c76ff5" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/4/3/433a5fa296f15a45224e88792018ed23bcd21f1f" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/4/5/4581ef0ba20ef5a2e6da2997cb7ca40c44237a8b" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/5/d/5d837c4ed85ecaaf932c506e80ff5d7b9f3d590d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/6/4/64adbb183d8ed334e96bfd5637d6dbbcdf2a373e" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/8/6/863e0292fd7e9b3e74dafd6cc01f73ba76346482" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/8/8/88a9255124c95bdc913197c120a8d560edc59c8e" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/9/7/970bad67b8b45e0311ef3849640432aa17eca638" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/9/f/9fe84ebb15faf917b7def6236dba604453cc61e0" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/a/5/a5cc2925ca8258af241be7e5b0381edf30266302" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/d/d/ddceb215f37de253b0ab23e05f98738c536b53c7" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/e/3/e34ad4bd6b050c89a657ecb5e821e8b82e22e6e7" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/e/4/e4d9e5a131d63d47e7ab6da60fd374cf344249e9" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/e/9/e9906cdc17ee01538d399fe3e2cc13b74098e982" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/f/7/f7066b99d47fd72a3cb61e5b3aef0c74e87ef89a" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/ScServerConnection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/Contact.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/Contact.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/ScFiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/ScFiles.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/ScPaneCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/ScPaneCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000001.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000001.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/SoeldiChatApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/soeldichat/soeldichat/SoeldiChatApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000004.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000004.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000005.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000005.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000007.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000007.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000008.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000008.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000013.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/0000000013.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/chats-info.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/chats/chats-info.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/soeldichat/soeldichat/style.css" afterDir="false" />
     </list>
@@ -35,7 +84,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="d36318706f704931e27dd29505bdd863baac573e" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -57,30 +106,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;contact-enhancement&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/morit/IdeaProjects/RoboRally/src/main/resources/soeldichat/soeldichat/img/0000000001&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.uml&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "client-server-model",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/morit/IdeaProjects/RoboRally",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.uml",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\morit\IdeaProjects\RoboRally\src\main\resources\soeldichat\soeldichat\img\0000000001" />
@@ -160,6 +209,9 @@
       <workItem from="1703420027278" duration="12037000" />
       <workItem from="1703524543068" duration="519000" />
       <workItem from="1703597574001" duration="1091000" />
+      <workItem from="1703612963483" duration="4550000" />
+      <workItem from="1703675592078" duration="4283000" />
+      <workItem from="1703868800038" duration="6622000" />
     </task>
     <task id="LOCAL-00001" summary="First Draft - Messaging, reading/writing of chatlog (textfile) works - First Design implemented">
       <option name="closed" value="true" />
@@ -329,7 +381,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="contact-enhancement" />
+                        <option value="client-server-model" />
                       </list>
                     </value>
                   </entry>
@@ -362,7 +414,8 @@
     <MESSAGE value="file explorer now opens by clicking on the add image VBox, although you still have to drag images in, did some refactoring, added two java classes to outsource work from the application and the controller, problems with sending images when the corresponding img folder did not exist are now solved, path names are now relative not absolute as before" />
     <MESSAGE value="added popup window to view sent images, changed style a little" />
     <MESSAGE value="added day tags in chat, added possibility to send messages and search contacts by pressing &quot;ENTER&quot;, now new lines are created by pressing &quot;SHIFT + ENTER&quot;, resolved bug caused by searchstring being longer than first/last name, added search result HBox to display number of results" />
-    <option name="LAST_COMMIT_MESSAGE" value="added day tags in chat, added possibility to send messages and search contacts by pressing &quot;ENTER&quot;, now new lines are created by pressing &quot;SHIFT + ENTER&quot;, resolved bug caused by searchstring being longer than first/last name, added search result HBox to display number of results" />
+    <MESSAGE value="first server connection draft, added error messages, created first artifact .jar file" />
+    <option name="LAST_COMMIT_MESSAGE" value="first server connection draft, added error messages, created first artifact .jar file" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">

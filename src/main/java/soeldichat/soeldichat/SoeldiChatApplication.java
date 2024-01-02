@@ -2,42 +2,44 @@ package soeldichat.soeldichat;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.TilePane;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 
 @Setter
 @Getter
-public class SoeldiChatApplication extends Application {
+public class SoeldiChatApplication extends Application{
+
+    public static SoeldiChatApplication applicationInstance;
+    public ScServerConnection scServerConnection;
 
     private final String userNumber = "0000000000";
     private String focusedContactNumber;
-    private List<Contact> contactList;
+    private List<Contact> contactList = Collections.emptyList();
     private String defaultProfilePictureString = "default-profile-picture.png";
 
+
+    private Controller controller;
     private Stage stage;
 
     @Override
-    public void start(Stage stage) throws IOException {
-        this.stage = stage;
+    public void start(Stage stage) throws IOException, InterruptedException {
+        applicationInstance = this;
 
         FXMLLoader fxmlLoader = new FXMLLoader(SoeldiChatApplication.class.getResource("soeldi-chat.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1200, 900);
-        Controller controller = fxmlLoader.getController();
+        controller = fxmlLoader.getController();
+        this.stage = stage;
 
         //give controller access to this instance of application
         controller.setApplication(this);
@@ -51,27 +53,50 @@ public class SoeldiChatApplication extends Application {
         stage.setScene(scene);
         stage.show();
 
-        //load and display contacts
         this.contactList = loadContacts();
-        this.focusedContactNumber = contactList.getFirst().getNumber();
 
-        //load and display messages (of first contact)
-        contactList.forEach(x -> x.setMessageList(new ArrayList<>(loadMessages(x.getNumber()))));
-        controller.displayContacts(contactList);
-        controller.focusFirstContact();
-        controller.setupchatMenuBarProfilePicture(contactList.getFirst());
-        controller.displayChat(contactList.getFirst().getMessageList());
-        controller.updateChatMenuBar();
+        if(!contactList.isEmpty()){
+            //load and display contacts
+            this.focusedContactNumber = contactList.getFirst().getNumber();
+
+            //load and display messages (of first contact)
+            contactList.forEach(x -> x.setMessageList(new ArrayList<>(loadMessages(x.getNumber()))));
+            controller.displayContacts(contactList);
+            controller.focusFirstContact();
+            controller.setupchatMenuBarProfilePicture(contactList.getFirst());
+            controller.displayChat(contactList.getFirst().getMessageList());
+            controller.updateChatMenuBar();
+        }
+
+
+        //perform server connection
+        scServerConnection = new ScServerConnection();
+        scServerConnection.setApplication(this);
+        if(!scServerConnection.connect()){
+            addErrorMessage("could not connect to server");
+        }
+        else{
+            scServerConnection.start();
+        }
     }
 
     public static void main(String[] args) {
         launch();
+
+        //logging
+        applicationInstance.logContacts();
     }
 
 
     public void addMessageToChat(Message newMessage) {
-        Contact.getContactByNumber(contactList, newMessage.determineChatPartnerNumber(this.userNumber)).getMessageList().add(newMessage);
-        logMessage(newMessage);
+        try{
+            Contact.getContactByNumber(contactList, newMessage.determineChatPartnerNumber(this.userNumber)).getMessageList().add(newMessage);
+            logMessage(newMessage);
+            sendMessageToServer(newMessage);
+        }
+        catch(NullPointerException nullPointerException){
+            System.out.println("no such contact in contactlist");
+        }
     }
 
     public void updateContactList(String focusedContactNumber) {
@@ -118,10 +143,21 @@ public class SoeldiChatApplication extends Application {
     }
 
     public String saveImage(String imageUrl) {
-        if(imageUrl.isEmpty()){return "";}
+        if(imageUrl.isEmpty() || imageUrl == null){return "";}
         String currentDateTime = java.time.LocalDateTime.now().toString();
         String newImageUrl = "src\\main\\resources\\soeldichat\\soeldichat\\img\\" + focusedContactNumber + "\\" + new File(currentDateTime.replace(':', '-')) + ScFiles.getFileExtension(new File(imageUrl));
         return "file:" + ScFiles.saveImage(Path.of(imageUrl.substring(5)),Path.of(newImageUrl));
     }
+
+    private void sendMessageToServer(Message message){
+        if(scServerConnection != null){
+            scServerConnection.sendMessage(message);
+        }
+    }
+
+    public void addErrorMessage(String messageString){
+        controller.displayErrorBanner(messageString);
+    }
+
 }
 

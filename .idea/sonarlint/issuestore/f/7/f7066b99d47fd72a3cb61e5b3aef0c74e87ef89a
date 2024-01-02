@@ -1,0 +1,16 @@
+
+
+java:S1104"_Make applicationInstance a static final constant or non-public and provide accessors if needed.(¥Şˆüÿÿÿÿ8ù“¸ØÌ1
+{
+java:S1104"^Make scServerConnection a static final constant or non-public and provide accessors if needed.(Ñú­Ô8ò½ØË1
+[
+java:S1444"9Make this "public static applicationInstance" field final(¥Şˆüÿÿÿÿ8ù“¸ØÌ1
+[
+java:S2589’"8Remove this expression which always evaluates to "false"(ÖˆÀ şÿÿÿÿ8©ò½ØË1
+C
+java:S1170"!Make this final field static too.(­ñâ“üÿÿÿÿ8ªò½ØË1
+R
+java:S2696%"6Make the enclosing method "static" or remove this set.(Ò¾Ä[8³ò½ØË1
+G	java:S106b"+Replace this use of System.out by a logger.(óÇó8éò½ØË1
+M	java:S106"+Replace this use of System.out by a logger.(Ñı†èùÿÿÿÿ8óò½ØË1
+H	java:S106"+Replace this use of System.out by a logger.(òÒã„8÷ò½ØË1

@@ -17,7 +17,10 @@ public class Contact {
 
     private List<Message> messageList;
 
-    public static Contact getContactByNumber(List<Contact> contactList, String number){
+    public static Contact getContactByNumber(List<Contact> contactList, String number) throws NullPointerException{
+        if(contactList == null || contactList.isEmpty()){
+            throw new NullPointerException();
+        }
         return contactList.stream().filter(x->x.getNumber().equals(number)).toList().getFirst();
     }
 

@@ -373,10 +373,24 @@
 
 /*popup*/
 
-.popupWrapperStackpane{
+.popupWrapperStackPane{
     -fx-background-color: rgba(41, 41, 41, .5);
     -fx-padding: 12em;
     -fx-background-radius: .5em;
     -fx-effect: dropshadow(three-pass-box, rgba(50,50,50,0.8), 10, 0, 2,2);
+}
+
+.popupErrorMessageStackPane{
+    -fx-alignment: center;
+}
+
+.popupErrorMessageStackPane > .label{
+    -fx-background-color: rgb(255, 104, 104);;
+    -fx-background-radius: 1em;
+    -fx-border-color: rgba(255, 0, 0, 1);
+    -fx-border-width: 2px;
+    -fx-border-radius: 1em;
+    -fx-padding: .5em 1em;
+    -fx-font-size: 1.2em;
 }
 

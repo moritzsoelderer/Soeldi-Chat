@@ -1,5 +1,6 @@
 package soeldichat.soeldichat;
 
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -8,11 +9,16 @@ import javafx.scene.input.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.util.List;
 
 public class Controller {
+    @FXML
+    private HBox applicationBarHBox;
     @FXML
     private HBox contactSearchResultHBox;
     @FXML
@@ -48,7 +54,6 @@ public class Controller {
     private HBox focusedContactContainer;
     private ImageView imageDragImageView;
     private boolean isContactSearch = false;
-
 
     public void displayChat(List<Message> messageList) {
         //clearing chat
@@ -109,7 +114,7 @@ public class Controller {
             focusedContactContainer.getStyleClass().clear();
             focusedContactContainer.getStyleClass().add("contact");
         }
-        if(contactScrollpaneVBox.getChildren().getFirst() != null){
+        if(!contactScrollpaneVBox.getChildren().isEmpty()){
             focusedContactContainer = (HBox) contactScrollpaneVBox.getChildren().getFirst();
             focusedContactContainer.getStyleClass().clear();
             focusedContactContainer.getStyleClass().add("focusedContact");
@@ -121,7 +126,6 @@ public class Controller {
         application.addMessageToChat(message);
         updateFocusedContactContainer(message);
         application.updateContactList(application.getFocusedContactNumber());
-        application.logContacts();
     }
 
     public void updateChatMenuBar() {
@@ -133,10 +137,10 @@ public class Controller {
 
     private void updateFocusedContactContainer(Message message){
         //update last message
-        String text = message.getText().isEmpty() ? "~image" : message.getText().substring(0, message.getText().indexOf('\n'));//display ~image if text is empty
+        String text = message.getText().isEmpty() ? "~image" : message.getText().substring(0, message.getText().indexOf('\n') == -1 ? message.getText().length() : message.getText().indexOf('\n'));//display ~image if text is empty
         ((Label) ((VBox) focusedContactContainer.getChildren().get(1)).getChildren().getLast()).setText(text);
         //update timeStamp
-        ((Label) (focusedContactContainer.getChildren().get(2))).setText(message.getTimeStamp().substring(11, 16));
+        ((Label) (focusedContactContainer.getChildren().get(2))).setText(ScFiles.getHoursMinutes(message.getTimeStamp()));
         //update contact position
         if(!isContactSearch){
             contactScrollpaneVBox.getChildren().remove(focusedContactContainer);
@@ -147,6 +151,23 @@ public class Controller {
     public void setupchatMenuBarProfilePicture(Contact contact){
         chatMenuBarProfilePicture = ScPaneCreator.createContactProfilePictureImageView(contact, this.application);
         chatMenuBarStackPane.getChildren().add(chatMenuBarProfilePicture);
+    }
+
+    public void displayErrorBanner(String messageString){
+        System.out.println("hallo hier error message");
+        Stage stage = application.getStage();
+        Popup popup = new Popup();
+
+        StackPane windowStackPane = new StackPane(new Label(messageString));
+        windowStackPane.setMinWidth(stage.getWidth());
+        windowStackPane.getStyleClass().add("popupErrorMessageStackPane");
+        popup.getContent().add(windowStackPane);
+        popup.show(applicationBarHBox, stage.getX() + applicationBarHBox.getLayoutX(),stage.getY() + applicationBarHBox.getLayoutY() + applicationBarHBox.getHeight()*.5);
+
+        //remove error message after time
+        PauseTransition pause = new PauseTransition(Duration.seconds(5));
+        pause.setOnFinished(e -> popup.hide());
+        pause.play();
     }
 
     @FXML
@@ -160,7 +181,7 @@ public class Controller {
 
         String currentDateTime = java.time.LocalDateTime.now().toString();
 
-        String newImageUrl = application.saveImage(imageDragImageView == null ? "" : imageDragImageView.getImage().getUrl());
+        String newImageUrl = application.saveImage(imageDragImageView == null? "" : imageDragImageView.getImage().getUrl());
 
         //add message
         addMessageToChat(new Message(application.getUserNumber(), application.getFocusedContactNumber(), text, newImageUrl, currentDateTime), true);

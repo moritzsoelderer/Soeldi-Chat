@@ -116,6 +116,9 @@ public class ScFiles {
     }
 
     public static String getDateFormatted(String timeStamp) {
+        if(timeStamp.isEmpty()){
+            return timeStamp;
+        }
         String year = timeStamp.substring(0, 4);
         String month = timeStamp.substring(5,7);
         String day = timeStamp.substring(8,10);
@@ -124,6 +127,16 @@ public class ScFiles {
     }
 
     public static String getDate(String timeStamp) {
+        if(timeStamp.isEmpty()){
+            return timeStamp;
+        }
         return timeStamp.substring(0,10);
+    }
+
+    public static String getHoursMinutes(String timeStamp) {
+        if(timeStamp.isEmpty()){
+            return timeStamp;
+        }
+        return timeStamp.substring(11, 16);
     }
 }
